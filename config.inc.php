@@ -26,10 +26,10 @@
 
 ; Set this to On once the system has been installed
 ; (This is generally done automatically by the installer)
-installed = Off
+installed = On
 
 ; The canonical URL to the OJS installation (excluding the trailing slash)
-base_url = "http://pkp.sfu.ca/ojs"
+base_url = "dummy_base_url"
 
 ; Path to the registry directory (containing various settings files)
 ; Although the files in this directory generally do not contain any
@@ -47,7 +47,7 @@ session_lifetime = 30
 ; Enable support for running scheduled tasks
 ; Set this to On if you have set up the scheduled tasks script to
 ; execute periodically
-scheduled_tasks = Off
+scheduled_tasks = On
 
 ; Short and long date formats
 date_format_trunc = "%m-%d"
@@ -105,9 +105,9 @@ show_upgrade_warning = On
 
 driver = mysql
 host = localhost
-username = ojs
-password = ojs
-name = ojs
+username = dummy_db_username
+password = dummy_db_password
+name = dummy_db_name
 
 ; Enable persistent connections
 persistent = Off
@@ -166,11 +166,11 @@ client_charset = utf-8
 ; Must be set to "Off" if not supported by the database server
 ; If enabled, must be the same character set as "client_charset"
 ; (although the actual name may differ slightly depending on the server)
-connection_charset = Off
+connection_charset = utf8
 
 ; Database storage character set
 ; Must be set to "Off" if not supported by the database server
-database_charset = Off
+database_charset = utf8
 
 ; Enable character normalization to utf-8 (recommended)
 ; If disabled, strings will be passed through in their native encoding
@@ -187,7 +187,7 @@ charset_normalization = Off
 ; Complete path to directory to store uploaded files
 ; (This directory should not be directly web-accessible)
 ; Windows users should use forward slashes
-files_dir = files
+files_dir = /var/www/ojs2_files
 
 ; Path to the directory to store public uploaded files
 ; (This directory should be web-accessible and the specified path
@@ -217,7 +217,7 @@ mime_database_path = /etc/magic.mime
 force_ssl = Off
 
 ; Force SSL connections for login only
-force_login_ssl = Off
+force_login_ssl = On
 
 ; This check will invalidate a session if the user's IP address changes.
 ; Enabling this option provides some amount of additional security, but may
@@ -227,7 +227,7 @@ session_check_ip = On
 ; The encryption (hashing) algorithm to use for encrypting user passwords
 ; Valid values are: md5, sha1
 ; Note that sha1 requires PHP >= 4.3.0
-encryption = md5
+encryption = sha1
 
 ; Allowed HTML tags for fields that permit restricted HTML.
 ; For PHP 5.0.5 and greater, allowed attributes must be specified individually
@@ -243,24 +243,24 @@ allowed_html = "<a href|target> <em> <strong> <cite> <code> <ul> <ol> <li> <dl> 
 
 ;Is implicit authentication enabled or not
 
-;implicit_auth = On
+implicit_auth = On
 
 ;Implicit Auth Header Variables
 
-;implicit_auth_header_first_name = HTTP_GIVENNAME
-;implicit_auth_header_last_name = HTTP_SN
-;implicit_auth_header_email = HTTP_MAIL
-;implicit_auth_header_phone = HTTP_TELEPHONENUMBER
-;implicit_auth_header_initials = HTTP_METADATA_INITIALS
-;implicit_auth_header_mailing_address = HTTP_METADATA_HOMEPOSTALADDRESS
-;implicit_auth_header_uin = HTTP_UID
+implicit_auth_header_first_name = ADFS_FIRSTNAME
+implicit_auth_header_last_name = ADFS_LASTNAME
+implicit_auth_header_email = ADFS_EMAIL
+implicit_auth_header_phone = ADFS_PHONENUMBER
+implicit_auth_header_initials = ADFS_FIRSTNAME
+implicit_auth_header_mailing_address = ADFS_HOMEDIR
+implicit_auth_header_uin = ADFS_LOGIN
 
 ; A space delimited list of uins to make admin
 ;implicit_auth_admin_list = "jdoe@email.ca jshmo@email.ca"
 
 ; URL of the implicit auth 'Way Finder' page. See pages/login/LoginHandler.inc.php for usage.
 
-;implicit_auth_wayf_url = "/Shibboleth.sso/wayf"
+implicit_auth_wayf_url = "wayf_dummy"
 
 
 
@@ -357,7 +357,7 @@ result_cache_hours = 1
 oai = On
 
 ; OAI Repository identifier
-repository_id = ojs.pkp.sfu.ca
+repository_id = "repository_dummy"
 
 ; Maximum number of records per request to serve via OAI
 oai_max_records = 100
