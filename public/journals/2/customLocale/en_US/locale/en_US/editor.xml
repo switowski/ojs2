@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../../../lib/pkp/dtd/locale.dtd">
+<locale name="en_US">
+	<message key="editor.publicIdentificationExists">The public identifier '{$publicIdentifier}' already exists for another object (issue, article, galley or supplementary file). Please choose unique identifiers within your publication.</message>
+	<message key="editor.notifyUsers.allUsers">Send this message to all users associated with this publication ({$count} users)</message>
+	<message key="editor.notifyUsers.interestedUsers">Send this message to the users associated with this publication who have indicated that they wish to receive updates ({$count} users)</message>
+	<message key="editor.notifyUsers.includeToc">Include the table of contents from this volume:</message>
+	<message key="editor.issues.createIssue">Create Volume</message>
+	<message key="editor.issues.backIssues">Back Volumes</message>
+	<message key="editor.issues.futureIssues">Future Volumes</message>
+	<message key="editor.issues.currentIssue">Current Volume</message>
+	<message key="editor.issues.noArticles">No items are currently scheduled for this volume.</message>
+	<message key="editor.issues.confirmDelete">Are you sure you want to permanently delete this volume?</message>
+	<message key="editor.issues.titleRequired">Title is required for the volume.</message>
+	<message key="editor.issues.issueIdentificationRequired">Volume identification is required. Please select at least one of the volume identification options.</message>
+	<message key="editor.issues.issueIdentification">Volume identification</message>
+	<message key="editor.issues.publicIssueIdentifier">Public volume identifier</message>
+	<message key="editor.issues.confirmIssueDelete">All articles will be returned to the editing queue and all associated files will be permanently removed.  Are you sure you want to remove this volume?</message>
+	<message key="editor.issues.issueData">Volume Data</message>
+	<message key="editor.issues.publishIssue">Publish Volume</message>
+	<message key="editor.issues.unpublishIssue">Unpublish Volume</message>
+	<message key="editor.issues.previewIssue">Preview Volume</message>
+	<message key="editor.issues.confirmPublish">Are you sure you want to publish the new volume?</message>
+	<message key="editor.issues.confirmUnpublish">Are you sure you want to unpublish this published volume?</message>
+	<message key="editor.issues.noLiveIssues">No Live Volumes</message>
+	<message key="editor.navigation.issues">Volumes</message>
+	<message key="editor.navigation.futureIssues">Future Volumes</message>
+	<message key="editor.navigation.createIssue">Create Volume</message>
+	<message key="editor.navigation.issueArchive">Back Volumes</message>
+</locale>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../../../lib/pkp/dtd/locale.dtd">
+<locale name="en_US">
+	<message key="author.submit.notAccepting">This publication is not accepting submissions at this time.</message>
+	<message key="author.submit.submissionChecklistDescription">Indicate that this submission is ready to be considered by this publication by checking off the following (comments to the editor can be added below).</message>
+	<message key="author.submit.copyrightNoticeAgree">The authors agree to the terms of this Copyright Notice, which will apply to this submission if and when it is published by these series (comments to the editor can be added below).</message>
+	<message key="author.submit.form.sectionRequired">Please select an appropriate section for this submission.</message>
+	<message key="author.submit.privacyStatement">Publication's Privacy Statement</message>
+	<message key="author.submit.confirmationDescription">To submit your manuscript to {$journalTitle} click Finish Submission. The submission's principal contact will receive an acknowledgement by email and will be able to view the submission's progress through the editorial process by logging in to the publication web site. Thank you for your interest in publishing with {$journalTitle}.</message>
+	<message key="author.submit.expedite"><![CDATA[If this submission is in a format that is ready to be published without further review, editing, or layout work, it can be placed directly in the last stage of the Editing queue by <a href="{$expediteUrl}" class="action">Clicking here</a>. (Note: Only Series editors have this option for their submissions.)]]></message>
+	<message key="author.submit.authorSubmitLoginMessage">A user account is required to submit to this publication. This allows our editors to track your submissions and contact you when the status of your submission changes, or if additional information is required from you.</message>
+</locale>

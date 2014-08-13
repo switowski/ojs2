@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../../../lib/pkp/dtd/locale.dtd">
+<locale name="en_US">
+	<message key="common.journal">Series</message>
+	<message key="navigation.journalHelp">Help</message>
+	<message key="navigation.otherJournals">Other Publications</message>
+	<message key="navigation.browseByIssue">By Volume</message>
+	<message key="section.sections">Sections</message>
+	<message key="article.journalSection">Section</message>
+	<message key="journal.journal">Series</message>
+	<message key="user.showAllJournals">Show My Publications</message>
+	<message key="user.registerForOtherJournals">Register for Other Publications</message>
+	<message key="user.myJournals">My Publications</message>
+	<message key="user.role.managers">Series Managers</message>
+	<message key="issue.issue">Volume</message>
+	<message key="issue.issues">Volumes</message>
+	<message key="issue.fullIssue">Full Volume</message>
+	<message key="issue.nonpdf.title">Volume Download</message>
+	<message key="issue.viewIssue">View Volume</message>
+	<message key="issue.viewIssueDescription">View or download the full volume</message>
+	<message key="submission.event.general.issueScheduled">Submission sent to volume scheduling queue</message>
+	<message key="submission.event.general.issueAssigned">Submission assigned to volume</message>
+</locale>
