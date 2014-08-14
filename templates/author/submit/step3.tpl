@@ -264,7 +264,7 @@ function moveAuthor(dir, authorIndex) {
 
 		{if $currentJournal->getSetting('metaSubject')}
 		<tr valign="top">
-			<td{if $currentJournal->getLocalizedSetting('metaSubjectExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="subject" key="article.subject"}</td>
+			<td{if $currentJournal->getLocalizedSetting('metaSubjectExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="subject" required="true" key="article.subject"}</td>
 			<td width="80%" class="value"><input type="text" class="textField" name="subject[{$formLocale|escape}]" id="subject" value="{$subject[$formLocale]|escape}" size="40" maxlength="255" /></td>
 		</tr>
 		{if $currentJournal->getLocalizedSetting('metaSubjectExamples') != ''}

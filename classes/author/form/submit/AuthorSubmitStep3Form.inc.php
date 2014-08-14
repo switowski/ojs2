@@ -36,6 +36,9 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'author.submit.form.titleRequired', $this->getRequiredLocale()));
 
+		// Add keywords validation
+		$this->addCheck(new FormValidator($this, 'subject', 'required', 'author.submit.form.keywordRequired'));
+
 		$sectionDao =& DAORegistry::getDAO('SectionDAO');
 		$section = $sectionDao->getSection($article->getSectionId());
 		$abstractWordCount = $section->getAbstractWordCount();
