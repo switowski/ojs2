@@ -126,7 +126,11 @@ class SectionEditorAction extends Action {
 
 			// Add log
 			import('classes.article.log.ArticleLog');
-			ArticleLog::logEvent($request, $sectionEditorSubmission, ARTICLE_LOG_REVIEW_ASSIGN, 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'round' => $round, 'reviewId' => $reviewAssignment->getId()));
+			$reviewId = $reviewAssignment->getId();
+			ArticleLog::logEvent($request, $sectionEditorSubmission, ARTICLE_LOG_REVIEW_ASSIGN, 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'round' => $round, 'reviewId' => $reviewId));
+
+			// Needed in the SubmissionEditHandler.inc.php::selectReviewer function
+			return $reviewId;
 		}
 	}
 
