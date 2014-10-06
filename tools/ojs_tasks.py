@@ -83,16 +83,28 @@ def author_reminder():
     AR_NOTIFICATION_INTERVAL = datetime.timedelta(seconds=7)  # TODO Testing - remove
     AR_EMAIL_TITLE = "Copyediting Review Reminder"
     AR_EMAIL_TEXT = """
-    THIS IS A TEST, PLEASE DISREGARD !!!
-    Just a gentle reminder that we are still waiting for you to finish your copyright edits for "{article_title}".
-    You can do this here: http://{BASE_URL}/index.php/{JOURNAL}/author/submissionEditing/{article_id}
+{author_name}:
 
-    This is the last opportunity to make substantial copyediting changes to the submission.
-    The proofreading stage, that follows the preparation of the galleys, is restricted to correcting typographical and layout errors.
+This is a gentle reminder that we are still waiting for you to complete the copy-editing step for "{article_title}". You can do it by following these steps:
 
-    If you are unable to undertake this work at this time or have any questions, please contact me. Thank you for your contribution to this Series.
+1. Click on the Submission URL below.
+2. Log into the Series and click on the File that appears in Step 1.
+3. Open the downloaded submission.
+4. Review the text, including copyediting proposals and Author Queries.
+5. Make any copyediting changes that would further improve the text.
+6. When completed, upload the file in Step 2.
+7. Click on METADATA to check indexing information for completeness and accuracy.
+8. Send the COMPLETE email to the editor and copyeditor.
 
-    System Administrator
+Submission URL: http://{BASE_URL}/index.php/{JOURNAL}/author/submissionEditing/{article_id} (you had indicated this as the URL link, maybe you want to change it)
+Username: {username}
+
+This is the last opportunity to make substantial copyediting changes to the submission. The proofreading stage, that follows the preparation of the galleys, is restricted to correcting typographical and layout errors.
+
+In order to conclude the publication process in due time, it is very important that you complete this task as soon as possible. If you are unable to undertake this work at this time or have any questions, please contact me. Thank you for your contribution to this Series.
+
+System Administrator
+Valeria Brancolini
     """
 
     connection = db_connect()
@@ -110,8 +122,10 @@ def author_reminder():
                        reminded_before)
         for (signoff_id, article_id, user_id) in cursor.fetchall():
             # For each article get article title, user email and send the reminder
-            cursor.execute('SELECT email FROM users WHERE user_id = %s' % user_id)
-            (user_email,) = cursor.fetchone()
+            cursor.execute('SELECT email, first_name, middle_name, last_name, username FROM users WHERE user_id = %s' % user_id)
+            (user_email, first_name, middle_name, last_name, username) = cursor.fetchone()
+            # Create user name that will be used in the email
+            author_name = " ".join(filter(None, [first_name, middle_name, last_name]))
 
             cursor.execute('SELECT setting_value FROM article_settings WHERE article_id = %s and setting_name = "title"' % article_id)
             (article_title,) = cursor.fetchone()
@@ -128,7 +142,8 @@ def author_reminder():
             (journal_path,) = cursor.fetchone()
 
             # send email to user with a reminder
-            message = AR_EMAIL_TEXT.format(article_title=article_title, BASE_URL=BASE_URL, JOURNAL=journal_path, article_id=article_id)
+            message = AR_EMAIL_TEXT.format(article_title=article_title, BASE_URL=BASE_URL, JOURNAL=journal_path,
+                                           article_id=article_id, author_name=author_name, username=username)
             if DEVELOPMENT_MODE:
                 print """Following e-mail would be send:
                     From: %s
