@@ -15,6 +15,7 @@
 {* External jQuery plug-ins to be minified *}
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.tag-it.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.cookie.js"></script>
+<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 {* Our own functions (depend on plug-ins) *}
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/fontController.js"></script>
