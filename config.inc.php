@@ -225,7 +225,7 @@ mime_database_path = /etc/magic.mime
 [security]
 
 ; Force SSL connections site-wide
-force_ssl = Off
+force_ssl = On
 
 ; Force SSL connections for login only
 force_login_ssl = On
