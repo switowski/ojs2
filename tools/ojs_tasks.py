@@ -19,10 +19,12 @@ import smtplib
 import sys
 from time import sleep
 
+#TODO: disable DEVELOPMENT_MODE, change SYSTEM_ADMIN_EMAIL to a normal email
+
 # Some config variables
 DEVELOPMENT_MODE = True  # If True, then it only prints the email's content
 BASE_URL = "dummy_base_url"  # Base user for the website
-SYSTEM_ADMIN_EMAIL = "s.w@cern.ch"  # TODO configure that
+SYSTEM_ADMIN_EMAIL = "dummy_admin"  # TODO configure that
 
 DB_USER = "dummy_db_username"
 DB_PASSWORD = "dummy_db_password"
@@ -41,7 +43,7 @@ def db_connect():
     """
     try:
         connection = MySQLdb.connect(host=DB_HOST,
-                                     port=DB_PORT,
+                                     port=int(DB_PORT),
                                      user=DB_USER,
                                      passwd=DB_PASSWORD,
                                      db=DB_NAME)
@@ -157,7 +159,7 @@ Valeria Brancolini
             # update the date_notified with today's date so next reminder is send after a week
             now = datetime.datetime.now().replace(microsecond=0)
             cursor.execute('UPDATE signoffs SET date_notified=%s WHERE signoff_id = %s', (now, signoff_id))
-            sleep(3)  # Sleep 3 seconds to not clog the sendmail
+            sleep(1)  # Sleep 1 second to not clog the sendmail
         connection.close()
     else:
         print "ERROR: No DB connection!"
