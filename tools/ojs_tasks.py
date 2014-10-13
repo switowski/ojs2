@@ -81,8 +81,9 @@ Subject: {subject}
 def author_reminder():
     """Checks if it is time to remind author about copyediting and sends an email"""
 
-    # AR_NOTIFICATION_INTERVAL = datetime.timedelta(days=7)  # Interval between notifications should be 7 days
-    AR_NOTIFICATION_INTERVAL = datetime.timedelta(seconds=7)  # TODO Testing - remove
+    # TODO Interval here doesn't matter - the interval is setup by the CRON job, if we run the job once per week, then the email is send once per week
+    # you should change it in case the cronjob is run everyday and you want the emails to be send less often
+    AR_NOTIFICATION_INTERVAL = datetime.timedelta(days=1)
     AR_EMAIL_TITLE = "Copyediting Review Reminder"
     AR_EMAIL_TEXT = """
 {author_name}:
