@@ -99,7 +99,7 @@ This is a gentle reminder that we are still waiting for you to complete the copy
 7. Click on METADATA to check indexing information for completeness and accuracy.
 8. Send the COMPLETE email to the editor and copyeditor.
 
-Submission URL: {BASE_URL}/{JOURNAL}/author/submissionEditing/{article_id} (you had indicated this as the URL link, maybe you want to change it)
+Submission URL: {BASE_URL}/{JOURNAL}/author/submissionEditing/{article_id}
 Username: {username}
 
 This is the last opportunity to make substantial copyediting changes to the submission. The proofreading stage, that follows the preparation of the galleys, is restricted to correcting typographical and layout errors.
