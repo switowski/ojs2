@@ -146,14 +146,20 @@ class Dc11SchemaArticleAdapter extends MetadataDataObjectAdapter {
 			$articleGalleyDao =& DAORegistry::getDAO('ArticleGalleyDAO'); /* @var $articleGalleyDao ArticleGalleyDAO */
 			$galleys =& $articleGalleyDao->getGalleysByArticle($article->getId());
 			$formats = array();
+			$galleysID = array();
 			foreach ($galleys as $galley) {
 				$dc11Description->addStatement('dc:format', $galley->getFileType());
+				// We need galleysID for download link
+				$galleysID[] = $galley->getGalleyId();
 			}
 		}
 
 		// Identifier: URL
 		if (is_a($article, 'PublishedArticle')) {
+			$downloadUrl = Request::url($journal->getPath(), 'article', 'download', array($article->getBestArticleId())) . '/' . reset($galleysID);
+
 			$dc11Description->addStatement('dc:identifier', Request::url($journal->getPath(), 'article', 'view', array($article->getBestArticleId())));
+			$dc11Description->addStatement('dc:identifier', $downloadUrl);
 		}
 
 		// Source (journal title, issue id and pages)
