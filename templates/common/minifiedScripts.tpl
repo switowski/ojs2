@@ -49,18 +49,17 @@
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.pkp.js"></script>
 
 {* Piwik statistics - we want to enable them for every page, that's why we don't use the plugin *}
+{literal}
 <!-- Piwik -->
 <script type="text/javascript">
-var _paq = _paq || [];
-_paq.push(['trackPageView']);
-_paq.push(['enableLinkTracking']);
-(function() {
-var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.web.cern.ch/piwik/";
-_paq.push(['setTrackerUrl', u+'piwik.php']);
-_paq.push(['setSiteId', 1314]);
-var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
-g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-})();
-</script>
-<noscript><p><img src="http://piwik.web.cern.ch/piwik/piwik.php?idsite=1314" style="border:0;" alt="" /></p></noscript>
-<!-- End Piwik Code -->
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.web.cern.ch/" : "http://piwik.web.cern.ch/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+try {
+var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1612);
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}
+</script><noscript><p><img src="http://piwik.web.cern.ch/piwik.php?idsite=1612" style="border:0" alt="" /></p></noscript>
+<!-- End Piwik Tracking Code -->
+{/literal}
