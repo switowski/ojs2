@@ -117,10 +117,6 @@
 <body id="pkp-{$pageTitle|replace:'.':'-'}" class="{$siteTitle|replace:' ':'-'}">
 <div id="container">
 
-<div id="nav-home">
-	<a href="{$baseUrl}">CERN Publications</a>
-</div>
-
 <div id="header">
 <div id="headerTitle">
 <h1>
