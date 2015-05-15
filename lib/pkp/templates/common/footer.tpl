@@ -11,11 +11,6 @@
 {if $displayCreativeCommons}
     {translate key="common.ccLicense"}
 {/if}
-{if $pageFooter}
-    <br /><br />
-    <div id="pageFooter">{$pageFooter}</div>
-{/if}
-{call_hook name="Templates::Common::Footer::PageFooter"}
 </div><!-- content -->
 </div><!-- main -->
 
@@ -50,6 +45,11 @@
 
 </div><!-- container -->
 <div id="footer">
+{if $pageFooter}
+    <br /><br />
+    <div id="pageFooter">{$pageFooter}</div>
+{/if}
+{call_hook name="Templates::Common::Footer::PageFooter"}
     <div class="cern-logo">
         <a href="http://cern.ch" title="CERN" rel="CERN"><span>cern.ch</span></a>
     </div>

@@ -21,11 +21,11 @@
 				{/if}
 			</ul>
 		</li>
-		<li id="contribute"><a href="#">Contribute</a>
-			<ul>
-				<li class="first" id="unknown"><a href="#">Dummy 1</a></li>
-				<li class="last" id="unknown"><a href="#">Dummy 2</a></li>
-			</ul>
+        {if $isUserLoggedIn}
+            <li class="{if $currentUrl|strstr:"index/user"}active{/if}" id="contribute"><a href="{url journal="index" page="user"}">Contribute</a></li>
+        {else}
+            <li class="{if $currentUrl|strstr:"/login"}active{/if}" id="contribute"><a href="{url page="login"}">Contribute</a></li>
+        {/if}{* $isUserLoggedIn *}
 		</li>
 	</ul>
 </div>

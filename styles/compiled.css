@@ -41,6 +41,19 @@ html {
 	padding: 10px;
 }
 
+#body a {
+	color: #4d94cc;
+}
+#body a:hover {
+	color: #f0f;
+	text-decoration: none;
+	background-color: transparent;
+	color: #000;
+}
+#body a:visited{
+	color: #915ec9;
+}
+
 #nav-home,
 #header,
 #navbar,
@@ -74,6 +87,16 @@ html {
 #header h1 {
 	color: #fff;
 }
+#content h1, #content h2, #content h3, #content h4, #content h5, #main h1, #main h2, #main h3, #main h4, #main h5 {
+	color: #000;
+}
+
+/* Footer */
+
+#pageFooter {
+	margin: 0 auto;
+	max-width: 900px;
+}
 #footer {
 	background-color: #eee;
 	color: #666;
@@ -95,6 +118,7 @@ html {
 	top: 20px;
 	right: 20px;
 	}
+
 ul.main-menu {
 	position:relative;
 	float:left;
@@ -120,12 +144,15 @@ ul.main-menu {
 }
 ul.main-menu a {
 	padding:0 10px 5px 10px;
+	color: #f0f;
 }
 ul.main-menu A:hover,
 ul.main-menu A:active,
 ul.main-menu A.active:link,
 ul.main-menu A.active:visited {
 	background:#bbb;
+	color: #f00;
+	text-decoration: none;
 }
 ul.main-menu A.active:link,
 ul.main-menu A.active:visited {
@@ -200,7 +227,35 @@ ul.main-menu li li a {
 	border: none;
 }
 
+.blurb {
+	display: block;
+	margin-bottom: 4em;
+	overflow:visible;
+	clear: left;
+	min-height: 150px;
+}
 
+.blurb img {
+	float: left;
+	margin: 0 20px 20px 0;
+	width: 150px;
+	border: 1px solid #ccc;
+}
+.blurb h2, .blurb h3 {
+	margin-top: 0;
+}
+.blurb .journal-menu {
+	margin-left: 0;
+	padding-left: 0;
+	list-style-type: none;
+	font-family: "PT Sans", sans-serif;
+	font-size: smaller;
+}
+
+.blurb .journal-menu li {
+	display: inline;
+	margin-right: 1.5em;
+}
 
 #breadcrumb {
 	font-size: smaller;
@@ -239,12 +294,28 @@ ul.main-menu li li a {
 
 * html #rightSidebar { margin-right: 5%; }
 
-
+#body #rightSidebar div.block {
+	border: none;
+	border-color: #ccc;
+}
+#body #content {
+	border: none;
+}
 
 td.headseparator, td.separator {display: none;}
 
 
-
+/* Table of content */
+.tocArticleCoverImage {
+	/* Completely hide covers in TOC to make table display nicer */
+	display: none;
+}
+.tocArticleTitleAuthors {
+	width: 80%;
+}
+.tocArticleGalleysPages {
+	width: 20%;
+}
 
 
 /* Clearfix
