@@ -95,7 +95,12 @@
 {include file="common/navbar.tpl"}
 
 <div id="breadcrumb">
-	<a href="{url page="index"}" target="_parent">{translate key="navigation.home"}</a> &gt;
+    {if $siteTitle}
+        <!-- If the siteTitle is define, use it as Home breadcrumb -->
+		<a href="{url page="index"}" target="_parent">{$siteTitle}</a> &gt;
+    {else}
+		<a href="{url page="index"}" target="_parent">{translate key="navigation.home"}</a> &gt;
+    {/if}
 	{if $issue}<a href="{url page="issue" op="view" path=$issue->getBestIssueId($currentJournal)}" target="_parent">{$issue->getIssueIdentification(false,true)|escape}</a> &gt;{/if}
 	<a href="{url page="article" op="view" path=$articleId|to_array:$galleyId}" class="current" target="_parent">{$article->getFirstAuthor(true)|escape}</a>
 </div>

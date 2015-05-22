@@ -59,7 +59,7 @@
 
 	<tr>
 		<td></td>
-		<td><input type="submit" value="{translate key="user.login"}" class="button" /></td>
+		<td><input type="submit" value="{translate key="user.login"}" class="button centered" /></td>
 	</tr>
 	</table>
 

@@ -10,7 +10,7 @@
  *}
 <div class="block" id="sidebarUser">
 	{if !$implicitAuth}
-		<span class="blockTitle">{translate key="navigation.user"}</span>
+		<h3 class="blockTitle">{translate key="navigation.user"}</h3>
 	{/if}
 
 	{if $isUserLoggedIn}
@@ -44,7 +44,7 @@
 						<td colspan="2"><input type="checkbox" id="remember" name="remember" value="1" /> <label for="remember">{translate key="plugins.block.user.rememberMe"}</label></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="submit" value="{translate key="user.login"}" class="button" /></td>
+						<td colspan="2"><input type="submit" value="{translate key="user.login"}" class="button centered" /></td>
 					</tr>
 				</table>
 			</form>

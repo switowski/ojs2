@@ -19,7 +19,7 @@
 {/literal}</script>
 
 <div class="block" id="sidebarFontSize" style="margin-bottom: 4px;">
-	<span class="blockTitle">{translate key="plugins.block.fontSize.title"}</span>
+	<h3 class="blockTitle">{translate key="plugins.block.fontSize.title"}</h3>
 	<div id="sizer"></div>
 </div>
 <br />

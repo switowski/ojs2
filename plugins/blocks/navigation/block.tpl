@@ -10,7 +10,7 @@
  *}
 {if !$currentJournal || $currentJournal->getSetting('publishingMode') != $smarty.const.PUBLISHING_MODE_NONE}
 <div class="block" id="sidebarNavigation">
-	<span class="blockTitle">{translate key="plugins.block.navigation.journalContent"}</span>
+	<h3 class="blockTitle">{translate key="plugins.block.navigation.journalContent"}</h3>
 
 	<form id="simpleSearchForm" method="post" action="{url page="search" op="search"}">
 		<table id="simpleSearchInput">

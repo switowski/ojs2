@@ -2,7 +2,7 @@
  * UnCommon Theme
  * Copyright (c) Jon Whipple
  * based on the common.css design by John Willinky
- * 
+ *
  * based on common.css
  *
  * Copyright (c) 2013-2014 Simon Fraser University Library
@@ -75,7 +75,7 @@ input.defaultButton {
 
 #footer {
 	width: 100%;
-	min-height: 35px;
+	min-height: 136px;
 	background-color: #006699;
 	color:  #ffffff;
 	padding: 15px;

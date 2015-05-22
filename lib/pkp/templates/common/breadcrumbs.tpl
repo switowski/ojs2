@@ -9,8 +9,12 @@
  *
  *}
 <div id="breadcrumb">
-    <!-- If it's the home page, don't display "Home" link -->
-    <a href="{url page="index"}">{translate key="navigation.home"}</a>
+    {if $siteTitle}
+        <!-- If the siteTitle is define, use it as Home breadcrumb -->
+        <a href="{url page="index"}">{$siteTitle}</a>
+    {else}
+        <a href="{url page="index"}">{translate key="navigation.home"}</a>
+    {/if}
 	{foreach from=$pageHierarchy item=hierarchyLink}
 		   &gt; <a href="{$hierarchyLink[0]|escape}" class="hierarchyLink">{if not $hierarchyLink[2]}{translate key=$hierarchyLink[1]}{else}{$hierarchyLink[1]|escape}{/if}</a>
 	{/foreach}

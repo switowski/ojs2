@@ -1,0 +1,312 @@
+/*
+
+TYPOGRAPHY
+
+See: http://ux.web.cern.ch/assets/typography
+
+*/
+
+body {
+  font-family: "PT Serif", Georgia, "Times New Roman", "DejaVu Serif", serif;
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 1.4;
+  color: #333333;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "PT Sans", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+  color: #414141;
+  font-weight: 600;
+  margin-top: 1em;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin: 0 0 0.5em 0;
+}
+
+h1#site-name {
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 1ex;
+
+}
+
+h3, h4, h5, h6 {
+  font-size: 1em;
+  margin-bottom: 0;
+}
+
+h4, h5, h6 {
+  font-weight: 400;
+  font-size: 1em;
+}
+
+h4 {
+  font-style: italic;
+}
+
+h5 {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+h6 {
+  color: #8b8b8b;
+}
+
+p + p, p + ul, p + ol {
+  line-height: 1.6;
+  margin-top: 1ex;
+}
+
+article {
+  margin-bottom: 1em;
+}
+
+p, li, blockquote, dd {
+  max-width: 36em;
+}
+
+
+p.standfirst {
+  font-size: 1.5em;
+  line-height: 28px;
+  margin-bottom: 1em;
+  color: #333333;
+}
+
+blockquote {
+  margin: 0 2em 1em;
+  color: #8b8b8b;
+}
+
+cite {
+  display: inline;
+}
+
+hr {
+  height: 1px;
+  border-top: 1px solid #cccccc;
+}
+
+code {
+  font-family: 'PT Mono', monospace;
+  margin: 1em 0.5em 1em;
+  color: #8b8b8b;
+  display: block;
+  margin-bottom: 1em;
+}
+
+p code,
+dd code {
+  display: inline;
+}
+
+sup {
+  font-size: 0.7em;
+  top: -0.6em;
+  position: relative;
+  margin: 0 2px 0 2px;
+  font-family: "PT Sans Caption", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+}
+
+sub {
+  font-size: 0.7em;
+  bottom: -0.3em;
+  position: relative;
+  margin: 0 2px 0 2px;
+  font-family: "PT Sans Caption", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+}
+
+small {
+  font-size: 0.8em;
+  font-style: italic;
+  font-family: "PT Sans Caption", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+}
+
+del {
+  color: #8b8b8b;
+}
+
+ins, mark {
+  background-color: #ffffb3;
+  padding: 0 0.01em 0 0.01em;
+  font-style: normal;
+  font-weight: normal;
+}
+
+li ol {
+  list-style: outside lower-alpha;
+}
+
+ul.links {
+  list-style: none;
+}
+
+ol {
+  margin-left: 1.7em;
+}
+
+ul,
+ol {
+  margin-bottom: 1em;
+  margin-left: 2em;
+}
+article ul, article ol {
+  margin-left: 1em;
+}
+article p + ul, article p + ol {
+  margin-top: 1ex;
+}
+li, ul li {
+  margin-bottom: 1ex;
+}
+li ul, li ol {
+  margin: 0.5em 0 0 2em;
+}
+dl {
+  margin-bottom: 1em;
+}
+dt {
+  font-weight: 600;
+}
+dd {
+  margin-bottom: 1ex;
+}
+
+aside ul li,
+aside ul ol {
+  margin-left: 0.01em;
+}
+
+img, iframe, embed, object {
+  max-width: 100%;
+  display: block;
+}
+
+img, iframe, embed, object {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.caption {
+  font-style: italic;
+  text-align: center;
+  color: #414141;
+  display: block;
+  margin-top: -1em !important;
+}
+
+img + figcaption {
+  width: 75%;
+  padding: 0.5em 0.5em 0;
+}
+
+figure + p {
+  margin: 0 2em 1em;
+  color: #8b8b8b;
+}
+
+a {
+  color: #4d94cc;
+  text-decoration: none;
+  -moz-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -moz-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+a:hover {
+  color: #256ca4;
+  text-decoration: underline;
+}
+a:active {
+  color: #256ca4;
+  text-decoration: underline;
+}
+a:focus {
+  color: #256ca4;
+  text-decoration: underline;
+}
+a:visited {
+  color: #915ec9;
+}
+a.active-trail {
+  color: #8b8b8b;
+  text-decoration: none;
+}
+a:link {
+  -webkit-tap-highlight-color: #d6ecfe;
+}
+
+::-webkit-selection {
+  background: #d6ecfe;
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background: #d6ecfe;
+  text-shadow: none;
+}
+
+::selection {
+  background: #d6ecfe;
+  text-shadow: none;
+}
+
+table {
+  font-family: "PT Sans", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  display: table;
+  width: 100%;
+}
+
+caption {
+  font-family: "PT Sans Caption", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #414141;
+  margin-bottom: 1em;
+  text-align: left;
+  padding: 0 0 0 2%;
+}
+
+tbody, thead, tfoot {
+  display: table-row-group;
+}
+
+tr {
+  display: table-row;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.5em 1em;
+}
+
+th {
+  border-bottom: 1px solid #cccccc;
+  border-top: 2px solid #cccccc;
+  font-weight: 400;
+  color: #8b8b8b;
+  padding-top: 0.5em;
+}
+
+tfoot td {
+  font-weight: bold;
+}
+
+td.head {
+  font-style: italic;
+}
+

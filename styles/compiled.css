@@ -28,7 +28,7 @@ html {
 }
 
 #body {
-	max-width: 900px;
+	max-width: 1350;
 	padding: 10px;
 	margin: 0 auto;
 }
@@ -119,6 +119,10 @@ html {
 	right: 20px;
 	}
 
+ul, ol {
+	margin-left: 0;
+}
+
 ul.main-menu {
 	position:relative;
 	float:left;
@@ -200,7 +204,7 @@ ul.main-menu UL A {
 	padding:0;
 	border:0;
 	font-weight: normal;
-	font-size: smaller;	
+	font-size: smaller;
 }
 
 ul.main-menu UL A:hover,
@@ -210,7 +214,7 @@ ul.main-menu UL A.active:visited {
 	color:#444;
 }
 ul.main-menu li li a {
-	display: none;	
+	display: none;
 }
 ul.main-menu li.active a {
 	display: inline;
@@ -219,12 +223,19 @@ ul.main-menu li.active a {
 	border-width: 1px 1px 0 1px;
 	border-color: #ccc;
 	z-index: 103;
-}	
+}
 ul.main-menu li.active li a {
 	border: none;
 }
 ul.main-menu li li a {
 	border: none;
+}
+
+.selectMenu {
+	max-width: 100%;
+}
+#sectionId{
+	width: 100%;
 }
 
 .blurb {
@@ -270,8 +281,7 @@ ul.main-menu li li a {
 #main {
 	float: left;
 	width: 64%;
-	overflow: hidden;
-} 
+}
 
 #rightSidebar,
 #leftSidebar {
@@ -302,8 +312,35 @@ ul.main-menu li li a {
 	border: none;
 }
 
-td.headseparator, td.separator {display: none;}
+/**
+ * Table styles fro original common.css
+ */
 
+.highlightReviewerNotNotified, .highlightCopyediting {
+	background: #EDEBC4;
+}
+.highlightNoDecision, .highlightLayoutEditing {
+	background: #D8E9BD;
+}
+.highlightRevisedCopyUploaded, .higlightProofreading {
+	background: #C6EBE4;
+}
+.highlightReviewerConfirmationOverdue {
+	background: #9DD1E6;
+}
+.highlightReviewerCompletionOverdue {
+	background: #74C5D8;
+}
+
+.fastTracked {
+	background-color: #ABA;
+}
+
+table.listing td.separator, table.info td.separator {
+    border-top: 1px dotted #DDDDD0;
+    font-size: 0.1em;
+    line-height: 1%;
+}
 
 /* Table of content */
 .tocArticleCoverImage {
@@ -317,6 +354,17 @@ td.headseparator, td.separator {display: none;}
 	width: 20%;
 }
 
+/* Some helper functions */
+.centered {
+	/* Use it to center any element*/
+	display: block;
+	margin: 0 auto;
+}
+
+.noBullets {
+	/*Disable bullets in a list*/
+	list-style: none;
+}
 
 /* Clearfix
 ----------------------------------------------------------------- */
@@ -371,9 +419,9 @@ p, li, blockquote, dd {
 /*
 // -----------------------------------------------------------------
 // Large screens
-// ----------------------------------------------------------------- 
+// -----------------------------------------------------------------
 */
-@media screen and (min-width: 1300px) {  
+@media screen and (min-width: 1300px) {
 
 
 
@@ -385,11 +433,12 @@ p, li, blockquote, dd {
 /*
 // -----------------------------------------------------------------
 // Tablet - portrait
-// ----------------------------------------------------------------- 
+// -----------------------------------------------------------------
 */
 @media only screen and (min-width: 768px) {
-
-
+		#submissions {
+		overflow-x: auto;
+	}
 }
 
 
@@ -397,7 +446,7 @@ p, li, blockquote, dd {
 /*
 // -----------------------------------------------------------------
 // Desktop and Tablet Landscape
-// ----------------------------------------------------------------- 
+// -----------------------------------------------------------------
 */
 
 @media only screen and (min-width: 1024px) {
@@ -410,18 +459,20 @@ p, li, blockquote, dd {
 /*
 // -----------------------------------------------------------------
 // Mobile
-// ----------------------------------------------------------------- 
+// -----------------------------------------------------------------
 */
 
 @media only screen and (max-width: 768px) {
-	
-	#rightSidebar, 
+
+	#rightSidebar,
 	#leftSidebar,
 	#main {
 		width: 100%;
 		margin: 0;
 		padding: 1em;
 	}
-
+	#submissions {
+		overflow-x: auto;
+	}
 
 }
