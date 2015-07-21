@@ -60,6 +60,9 @@
 	{foreach from=$stylesheets item=cssUrl}
 		<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
 	{/foreach}
+	
+	<!-- Bootstrap style -->
+	<link href="{$baseUrl}/styles/bootstrap/bootstrap.min.css" rel="stylesheet">
 
 	<!-- Default global locale keys for JavaScript -->
 	{include file="common/jsLocaleKeys.tpl" }
