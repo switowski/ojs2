@@ -474,6 +474,32 @@ ul.tagit input[type="text"] {
 	line-height: normal;
 }
 
+.navbar-toggle {
+  float: left;
+  margin-left: 15px;
+}
+
+.search-nav {
+	float: left;
+	margin-left:20px;
+	margin-top:8px;
+	height:34px;
+	display: inline;
+}
+
+.form-control {
+	display: inline;
+	width:auto;
+}
+
+.menu-option {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+  font-size: 18px;
+}
+
 
 /* @end */
 
