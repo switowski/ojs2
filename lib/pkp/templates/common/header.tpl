@@ -34,23 +34,11 @@
 	<link rel="stylesheet" href="{$baseUrl}/styles/common.css" type="text/css" />
 
 	<!-- Base Jquery -->
-	{if $allowCDN}<script type="text/javascript" src="//www.google.com/jsapi"></script>
-		<script type="text/javascript">{literal}
-			<!--
-			// Provide a local fallback if the CDN cannot be reached
-			if (typeof google == 'undefined') {
-				document.write(unescape("%3Cscript src='{/literal}{$baseUrl}{literal}/lib/pkp/js/lib/jquery/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
-				document.write(unescape("%3Cscript src='{/literal}{$baseUrl}{literal}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js' type='text/javascript'%3E%3C/script%3E"));
-			} else {
-				google.load("jquery", "{/literal}{$smarty.const.CDN_JQUERY_VERSION}{literal}");
-				google.load("jqueryui", "{/literal}{$smarty.const.CDN_JQUERY_UI_VERSION}{literal}");
-			}
-			// -->
-		{/literal}</script>
-	{else}
-		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>
-		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js"></script>
-	{/if}
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js"></script>
+	
+	<!-- Compatibility after the upgrade to version 1.11.3 of jQuery -->
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery-migrate-1.2.1.js"></script>
 
 	<!-- Default global locale keys for JavaScript -->
 	{include file="common/jsLocaleKeys.tpl" }
@@ -110,10 +98,56 @@
 	{/if}{* hasSystemNotifications *}
 
 	{$additionalHeadData}
+	
+	{* Bootstrap functions *}
+	<script src="{$baseUrl}/js/bootstrap/bootstrap.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
 </head>
 <body id="pkp-{$pageTitle|replace:'.':'-'}">
 <div id="container">
-
+	<nav class="navbar navbar-default navbar-fixed-top">
+        <div class="col-md-1">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse col-md-4" aria-expanded="false" style="height: 1px;">
+			<ul class="nav navbar-nav">
+				<li class="btn btn-default btn-xs"><a href="/index.php/CYRSP"><span class="menu-option">Home</span></a></li>
+				<li class="dropdown btn btn-default btn-xs">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">About</span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/index.php/CYRSP/about"><h5>About this page</h5></a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="/index.php/CYRSP/pages/view/for_editors"><h5>Information for editors</h5></a></li>              
+						<li><a href="/index.php/CYRSP/pages/view/for_authors"><h5>Information for authors</h5></a></li>
+						<li><a href="/index.php/CYRSP/pages/view/for_readers"><h5>Information for readers</h5></a></li>
+						<li><a href="/index.php/CYRSP/pages/view/for_librarians"><h5>Information for librarians</h5></a></li>
+					</ul>
+				</li>
+				<li class="dropdown btn btn-default btn-xs">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">Content</span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/index.php/CYRSP/issue/current"><h5>Current</h5></a></li>
+						<li><a href="/index.php/CYRSP/issue/archive"><h5>Archives</h5></a></li>
+						<li><a href="/index.php/CYRSP/pages/view/forth_titles"><h5>Forthcoming titles</h5></a></li>
+					</ul>
+				</li>
+				<li class="btn btn-default btn-xs"><a href="/index.php/CYRSP/about/contact"><span class="menu-option">Contact</span></a></li>
+			</ul>
+        </div>
+		<div class="search-nav col-md-4">
+			<form method="post" id="searchForm" action="{url op="search"}/search">
+				<input id="simpleQuery" name="simpleQuery" type="text" class="form-control" placeholder="{translate key="common.search"}">
+				<input type="hidden" id="searchField" name="searchField" value="query">
+				<button type="submit" class="btn btn-default">{translate key="common.search"}</button>
+			</form>
+		</div>
+    </nav>
 <div id="header">
 <div id="headerTitle">
 <h1>

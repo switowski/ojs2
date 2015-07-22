@@ -63,6 +63,3 @@ piwikTracker.enableLinkTracking();
 </script><noscript><p><img src="http://piwik.web.cern.ch/piwik.php?idsite=1612" style="border:0" alt="" /></p></noscript>
 <!-- End Piwik Tracking Code -->
 {/literal}
-
-{* Bootstrap functions *}
-<script src="{$baseUrl}/js/bootstrap/bootstrap.min.js"></script>
