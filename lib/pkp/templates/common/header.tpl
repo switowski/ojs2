@@ -26,10 +26,12 @@
 	<meta name="generator" content="{$applicationName} {$currentVersionString|escape}" />
 	{$metaCustomHeaders}
 	{if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" type="{$displayFavicon.mimeType|escape}" />{/if}
-	<link rel="stylesheet" href="{$baseUrl}/lib/pkp/styles/pkp.css" type="text/css" />
-	<link rel="stylesheet" href="{$baseUrl}/lib/pkp/styles/common.css" type="text/css" />
+	
+	<!-- Bootstrap style -->
+	<link href="{$baseUrl}/styles/bootstrap/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- Common style that overwrite the bootstrap to make the changes -->
 	<link rel="stylesheet" href="{$baseUrl}/styles/common.css" type="text/css" />
-	<link rel="stylesheet" href="{$baseUrl}/styles/compiled.css" type="text/css" />
 
 	<!-- Base Jquery -->
 	{if $allowCDN}<script type="text/javascript" src="//www.google.com/jsapi"></script>
@@ -49,20 +51,6 @@
 		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>
 		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js"></script>
 	{/if}
-
-	{call_hook|assign:"leftSidebarCode" name="Templates::Common::LeftSidebar"}
-	{call_hook|assign:"rightSidebarCode" name="Templates::Common::RightSidebar"}
-	{if $leftSidebarCode || $rightSidebarCode}<link rel="stylesheet" href="{$baseUrl}/styles/sidebar.css" type="text/css" />{/if}
-	{if $leftSidebarCode}<link rel="stylesheet" href="{$baseUrl}/styles/leftSidebar.css" type="text/css" />{/if}
-	{if $rightSidebarCode}<link rel="stylesheet" href="{$baseUrl}/styles/rightSidebar.css" type="text/css" />{/if}
-	{if $leftSidebarCode && $rightSidebarCode}<link rel="stylesheet" href="{$baseUrl}/styles/bothSidebars.css" type="text/css" />{/if}
-
-	{foreach from=$stylesheets item=cssUrl}
-		<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
-	{/foreach}
-	
-	<!-- Bootstrap style -->
-	<link href="{$baseUrl}/styles/bootstrap/bootstrap.min.css" rel="stylesheet">
 
 	<!-- Default global locale keys for JavaScript -->
 	{include file="common/jsLocaleKeys.tpl" }
