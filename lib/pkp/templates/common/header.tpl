@@ -128,10 +128,10 @@
 						<ul class="dropdown-menu">
 							<li><a href="{url page="about"}"><h5>About this page</h5></a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="{url page="issue" op="for_editors"}"><h5>Information for editors</h5></a></li>              
-							<li><a href="{url page="issue" op="for_authors"}"><h5>Information for authors</h5></a></li>
-							<li><a href="{url page="issue" op="for_readers"}"><h5>Information for readers</h5></a></li>
-							<li><a href="{url page="issue" op="for_librarians"}"><h5>Information for librarians</h5></a></li>
+							<li><a href="{url page="pages"}/view/for_editors"><h5>Information for editors</h5></a></li>              
+							<li><a href="{url page="pages"}/view/for_authors"><h5>Information for authors</h5></a></li>
+							<li><a href="{url page="pages"}/view/for_readers"><h5>Information for readers</h5></a></li>
+							<li><a href="{url page="pages"}/view/for_librarians"><h5>Information for librarians</h5></a></li>
 						</ul>
 					</li>
 				{else}
