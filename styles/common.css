@@ -477,6 +477,7 @@ ul.tagit input[type="text"] {
 .navbar-toggle {
   float: left;
   margin-left: 15px;
+  margin-top: 10px;
 }
 
 .search-nav {
@@ -485,11 +486,15 @@ ul.tagit input[type="text"] {
 	margin-top:8px;
 	height:34px;
 	display: inline;
+	width: 20%;
+	min-width: 185px;
 }
 
 .form-control {
 	display: inline;
-	width:auto;
+	height: 36px;
+	width:66%;
+	padding-top: 5px;
 }
 
 .menu-option {
@@ -498,6 +503,15 @@ ul.tagit input[type="text"] {
   line-height: 1.1;
   color: inherit;
   font-size: 18px;
+}
+
+#navbar a {
+	padding-top: 10px;
+	padding-bottom: 8px;
+}
+
+#navbar a:hover {
+	background-color: LightGray;
 }
 
 

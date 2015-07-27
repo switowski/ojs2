@@ -27,6 +27,10 @@
 	{$metaCustomHeaders}
 	{if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" type="{$displayFavicon.mimeType|escape}" />{/if}
 	
+	<!-- W3.CSS -->
+	<link rel="stylesheet" href="http://www.w3schools.com/w3css/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	
 	<!-- Bootstrap style -->
 	<link href="{$baseUrl}/styles/bootstrap/bootstrap.min.css" rel="stylesheet">
 	
@@ -115,36 +119,42 @@
 				<span class="icon-bar"></span>
 			</button>
         </div>
-        <div id="navbar" class="navbar-collapse collapse col-md-4" aria-expanded="false" style="height: 1px;">
+        <div id="navbar" class="navbar-collapse collapse col-md-4" aria-expanded="false" style="margin-top:8px">
 			<ul class="nav navbar-nav">
-				<li class="btn btn-default btn-xs"><a href="/index.php/CYRSP"><span class="menu-option">Home</span></a></li>
-				<li class="dropdown btn btn-default btn-xs">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">About</span></a>
-					<ul class="dropdown-menu">
-						<li><a href="/index.php/CYRSP/about"><h5>About this page</h5></a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="/index.php/CYRSP/pages/view/for_editors"><h5>Information for editors</h5></a></li>              
-						<li><a href="/index.php/CYRSP/pages/view/for_authors"><h5>Information for authors</h5></a></li>
-						<li><a href="/index.php/CYRSP/pages/view/for_readers"><h5>Information for readers</h5></a></li>
-						<li><a href="/index.php/CYRSP/pages/view/for_librarians"><h5>Information for librarians</h5></a></li>
-					</ul>
-				</li>
-				<li class="dropdown btn btn-default btn-xs">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">Content</span></a>
-					<ul class="dropdown-menu">
-						<li><a href="/index.php/CYRSP/issue/current"><h5>Current</h5></a></li>
-						<li><a href="/index.php/CYRSP/issue/archive"><h5>Archives</h5></a></li>
-						<li><a href="/index.php/CYRSP/pages/view/forth_titles"><h5>Forthcoming titles</h5></a></li>
-					</ul>
-				</li>
-				<li class="btn btn-default btn-xs"><a href="/index.php/CYRSP/about/contact"><span class="menu-option">Contact</span></a></li>
+				<li><a href="{url page="index"}"><span class="menu-option">{translate key="navigation.home"}</span></a></li>
+				{if $currentJournal}
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">{translate key="navigation.about"}</span></a>
+						<ul class="dropdown-menu">
+							<li><a href="{url page="about"}"><h5>About this page</h5></a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="{url page="issue" op="for_editors"}"><h5>Information for editors</h5></a></li>              
+							<li><a href="{url page="issue" op="for_authors"}"><h5>Information for authors</h5></a></li>
+							<li><a href="{url page="issue" op="for_readers"}"><h5>Information for readers</h5></a></li>
+							<li><a href="{url page="issue" op="for_librarians"}"><h5>Information for librarians</h5></a></li>
+						</ul>
+					</li>
+				{else}
+					<li><a href="{url page="about"}"><span class="menu-option">{translate key="navigation.about"}</span></a></li>
+				{/if}
+				{if $currentJournal}
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">Content</span></a>
+						<ul class="dropdown-menu">
+							<li><a href="{url page="issue" op="current"}"><h5>{translate key="navigation.current"}</h5></a></li>
+							<li><a href="{url page="issue" op="archive"}"><h5>{translate key="navigation.archives"}</h5></a></li>
+							<li><a href="{url page="forth_titles"}"><h5>Forthcoming titles</h5></a></li>
+						</ul>
+					</li>
+					<li> <a href="{url page="about"}/contact"><span class="menu-option">Contact</span></a></li>
+				{/if}
 			</ul>
         </div>
-		<div class="search-nav col-md-4">
-			<form method="post" id="searchForm" action="{url op="search"}/search">
+		<div class="search-nav">
+			<form method="post" id="searchForm" action="{url page="search"}">
 				<input id="simpleQuery" name="simpleQuery" type="text" class="form-control" placeholder="{translate key="common.search"}">
 				<input type="hidden" id="searchField" name="searchField" value="query">
-				<button type="submit" class="btn btn-default">{translate key="common.search"}</button>
+				<button type="submit" class="btn btn-default btn-sm"><i class="material-icons w3-xlarge">search</i></button>
 			</form>
 		</div>
     </nav>
