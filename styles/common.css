@@ -476,24 +476,21 @@ ul.tagit input[type="text"] {
 
 .navbar-toggle {
   float: left;
-  margin-left: 15px;
   margin-top: 10px;
+  margin-left: -5px;
 }
 
 .search-nav {
 	float: left;
-	margin-left:20px;
 	margin-top:8px;
 	height:34px;
 	display: inline;
-	width: 20%;
-	min-width: 185px;
+	margin-left: -5px;
 }
 
-.form-control {
+.search-nav .form-control {
 	display: inline;
 	height: 36px;
-	width:66%;
 	padding-top: 5px;
 }
 
@@ -505,13 +502,30 @@ ul.tagit input[type="text"] {
   font-size: 18px;
 }
 
-#navbar a {
+#navbar a, #user-nav-on a {
 	padding-top: 10px;
 	padding-bottom: 8px;
 }
 
-#navbar a:hover {
+#user-nav-off a {
+	padding-top: 7px;
+	padding-bottom: 8px;
+}
+
+#navbar a:hover, #user-nav-on a:hover, #user-nav-off a:hover  {
 	background-color: LightGray;
+}
+
+#navbar {
+	padding-right: 200px;	
+}
+
+.user-nav {
+	position:relative;
+	display: inline;
+	margin-top:8px;
+	float:right;
+	margin-right: 14px;
 }
 
 
