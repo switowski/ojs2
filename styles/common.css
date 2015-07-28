@@ -485,13 +485,15 @@ ul.tagit input[type="text"] {
 	margin-top:8px;
 	height:34px;
 	display: inline;
-	margin-left: -5px;
+	width:30%;
+	min-width: 200px;
 }
 
-.search-nav .form-control {
+.form-control {
 	display: inline;
 	height: 36px;
 	padding-top: 5px;
+	width: 75%;
 }
 
 .menu-option {
@@ -502,9 +504,23 @@ ul.tagit input[type="text"] {
   font-size: 18px;
 }
 
-#navbar a, #user-nav-on a {
+#navbar {
+	padding-right: 2.5%;
+	width:auto;	
+	max-width: 450px;
+}
+
+#navbar a {
 	padding-top: 10px;
 	padding-bottom: 8px;
+}
+
+#user-nav-off, #user-nav-on {
+	position:relative;
+	display: inline;
+	margin-top:8px;
+	float:right;
+	margin-right: 10px;
 }
 
 #user-nav-off a {
@@ -512,20 +528,32 @@ ul.tagit input[type="text"] {
 	padding-bottom: 8px;
 }
 
-#navbar a:hover, #user-nav-on a:hover, #user-nav-off a:hover  {
+#navbar a:hover, #user-nav-on:hover  {
 	background-color: LightGray;
 }
 
-#navbar {
-	padding-right: 200px;	
+.user-option {
+	text-decoration: none;
 }
 
-.user-nav {
-	position:relative;
-	display: inline;
-	margin-top:8px;
-	float:right;
-	margin-right: 14px;
+
+.hello-text {
+	color:#777;
+	font-size:9px;
+	float: right;
+}
+
+.user-name {
+	color:#777;
+	float: right;
+    clear: right;
+    font-size:11px;	
+}
+
+.notification-badge {
+	position: absolute;
+    right: 5px;
+    top: 55px;
 }
 
 
