@@ -28,7 +28,6 @@
 	{if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" type="{$displayFavicon.mimeType|escape}" />{/if}
 	
 	<!-- W3.CSS -->
-	<link rel="stylesheet" href="http://www.w3schools.com/w3css/w3.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	
 	<!-- Bootstrap style -->
@@ -110,6 +109,7 @@
 </head>
 <body id="pkp-{$pageTitle|replace:'.':'-'}">
 <div id="container">
+<a href="{url page="index"}" style="text-decoration: none">
 <div id="header">
 <div id="headerTitle">
 <h1>
@@ -130,6 +130,7 @@
 </h1>
 </div>
 </div>
+</a>
 <nav id="navigation-bar" class="navbar navbar-default">
     <div class="col-md-1">
 		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -141,7 +142,7 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse col-md-4" aria-expanded="false" style="margin-top:8px">
 		<ul class="nav navbar-nav">
-			<li><a href="{url page="index"}"><span class="menu-option">{translate key="navigation.home"}</span></a></li>
+			<li><a href="{url journal="index"}"><span class="menu-option">{translate key="navigation.home"}</span></a></li>
 			{if $currentJournal}
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">{translate key="navigation.about"}</span></a>
@@ -170,16 +171,26 @@
 			{/if}
 		</ul>
     </div>
-	<div class="search-nav">
-		<form method="post" id="searchForm" action="{url page="search"}">
+    <form method="post" id="searchForm" action="{url page="search"}">
+		<div class="search-nav">
 			<input id="simpleQuery" name="simpleQuery" type="text" class="form-control" placeholder="{translate key="common.search"}">
 			<input type="hidden" id="searchField" name="searchField" value="query">
 			<button type="submit" class="btn btn-default btn-sm"><i class="material-icons w3-xlarge">search</i></button>
-		</form>
-	</div>
+		</div>
+	</form>
 	{if $isUserLoggedIn}
 		<div id="user-nav-on"  class="user-nav">
-			A
+			<a href="#" class="dropdown-toggle user-option" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+				<span class="hello-text" style="">Hello,</span>
+				<span class="menu-option user-name"><strong>{$emailUser}</strong></span>
+			</a>
+			<ul class="dropdown-menu dropdown-menu-right">
+				<li><a href="{url page="user"}"><h5>{translate key="navigation.userHome"}</h5></a></li>
+				{if $currentJournal}
+					<li><a href="{url page="notification"}"><h5>{translate key="notification.notifications"}</h5><span class="badge notification-badge">{if $unreadNotifications}{$unreadNotifications}{else}0{/if}</span></a></li>
+				{/if}
+				<li><a href="{url page="login" op="signOut"}"><h5>{translate key="user.logOut"}</h5></a></li>
+			</ul>
 		</div>
 	{else}
 		<div id="user-nav-off" class="user-nav" class="navbar-collapse collapse col-md-4" aria-expanded="false">
