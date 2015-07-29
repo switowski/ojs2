@@ -15,7 +15,7 @@
 
 {if $isSiteAdmin}
 	{assign var="hasRole" value=1}
-	<a href="{url journal="index" page=$isSiteAdmin->getRolePath()}" class="btn btn-lg btn-info">{translate key=$isSiteAdmin->getRoleName()}</a>
+	<a href="{url journal="index" page=$isSiteAdmin->getRolePath()}" class="btn btn-sm btn-info">{translate key=$isSiteAdmin->getRoleName()}</a>
 	{call_hook name="Templates::User::Index::Site"}
 {/if}
 
@@ -31,13 +31,13 @@
 	
 		{if $isValid.JournalManager.$journalId}
 			<div class="col-md-10">
-				<a href="{url journal=$journalPath page="manager"}" class="btn btn-lg btn-info">{translate key="user.role.manager"}</a>
-				{if $setupIncomplete.$journalId}<a href="{url journal=$journalPath page="manager" op="setup" path="1"}" class="btn btn-lg btn-info">{translate key="manager.setup"}</a>{/if}
+				<a href="{url journal=$journalPath page="manager"}" class="btn btn-sm btn-info">{translate key="user.role.manager"}</a>
+				{if $setupIncomplete.$journalId}<a href="{url journal=$journalPath page="manager" op="setup" path="1"}" class="btn btn-sm btn-info">{translate key="manager.setup"}</a>{/if}
 			</div>
 		{/if}
 		{if $isValid.SubscriptionManager.$journalId}
 			<div class="col-md-10"> 
-				<a href="{url journal=$journalPath page="subscriptionManager"}" class="btn btn-lg btn-info">{translate key="user.role.subscriptionManager"}</a>
+				<a href="{url journal=$journalPath page="subscriptionManager"}" class="btn btn-sm btn-info">{translate key="user.role.subscriptionManager"}</a>
 			</div>
 		{/if}
 		
@@ -197,36 +197,36 @@
 	<div id="myAccount" class="pull-right">
 		{if $hasOtherJournals}
 			{if !$showAllJournals}
-				<a href="{url journal="index" page="user"}" class="btn btn-lg btn-info">{translate key="user.showAllJournals"}</a>
+				<a href="{url journal="index" page="user"}" class="btn btn-sm btn-primary">{translate key="user.showAllJournals"}</a>
 			{/if}
 		{/if}
 		{if $currentJournal}
 			{if $subscriptionsEnabled}
-				<a href="{url page="user" op="subscriptions"}" class="btn btn-lg btn-info">{translate key="user.manageMySubscriptions"}</a>
+				<a href="{url page="user" op="subscriptions"}" class="btn btn-sm btn-info">{translate key="user.manageMySubscriptions"}</a>
 			{/if}
 		{/if}
 		{if $currentJournal}
 			{if $acceptGiftPayments}
-				<a href="{url page="user" op="gifts"}" class="btn btn-lg btn-info">{translate key="gifts.manageMyGifts"}</a>
+				<a href="{url page="user" op="gifts"}" class="btn btn-sm btn-info">{translate key="gifts.manageMyGifts"}</a>
 			{/if}
 		{/if}
-		<a href="{url page="user" op="profile"}" class="btn btn-lg btn-info">{translate key="user.editMyProfile"}</a>
+		<a href="{url page="user" op="profile"}" class="btn btn-sm btn-info">{translate key="user.editMyProfile"}</a>
 	
 		{if !$implicitAuth}
-			<a href="{url page="user" op="changePassword"}" class="btn btn-lg btn-info">{translate key="user.changeMyPassword"}</a>
+			<a href="{url page="user" op="changePassword"}" class="btn btn-sm btn-info">{translate key="user.changeMyPassword"}</a>
 		{/if}
 	
 		{if $currentJournal}
 			{if $journalPaymentsEnabled && $membershipEnabled}
 				{if $dateEndMembership}
-					<a href="{url page="user" op="payMembership"}" class="btn btn-lg btn-info">{translate key="payment.membership.renewMembership"}</a> ({translate key="payment.membership.ends"}: {$dateEndMembership|date_format:$dateFormatShort})
+					<a href="{url page="user" op="payMembership"}" class="btn btn-sm btn-info">{translate key="payment.membership.renewMembership"}</a> ({translate key="payment.membership.ends"}: {$dateEndMembership|date_format:$dateFormatShort})
 				{else}
-					<a href="{url page="user" op="payMembership"}" class="btn btn-lg btn-info">{translate key="payment.membership.buyMembership"}</a>
+					<a href="{url page="user" op="payMembership"}" class="btn btn-sm btn-info">{translate key="payment.membership.buyMembership"}</a>
 				{/if}
 			{/if}{* $journalPaymentsEnabled && $membershipEnabled *}
 		{/if}{* $userJournal *}
 	
-		<a href="{url page="login" op="signOut"}" class="btn btn-lg btn-info">{translate key="user.logOut"}</a>
+		<a href="{url page="login" op="signOut"}" class="btn btn-sm btn-danger">{translate key="user.logOut"}</a>
 		{call_hook name="Templates::User::Index::MyAccount"}
 	</div>
 </div>
