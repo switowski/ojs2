@@ -8,6 +8,7 @@
  * Navigation Bar
  *
  *}
+ {** The navbar of CERN E-Publishing is now on /lib/pkp/templates/common/header.tpl 
 <div id="navbar">
 	<ul class="menu">
 		<li id="home"><a href="{url page="index"}">{translate key="navigation.home"}</a></li>
@@ -20,11 +21,11 @@
 			{if !$hideRegisterLink}
 				<li id="register"><a href="{url page="user" op="register"}">{translate key="navigation.register"}</a></li>
 			{/if}
-		{/if}{* $isUserLoggedIn *}
+		{/if}{* $isUserLoggedIn *
 
 		{if $siteCategoriesEnabled}
 			<li id="categories"><a href="{url journal="index" page="search" op="categories"}">{translate key="navigation.categories"}</a></li>
-		{/if}{* $categoriesEnabled *}
+		{/if}{* $categoriesEnabled *
 
 		{if !$currentJournal || $currentJournal->getSetting('publishingMode') != $smarty.const.PUBLISHING_MODE_NONE}
 			<li id="search"><a href="{url page="search"}">{translate key="navigation.search"}</a></li>
@@ -37,7 +38,7 @@
 
 		{if $enableAnnouncements}
 			<li id="announcements"><a href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
-		{/if}{* enableAnnouncements *}
+		{/if}{* enableAnnouncements *
 
 		{call_hook name="Templates::Common::Header::Navbar::CurrentJournal"}
 
@@ -48,3 +49,4 @@
 		{/foreach}
 	</ul>
 </div>
+*}

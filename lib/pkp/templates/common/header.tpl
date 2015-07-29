@@ -35,6 +35,9 @@
 	
 	<!-- Common style that overwrite the bootstrap to make the changes -->
 	<link rel="stylesheet" href="{$baseUrl}/styles/common.css" type="text/css" />
+	
+	<!-- Roboto font for the title -->
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
 
 	<!-- Base Jquery -->
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>
@@ -111,7 +114,7 @@
 <div id="container">
 <a href="{url page="index"}" style="text-decoration: none">
 <div id="header">
-<div id="headerTitle">
+<div id="headerTitle" class="jumbotron">
 <h1>
 {if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
 	<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
@@ -171,14 +174,8 @@
 			{/if}
 		</ul>
     </div>
-    <form method="post" id="searchForm" action="{url page="search"}">
-		<div class="search-nav">
-			<input id="simpleQuery" name="simpleQuery" type="text" class="form-control" placeholder="{translate key="common.search"}">
-			<input type="hidden" id="searchField" name="searchField" value="query">
-			<button type="submit" class="btn btn-default btn-sm"><i class="material-icons w3-xlarge">search</i></button>
-		</div>
-	</form>
-	{if $isUserLoggedIn}
+    
+    {if $isUserLoggedIn}
 		<div id="user-nav-on"  class="user-nav">
 			<a href="#" class="dropdown-toggle user-option" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 				<span class="hello-text" style="">Hello,</span>
@@ -197,6 +194,14 @@
 			<a class="btn btn-default btn-xs" href="{url page="login"}"><span class="menu-option">{translate key="navigation.login"}</span></a>
 		</div>
 	{/if}
+    
+    <form method="post" id="searchForm" action="{url page="search"}">
+		<div class="search-nav">
+			<input id="simpleQuery" name="simpleQuery" type="text" class="form-control" placeholder="{translate key="common.search"}">
+			<input type="hidden" id="searchField" name="searchField" value="query">
+			<button type="submit" class="btn btn-default btn-sm"><i class="material-icons w3-xlarge">search</i></button>
+		</div>
+	</form>
 </nav>
 <script>
 	$(document).ready(stickMenuToTopAfterScroll);
