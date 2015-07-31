@@ -9,10 +9,10 @@
  *
  *}
 <div id="breadcrumb">
-	<a href="{url context=$homeContext page="index"}">{if $siteTitle}{$siteTitle}{else}{$applicationName}{/if}</a></li>
+	<a href="{url context=$homeContext page="index"}">{if $siteTitle}{$siteTitle}{else}{$applicationName}{/if}</a>
 	{foreach from=$pageHierarchy item=hierarchyLink}
 		<a href="{$hierarchyLink[0]|escape}" class="hierarchyLink">{if not $hierarchyLink[2]}{translate key=$hierarchyLink[1]}{else}{$hierarchyLink[1]|escape}{/if}</a>
 	{/foreach}
 	{* Disable linking to the current page if the request is a post (form) request. Otherwise following the link will lead to a form submission error. *}
-	{if $requiresFormRequest}</div><span class="current">{else}<a href="{$currentUrl|escape}" class="current">{/if}{$pageCrumbTitleTranslated}{if $requiresFormRequest}</span>{else}</a></div>{/if}
+	{if $requiresFormRequest}<a class="current disabled">{else}<a href="{$currentUrl|escape}" class="current">{/if}{$pageCrumbTitleTranslated}{if $requiresFormRequest}</a>{else}</a>{/if}</div>
 
