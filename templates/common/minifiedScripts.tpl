@@ -66,3 +66,6 @@ piwikTracker.enableLinkTracking();
 
 {* CERN added functions *}
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/cern-functions.js"></script>
+
+{* Boostrap filestyle*}
+<script type="text/javascript" src="{$baseUrl}/js/bootstrap/bootstrap-filestyle.min.js"></script>
