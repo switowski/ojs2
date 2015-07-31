@@ -37,7 +37,7 @@
 	<link rel="stylesheet" href="{$baseUrl}/styles/common.css" type="text/css" />
 	
 	<!-- Roboto font for the title -->
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
 
 	<!-- Base Jquery -->
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>
@@ -110,7 +110,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 </head>
-<body id="pkp-{$pageTitle|replace:'.':'-'}">
+<body id="pkp-{$pageTitle|replace:'.':'-'}" onload="afterPageLoad()">
 <div id="container">
 <a href="{url page="index"}" style="text-decoration: none">
 <div id="header">
@@ -178,8 +178,10 @@
     {if $isUserLoggedIn}
 		<div id="user-nav-on"  class="user-nav">
 			<a href="#" class="dropdown-toggle user-option" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-				<span class="hello-text" style="">Hello,</span>
-				<span class="menu-option user-name"><strong>{$emailUser}</strong></span>
+				<div style="width:100%;height:30px">
+					<span class="hello-text" style="">Hello,</span>
+					<span class="menu-option user-name"><strong>{$emailUser}</strong></span>
+				</div>
 			</a>
 			<ul class="dropdown-menu dropdown-menu-right">
 				<li><a href="{url page="user"}"><h5>{translate key="navigation.userHome"}</h5></a></li>
@@ -203,9 +205,6 @@
 		</div>
 	</form>
 </nav>
-<script>
-	$(document).ready(stickMenuToTopAfterScroll);
-</script>
 
 <div id="body">
 

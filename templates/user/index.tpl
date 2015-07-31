@@ -57,7 +57,7 @@
 					{else}<span class="disabled list-group-item">{translate key="common.queue.short.completed"}<span class="badge">0</span></span>{/if}
 				</div>
 				<div class="list-group">
-					<a href="{url journal=$journalPath page="author" op="submit"}" class="list-group-item">{translate key="author.submit"}</a>
+					<a href="{url journal=$journalPath page="author" op="submit"}" class="list-group-item" style="font-style: italic">{translate key="author.submit"}</a>
 				</div>
 			</div>
 		{/if}
@@ -92,8 +92,8 @@
 						{else}<span class="disabled list-group-item">{translate key="common.queue.short.submissionsInEditing"} <span class="badge">0</span></span>{/if}
 				</div>
 				<div class="list-group">
-					<a href="{url journal=$journalPath page="editor" op="createIssue"}" class="list-group-item">{translate key="editor.issues.createIssue"}</a> 
-					<a href="{url journal=$journalPath page="editor" op="notifyUsers"}" class="list-group-item">{translate key="editor.notifyUsers"}</a>
+					<a href="{url journal=$journalPath page="editor" op="createIssue"}" class="list-group-item" style="font-style: italic">{translate key="editor.issues.createIssue"}</a> 
+					<a href="{url journal=$journalPath page="editor" op="notifyUsers"}" class="list-group-item" style="font-style: italic">{translate key="editor.notifyUsers"}</a>
 				</div>
 			</div>
 		{/if}

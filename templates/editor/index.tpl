@@ -53,16 +53,18 @@ function sortSearch(heading, direction) {
 	{if $section}<input type="hidden" name="section" value="{$section|escape:"quotes"}"/>{/if}
 	<input type="hidden" name="sort" value="id"/>
 	<input type="hidden" name="sortDirection" value="ASC"/>
-	<select name="searchField" size="1" class="selectMenu">
-		{html_options_translate options=$fieldOptions selected=$searchField}
-	</select>
-	<select name="searchMatch" size="1" class="selectMenu">
-		<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
-		<option value="is"{if $searchMatch == 'is'} selected="selected"{/if}>{translate key="form.is"}</option>
-		<option value="startsWith"{if $searchMatch == 'startsWith'} selected="selected"{/if}>{translate key="form.startsWith"}</option>
-	</select>
-	<input type="text" size="15" name="search" class="textField" value="{$search|escape}" />
-	<br/>
+	<div class="col-md-12">
+		<select name="searchField" size="1" class="selectMenu col-md-3" style="margin-right:10px">
+			{html_options_translate options=$fieldOptions selected=$searchField}
+		</select>
+		<select name="searchMatch" size="1" class="selectMenu col-md-3" style="margin-right:10px">
+			<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
+			<option value="is"{if $searchMatch == 'is'} selected="selected"{/if}>{translate key="form.is"}</option>
+			<option value="startsWith"{if $searchMatch == 'startsWith'} selected="selected"{/if}>{translate key="form.startsWith"}</option>
+		</select>
+		<input type="text" size="15" name="search" class="textField col-md-4" value="{$search|escape}" />
+	</div>
+	<br>
 	<select name="dateSearchField" size="1" class="selectMenu">
 		{html_options_translate options=$dateFieldOptions selected=$dateSearchField}
 	</select>
@@ -74,7 +76,7 @@ function sortSearch(heading, direction) {
 	<input type="hidden" name="dateToMinute" value="59" />
 	<input type="hidden" name="dateToSecond" value="59" />
 	<br/>
-	<input type="submit" value="{translate key="common.search"}" class="button" />
+	<input type="submit" value="{translate key="common.search"}" class="btn btn-info" />
 </form>
 &nbsp;
 
