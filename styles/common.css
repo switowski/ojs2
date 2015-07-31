@@ -653,20 +653,10 @@ ul.tagit input[type="text"] {
 	#breadcrumb a:last-child:after {
 		content: none;
 	}
-	/*we will use the :before element to show numbers*/
-	#breadcrumb a:before {
-		/*some styles now*/
-		border-radius: 100%;
-		width: 20px;
-		height: 20px;
-		line-height: 20px;
-		margin: 8px 0;
-		position: absolute;
-		top: 0;
-		left: 30px;
-		background: #444;
-		background: #5bc0de;
-		font-weight: bold;
+	
+	#breadcrumb a.disabled:hover {
+		cursor:	no-drop;
+		background:#5bc0de;	
 	}
 	
 	
