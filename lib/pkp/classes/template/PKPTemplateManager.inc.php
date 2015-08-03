@@ -31,7 +31,7 @@ define('CACHEABILITY_PUBLIC',		'public');
 define('CACHEABILITY_MUST_REVALIDATE',	'must-revalidate');
 define('CACHEABILITY_PROXY_REVALIDATE',	'proxy-revalidate');
 
-define('CDN_JQUERY_VERSION', '1.4.4');
+define('CDN_JQUERY_VERSION', '1.11.3');
 define('CDN_JQUERY_UI_VERSION', '1.8.6');
 
 class PKPTemplateManager extends Smarty {

@@ -58,6 +58,8 @@ class TemplateManager extends PKPTemplateManager {
 
 			$this->assign('siteCategoriesEnabled', $site->getSetting('categoriesEnabled'));
 
+			$user =& $this->request->getUser();
+			
 			if (isset($journal)) {
 
 				$this->assign_by_ref('currentJournal', $journal);
@@ -92,6 +94,15 @@ class TemplateManager extends PKPTemplateManager {
 					!$journal->getSetting('allowRegReader') &&
 					!$journal->getSetting('allowRegAuthor')
 				);
+
+				// Optain the number of notifications
+				if ($user) {
+					$userId = $user->getId();
+					
+					$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+					$this->assign('unreadNotifications',  $notificationDao->getNotificationCount(false, $userId, $journal->getId()));
+				}
+
 
 				// Load and apply theme plugin, if chosen
 				$themePluginPath = $journal->getSetting('journalTheme');
@@ -133,9 +144,14 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign('hasOtherJournals', true);
 			}
 
-			// Add java script for notifications
-			$user =& $this->request->getUser();
-			if ($user) $this->addJavaScript('lib/pkp/js/lib/jquery/plugins/jquery.pnotify.js');
+			
+			if ($user) {
+				// Add java script for notifications
+				$this->addJavaScript('lib/pkp/js/lib/jquery/plugins/jquery.pnotify.js');
+				
+				// Optain the email
+				$this->assign('emailUser',  $user->getEmail());
+			}
 		}
 	}
 
