@@ -19,6 +19,9 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{$currentLocale|replace:"_":"-"}" xml:lang="{$currentLocale|replace:"_":"-"}">
 <head>
+	<style type="text/css">
+      .js #flash {display: none;}
+    </style>
 	<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset|escape}" />
 	<title>{$pageTitleTranslated}</title>
 	<meta name="description" content="{$metaSearchDescription|escape}" />
@@ -109,8 +112,12 @@
 	<script src="{$baseUrl}/js/bootstrap/bootstrap.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
+	<script type="text/javascript">
+      $('html').addClass('js');
+      $(document).ready(afterPageLoad);  
+    </script>
 </head>
-<body id="pkp-{$pageTitle|replace:'.':'-'}" onload="afterPageLoad()">
+<body id="pkp-{$pageTitle|replace:'.':'-'}">
 <div id="container">
 <a href="{url page="index"}" style="text-decoration: none">
 <div id="header">
@@ -176,7 +183,7 @@
     </div>
     
     {if $isUserLoggedIn}
-		<div id="user-nav-on"  class="user-nav">
+		<div id="user-nav-on"  class="user-nav user-nav-on">
 			<a href="#" class="dropdown-toggle user-option" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 				<div style="width:100%;height:30px">
 					<span class="hello-text" style="">Hello,</span>
@@ -192,7 +199,7 @@
 			</ul>
 		</div>
 	{else}
-		<div id="user-nav-off" class="user-nav" class="navbar-collapse collapse col-md-4" aria-expanded="false">
+		<div id="user-nav-off" class="user-nav user-nav-off" class="navbar-collapse collapse col-md-4" aria-expanded="false">
 			<a class="btn btn-default btn-xs" href="{url page="login"}"><span class="menu-option">{translate key="navigation.login"}</span></a>
 		</div>
 	{/if}

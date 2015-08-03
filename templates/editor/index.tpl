@@ -48,7 +48,7 @@ function sortSearch(heading, direction) {
 // -->
 {/literal}
 </script>
-
+<div class="col-md-12">
 <form method="post" id="submit" action="{url path="search"}">
 	{if $section}<input type="hidden" name="section" value="{$section|escape:"quotes"}"/>{/if}
 	<input type="hidden" name="sort" value="id"/>
@@ -59,7 +59,7 @@ function sortSearch(heading, direction) {
 				{html_options_translate options=$fieldOptions selected=$searchField}
 			</select>
 		</span>
-		<span class="col-md-1"><i class="material-icons">forward</i></span>
+		<span class="col-md-1 remove-on-mobile"><i class="material-icons">forward</i></span>
 		<span class="col-md-3">
 			<select name="searchMatch" size="1">
 				<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
@@ -67,7 +67,7 @@ function sortSearch(heading, direction) {
 				<option value="startsWith"{if $searchMatch == 'startsWith'} selected="selected"{/if}>{translate key="form.startsWith"}</option>
 			</select>
 		</span>
-		<span class="col-md-1"><i class="material-icons">forward</i></span>
+		<span class="col-md-1 remove-on-mobile"><i class="material-icons">forward</i></span>
 		<span class="col-md-4" >
 			<input type="text" size="15" name="search" value="{$search|escape}" />
 		</span>
@@ -91,11 +91,39 @@ function sortSearch(heading, direction) {
 		<input type="hidden" name="dateToMinute" value="59" />
 		<input type="hidden" name="dateToSecond" value="59" />
 	</div>
-	<input type="submit" value="{translate key="common.search"}" class="btn btn-success btn-lg" style="float:right; margin-right:15%; margin-top:10px;" />
+	<div class="col-md-12" style="height:60px">
+		<input type="submit" value="{translate key="common.search"}" class="btn btn-success btn-lg" style="float:right; margin-right:15%; margin-top:10px;" />
+	</div>
 </form>
-&nbsp;
+</div>
 
 {if $displayResults}
+<div class="col-md-12">
+	<button type="button" class="btn btn-default btn-xs" style="float:right; clear:right" data-toggle="modal" data-target="#modalInformation">
+	  <i class="material-icons">info_outline</i>
+	</button>
+	<div class="modal fade bs-example-modal-lgv" role="dialog" aria-labelledby="gridSystemModalLabel" id="modalInformation">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h3 class="modal-title" id="gridSystemModalLabel">{translate key="common.notes"}</h3>
+	      </div>
+	      <div class="modal-body">
+	        <div class="container-fluid">
+	          <div class="row col-md-12">
+	          	<h4>{translate key="article.submissions"} {translate key="common.queue.short.submissionsInReview"}</h4>
+	            {translate key="editor.submissionReview.notes"}
+	            <h4>{translate key="article.submissions"} {translate key="common.queue.short.submissionsInEditing"}</h4>
+	            {translate key="editor.submissionEditing.notes"}
+	          </div>
+	        </div>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+</div>
+
 	<div id="submissions">
 
 <table width="100%" class="table table-condensed table-hover">

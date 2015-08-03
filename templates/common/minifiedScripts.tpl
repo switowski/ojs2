@@ -48,21 +48,6 @@
 {* Our own plug-in (depends on classes) *}
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.pkp.js"></script>
 
-{* Piwik statistics - we want to enable them for every page, that's why we don't use the plugin *}
-{literal}
-<!-- Piwik -->
-<script type="text/javascript">
-var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.web.cern.ch/" : "http://piwik.web.cern.ch/");
-document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-</script><script type="text/javascript">
-try {
-var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1612);
-piwikTracker.trackPageView();
-piwikTracker.enableLinkTracking();
-} catch( err ) {}
-</script><noscript><p><img src="http://piwik.web.cern.ch/piwik.php?idsite=1612" style="border:0" alt="" /></p></noscript>
-<!-- End Piwik Tracking Code -->
-{/literal}
 
 {* CERN added functions *}
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/cern-functions.js"></script>

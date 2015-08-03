@@ -530,7 +530,7 @@ ul.tagit input[type="text"] {
 		padding-bottom: 8px;
 	}
 	
-	#user-nav-off, #user-nav-on {
+	.user-nav-off, .user-nav-on {
 		position:relative;
 		display: inline;
 		margin-top:8px;
@@ -538,16 +538,16 @@ ul.tagit input[type="text"] {
 		margin-right: 5%;
 	}
 	
-	#user-nav-off a {
+	.user-nav-off a {
 		padding-top: 7px;
 		padding-bottom: 8px;
 	}
 	
-	#user-nav-on a {
+	.user-nav-on a {
 		text-decoration: none;
 	}
 	
-	#navbar a:hover, #user-nav-on:hover  {
+	#navbar a:hover, .user-nav-on:hover  {
 		background-color: LightGray;
 	}
 	
@@ -585,7 +585,7 @@ ul.tagit input[type="text"] {
 		/*Lets add the numbers for each link using CSS counters. flag is the name of the counter. to be defined using counter-reset in the parent element of the links*/
 		counter-reset: flag; 
 		padding: 0px;
-		margin: -25px 0 25px -34px;
+		margin: -25px 0 25px 0;
 	}
 	
 	#breadcrumb a {
