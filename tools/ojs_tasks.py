@@ -24,7 +24,7 @@ from time import sleep
 # Some config variables
 DEVELOPMENT_MODE = True  # If True, then it only prints the email's content
 BASE_URL = "dummy_base_url"  # Base user for the website
-SYSTEM_ADMIN_EMAIL = "dummy_admin"  # TODO configure that
+SYSTEM_ADMIN_EMAIL = "dummy_admin"  # This will be used in "From" field of the e-mail
 
 DB_USER = "dummy_db_username"
 DB_PASSWORD = "dummy_db_password"
