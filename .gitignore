@@ -1,1 +1,8 @@
 cache/
+.settings/org.eclipse.wst.jsdt.ui.superType.name
+.project
+.buildpath
+.settings/.jsdtscope
+.settings/org.eclipse.wst.common.project.facet.core.xml
+.settings/org.eclipse.php.core.prefs
+.settings/org.eclipse.wst.jsdt.ui.superType.container

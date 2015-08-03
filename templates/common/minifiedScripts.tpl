@@ -63,3 +63,9 @@ piwikTracker.enableLinkTracking();
 </script><noscript><p><img src="http://piwik.web.cern.ch/piwik.php?idsite=1612" style="border:0" alt="" /></p></noscript>
 <!-- End Piwik Tracking Code -->
 {/literal}
+
+{* CERN added functions *}
+<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/cern-functions.js"></script>
+
+{* Boostrap filestyle*}
+<script type="text/javascript" src="{$baseUrl}/js/bootstrap/bootstrap-filestyle.min.js"></script>

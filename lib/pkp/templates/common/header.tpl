@@ -26,40 +26,25 @@
 	<meta name="generator" content="{$applicationName} {$currentVersionString|escape}" />
 	{$metaCustomHeaders}
 	{if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" type="{$displayFavicon.mimeType|escape}" />{/if}
-	<link rel="stylesheet" href="{$baseUrl}/lib/pkp/styles/pkp.css" type="text/css" />
-	<link rel="stylesheet" href="{$baseUrl}/lib/pkp/styles/common.css" type="text/css" />
+	
+	<!-- W3.CSS -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	
+	<!-- Bootstrap style -->
+	<link href="{$baseUrl}/styles/bootstrap/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- Common style that overwrite the bootstrap to make the changes -->
 	<link rel="stylesheet" href="{$baseUrl}/styles/common.css" type="text/css" />
-	<link rel="stylesheet" href="{$baseUrl}/styles/compiled.css" type="text/css" />
+	
+	<!-- Roboto font for the title -->
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
 
 	<!-- Base Jquery -->
-	{if $allowCDN}<script type="text/javascript" src="//www.google.com/jsapi"></script>
-		<script type="text/javascript">{literal}
-			<!--
-			// Provide a local fallback if the CDN cannot be reached
-			if (typeof google == 'undefined') {
-				document.write(unescape("%3Cscript src='{/literal}{$baseUrl}{literal}/lib/pkp/js/lib/jquery/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
-				document.write(unescape("%3Cscript src='{/literal}{$baseUrl}{literal}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js' type='text/javascript'%3E%3C/script%3E"));
-			} else {
-				google.load("jquery", "{/literal}{$smarty.const.CDN_JQUERY_VERSION}{literal}");
-				google.load("jqueryui", "{/literal}{$smarty.const.CDN_JQUERY_UI_VERSION}{literal}");
-			}
-			// -->
-		{/literal}</script>
-	{else}
-		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>
-		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js"></script>
-	{/if}
-
-	{call_hook|assign:"leftSidebarCode" name="Templates::Common::LeftSidebar"}
-	{call_hook|assign:"rightSidebarCode" name="Templates::Common::RightSidebar"}
-	{if $leftSidebarCode || $rightSidebarCode}<link rel="stylesheet" href="{$baseUrl}/styles/sidebar.css" type="text/css" />{/if}
-	{if $leftSidebarCode}<link rel="stylesheet" href="{$baseUrl}/styles/leftSidebar.css" type="text/css" />{/if}
-	{if $rightSidebarCode}<link rel="stylesheet" href="{$baseUrl}/styles/rightSidebar.css" type="text/css" />{/if}
-	{if $leftSidebarCode && $rightSidebarCode}<link rel="stylesheet" href="{$baseUrl}/styles/bothSidebars.css" type="text/css" />{/if}
-
-	{foreach from=$stylesheets item=cssUrl}
-		<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
-	{/foreach}
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js"></script>
+	
+	<!-- Compatibility after the upgrade to version 1.11.3 of jQuery -->
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery-migrate-1.2.1.js"></script>
 
 	<!-- Default global locale keys for JavaScript -->
 	{include file="common/jsLocaleKeys.tpl" }
@@ -119,12 +104,17 @@
 	{/if}{* hasSystemNotifications *}
 
 	{$additionalHeadData}
+	
+	{* Bootstrap functions *}
+	<script src="{$baseUrl}/js/bootstrap/bootstrap.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
 </head>
-<body id="pkp-{$pageTitle|replace:'.':'-'}">
+<body id="pkp-{$pageTitle|replace:'.':'-'}" onload="afterPageLoad()">
 <div id="container">
-
+<a href="{url page="index"}" style="text-decoration: none">
 <div id="header">
-<div id="headerTitle">
+<div id="headerTitle" class="jumbotron">
 <h1>
 {if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
 	<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
@@ -143,6 +133,78 @@
 </h1>
 </div>
 </div>
+</a>
+<nav id="navigation-bar" class="navbar navbar-default">
+    <div class="col-md-1">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse col-md-4" aria-expanded="false" style="margin-top:8px">
+		<ul class="nav navbar-nav">
+			<li><a href="{url journal="index"}"><span class="menu-option">{translate key="navigation.home"}</span></a></li>
+			{if $currentJournal}
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">{translate key="navigation.about"}</span></a>
+					<ul class="dropdown-menu">
+						<li><a href="{url page="about"}"><h5>About this page</h5></a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="{url page="pages"}/view/for_editors"><h5>Information for editors</h5></a></li>              
+						<li><a href="{url page="pages"}/view/for_authors"><h5>Information for authors</h5></a></li>
+						<li><a href="{url page="pages"}/view/for_readers"><h5>Information for readers</h5></a></li>
+						<li><a href="{url page="pages"}/view/for_librarians"><h5>Information for librarians</h5></a></li>
+					</ul>
+				</li>
+			{else}
+				<li><a href="{url page="about"}"><span class="menu-option">{translate key="navigation.about"}</span></a></li>
+			{/if}
+			{if $currentJournal}
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">Content</span></a>
+					<ul class="dropdown-menu">
+						<li><a href="{url page="issue" op="current"}"><h5>{translate key="navigation.current"}</h5></a></li>
+						<li><a href="{url page="issue" op="archive"}"><h5>{translate key="navigation.archives"}</h5></a></li>
+						<li><a href="{url page="forth_titles"}"><h5>Forthcoming titles</h5></a></li>
+					</ul>
+				</li>
+				<li> <a href="{url page="about"}/contact"><span class="menu-option">Contact</span></a></li>
+			{/if}
+		</ul>
+    </div>
+    
+    {if $isUserLoggedIn}
+		<div id="user-nav-on"  class="user-nav">
+			<a href="#" class="dropdown-toggle user-option" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+				<div style="width:100%;height:30px">
+					<span class="hello-text" style="">Hello,</span>
+					<span class="menu-option user-name"><strong>{$emailUser}</strong></span>
+				</div>
+			</a>
+			<ul class="dropdown-menu dropdown-menu-right">
+				<li><a href="{url page="user"}"><h5>{translate key="navigation.userHome"}</h5></a></li>
+				{if $currentJournal}
+					<li><a href="{url page="notification"}"><h5>{translate key="notification.notifications"}</h5><span class="badge notification-badge">{if $unreadNotifications}{$unreadNotifications}{else}0{/if}</span></a></li>
+				{/if}
+				<li><a href="{url page="login" op="signOut"}"><h5>{translate key="user.logOut"}</h5></a></li>
+			</ul>
+		</div>
+	{else}
+		<div id="user-nav-off" class="user-nav" class="navbar-collapse collapse col-md-4" aria-expanded="false">
+			<a class="btn btn-default btn-xs" href="{url page="login"}"><span class="menu-option">{translate key="navigation.login"}</span></a>
+		</div>
+	{/if}
+    
+    <form method="post" id="searchForm" action="{url page="search"}">
+		<div class="search-nav">
+			<input id="simpleQuery" name="simpleQuery" type="text" class="form-control" placeholder="{translate key="common.search"}">
+			<input type="hidden" id="searchField" name="searchField" value="query">
+			<button type="submit" class="btn btn-default btn-sm"><i class="material-icons w3-xlarge">search</i></button>
+		</div>
+	</form>
+</nav>
 
 <div id="body">
 
