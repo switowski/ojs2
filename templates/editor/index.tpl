@@ -18,7 +18,7 @@
 
 <div class="btn-group add-justified" role"group">
 	<a class="btn-group" role="group" href="{url op="submissions" path="submissionsUnassigned"}"><button class="btn btn-primary btn-lg">{translate key="common.queue.short.submissionsUnassigned"}<span style="margin-left:10px" class="badge">{if $submissionsCount[0]}{$submissionsCount[0]}{else}0{/if}</span></button></a>
-	<a class="btn-group" role="group" href="{url op="submissions" path="submissionsInReview"}"><button class="btn btn-primary btn-lg active">{translate key="common.queue.short.submissionsInReview"}<span style="margin-left:10px" class="badge">{if $submissionsCount[1]}{$submissionsCount[1]}{else}0{/if}</span></button></a>
+	<a class="btn-group" role="group" href="{url op="submissions" path="submissionsInReview"}"><button class="btn btn-primary btn-lg">{translate key="common.queue.short.submissionsInReview"}<span style="margin-left:10px" class="badge">{if $submissionsCount[1]}{$submissionsCount[1]}{else}0{/if}</span></button></a>
 	<a class="btn-group" role="group" href="{url op="submissions" path="submissionsInEditing"}"><button class="btn btn-primary btn-lg">{translate key="common.queue.short.submissionsInEditing"}<span style="margin-left:10px" class="badge">{if $submissionsCount[2]}{$submissionsCount[2]}{else}0{/if}</span></button></a>
 	<a class="btn-group" role="group" href="{url op="submissions" path="submissionsArchives"}"><button class="btn btn-primary btn-lg">{translate key="common.queue.short.submissionsArchives"}</button></a>
 	{call_hook name="Templates::Editor::Index::Submissions"}
@@ -54,39 +54,45 @@ function sortSearch(heading, direction) {
 	<input type="hidden" name="sort" value="id"/>
 	<input type="hidden" name="sortDirection" value="ASC"/>
 	<div class="col-md-12">
-		<span class="col-md-3">
+		<div class="col-md-3">
 			<select name="searchField" size="1">
 				{html_options_translate options=$fieldOptions selected=$searchField}
 			</select>
-		</span>
-		<span class="col-md-1 remove-on-mobile"><i class="material-icons">forward</i></span>
-		<span class="col-md-3">
+		</div>
+		<div class="col-md-1 remove-on-mobile"><i class="material-icons">forward</i></div>
+		<div class="col-md-3">
 			<select name="searchMatch" size="1">
 				<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
 				<option value="is"{if $searchMatch == 'is'} selected="selected"{/if}>{translate key="form.is"}</option>
 				<option value="startsWith"{if $searchMatch == 'startsWith'} selected="selected"{/if}>{translate key="form.startsWith"}</option>
 			</select>
-		</span>
-		<span class="col-md-1 remove-on-mobile"><i class="material-icons">forward</i></span>
-		<span class="col-md-4" >
+		</div>
+		<div class="col-md-1 remove-on-mobile"><i class="material-icons">forward</i></div>
+		<div class="col-md-4" >
 			<input type="text" size="15" name="search" value="{$search|escape}" />
-		</span>
+		</div>
 	</div>
 	<div class="row col-md-12" style="margin-top: -10px;margin-bottom: -10px;"><hr></div>
 	<div class="col-md-12">
-		<span class="col-md-3">
+		<div class="col-md-3">
 			<select name="dateSearchField" size="1">
 				{html_options_translate options=$dateFieldOptions selected=$dateSearchField}
 			</select>
-		</span>
-		<span class="col-md-2">{translate key="common.between"}</span>
-		<span class="col-md-3">
-			{html_select_date prefix="dateFrom" time=$dateFrom all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="-5" end_year="+1"}
-		</span>
-		<span class="col-md-1">{translate key="common.and"}</span>
-		<span class="col-md-3">
-			{html_select_date prefix="dateTo" time=$dateTo all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="-5" end_year="+1"}
-		</span>
+		</div>
+		<div class="col-md-2">{translate key="common.between"}</div>
+		<div class="col-md-3">
+			<div class="change-input-date">
+				{html_select_date prefix="dateFrom" time=$dateFrom all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="-5" end_year="+1"}
+			</div>
+			<input type="date" name="date" id="date" value="" style="display:none"/>
+		</div>
+		<div class="col-md-1">{translate key="common.and"}</div>
+		<div class="col-md-3">
+			<div class="change-input-date">
+				{html_select_date prefix="dateTo" time=$dateTo all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="-5" end_year="+1"}
+			</div>
+			<input type="date" name="date" id="date" value="" style="display:none"/>
+		</div>
 		<input type="hidden" name="dateToHour" value="23" />
 		<input type="hidden" name="dateToMinute" value="59" />
 		<input type="hidden" name="dateToSecond" value="59" />
