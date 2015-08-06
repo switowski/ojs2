@@ -51,7 +51,7 @@ a:hover {
  */
 
 #header {
-	background-color: #ABA;
+	margin-top: 50px;
 }
 
 #footer {
@@ -505,7 +505,7 @@ ul.tagit input[type="text"] {
 		min-width: 240px;
 	}
 	
-	.form-control {
+	.search-input {
 		display: inline;
 		height: 36px;
 		padding-top: 5px;
@@ -576,13 +576,17 @@ ul.tagit input[type="text"] {
 	    top: 55px;
 	}
 	
-	
 	#breadcrumb {
-		/*centering*/
+		margin-top: 10px;
+	}
+	
+	/*
+	#breadcrumb {
+		/*centering*
 		display: inline-block;
 		overflow: hidden;
 		border-radius: 5px;
-		/*Lets add the numbers for each link using CSS counters. flag is the name of the counter. to be defined using counter-reset in the parent element of the links*/
+		/*Lets add the numbers for each link using CSS counters. flag is the name of the counter. to be defined using counter-reset in the parent element of the links*
 		counter-reset: flag; 
 		padding: 0px;
 		margin: -25px 0 25px 0;
@@ -596,7 +600,7 @@ ul.tagit input[type="text"] {
 		font-size: 16px;
 		line-height: 36px;
 		color: white;
-		/*need more margin on the left of links to accomodate the numbers*/
+		/*need more margin on the left of links to accomodate the numbers*
 		padding: 0 10px 0 25px;
 		background: #5bc0de;
 		position: relative;
@@ -621,35 +625,35 @@ ul.tagit input[type="text"] {
 		background: #337ab7;
 	}
 	
-	/*adding the arrows for the breadcrumbs using rotated pseudo elements*/
+	/*adding the arrows for the breadcrumbs using rotated pseudo elements*
 	#breadcrumb a:after {
 		content: '';
 		position: absolute;
 		top: 0; 
-		right: -18px; /*half of square's length*/
-		/*same dimension as the line-height of .breadcrumb a */
+		right: -18px; /*half of square's length*
+		/*same dimension as the line-height of .breadcrumb a *
 		width: 36px; 
 		height: 36px;
 		/*as you see the rotated square takes a larger height. which makes it tough to position it properly. So we are going to scale it down so that the diagonals become equal to the line-height of the link. We scale it to 70.7% because if square's: 
 		length = 1; diagonal = (1^2 + 1^2)^0.5 = 1.414 (pythagoras theorem)
-		if diagonal required = 1; length = 1/1.414 = 0.707*/
+		if diagonal required = 1; length = 1/1.414 = 0.707*
 		transform: scale(0.707) rotate(45deg);
 		-webkit-transform: scale(0.707) rotate(45deg);
 		-ms-transform: scale(0.707) rotate(45deg);
-		/*we need to prevent the arrows from getting buried under the next link*/
+		/*we need to prevent the arrows from getting buried under the next link*
 		z-index: 1;
-		/*background same as links but the gradient will be rotated to compensate with the transform applied*/
+		/*background same as links but the gradient will be rotated to compensate with the transform applied*
 		background: #5bc0de;
-		/*stylish arrow design using box shadow*/
+		/*stylish arrow design using box shadow*
 		box-shadow: 
 			2px -2px 0 2px rgba(70, 184, 218, 0.4), 
 			3px -3px 0 2px rgba(0, 0, 0, 0.1);
 		/*
 			5px - for rounded arrows and 
-			50px - to prevent hover glitches on the border created using shadows*/
+			50px - to prevent hover glitches on the border created using shadows*
 		border-radius: 0 5px 0 50px;
 	}
-	/*we dont need an arrow after the last link*/
+	/*we dont need an arrow after the last link*
 	#breadcrumb a:last-child:after {
 		content: none;
 	}
@@ -657,7 +661,7 @@ ul.tagit input[type="text"] {
 	#breadcrumb a.disabled:hover {
 		cursor:	no-drop;
 		background:#5bc0de;	
-	}
+	}*/
 	
 	
 	.table > tbody > tr > td,
@@ -675,12 +679,9 @@ ul.tagit input[type="text"] {
 	}
 	
 	.table a {
-		color:#777; 
 		text-decoration: none;
-	}
-	
-	.table a:hover {
-		background-color: LightGray;
+		padding:6px;
+		z-index:1000;
 	}
 	
 	.table-hover tbody tr:last-child:hover td, .table-hover tbody tr:last-child:hover th {

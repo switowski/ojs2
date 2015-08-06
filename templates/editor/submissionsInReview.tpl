@@ -7,6 +7,7 @@
  *
  * Show editor's submissions in review.
  *}
+
 <div id="submissions">
 <table width="100%" class="table table-condensed table-hover">
 	<thead>
@@ -39,7 +40,7 @@
 			<td>{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
 			<td>{$submission->getSectionAbbrev()|escape}</td>
 			<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
-			<td><a href="{url op="submissionReview" path=$submission->getId()}" class="action">{$submission->getLocalizedTitle()|strip_tags|truncate:40:"..."}</a></td>
+			<td>{$submission->getLocalizedTitle()|strip_tags|truncate:40:"..."}</td>
 			<td>
 				<table width="100%">
 				{foreach from=$submission->getReviewAssignments() item=reviewAssignments}
@@ -92,11 +93,15 @@
 		</tr>
 	{else}
 		<tr>
-			<td colspan="5" align="left">{page_info iterator=$submissions}</td>
-			<td colspan="3" align="right">{page_links anchor="submissions" name="submissions" iterator=$submissions searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth dateSearchField=$dateSearchField section=$section sort=$sort sortDirection=$sortDirection}</td>
+			<td colspan="5" align="left" style="font-weight: bold;padding-top:10px;">{page_info iterator=$submissions}</td>
+			<td colspan="3" align="right" class="footer-table-numbers">{page_links anchor="submissions" name="submissions" iterator=$submissions searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth dateSearchField=$dateSearchField section=$section sort=$sort sortDirection=$sortDirection}</td>
 		</tr>
 	{/if}
 	</tbody>
 </table>
+</div>
+<div class="clearfix row col-md-12">
+	<h4>{translate key="common.notes"}</h4>
+	{translate key="editor.submissionReview.notes"}
 </div>
 

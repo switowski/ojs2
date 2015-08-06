@@ -193,7 +193,7 @@
 	{/if}{* $currentJournal *}
 {/if}{* !$hasRole *}
 
-<div class="col-md-12">
+<div class="row col-md-12">
 	<div id="myAccount" class="pull-right">
 		{if $hasOtherJournals}
 			{if !$showAllJournals}
