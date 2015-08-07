@@ -9,18 +9,23 @@
  *
  *}
 <div id="editorDecision">
-<h3>{translate key="submission.editorDecision"}</h3>
+<div class="page-header"><h3>{translate key="submission.editorDecision"}</h3></div>
 
-<table id="table1" width="100%" class="data">
+<div class="well">
+<table width="100%" class="data">
 <tr valign="top">
 	<td class="label" width="20%">{translate key="editor.article.selectDecision"}</td>
-	<td width="80%" class="value">
+	<td width="80%">
 		<form method="post" action="{url op="recordDecision"}">
 			<input type="hidden" name="articleId" value="{$submission->getId()}" />
-			<select name="decision" size="1" class="selectMenu"{if not $allowRecommendation} disabled="disabled"{/if}>
-				{html_options_translate options=$editorDecisionOptions selected=$lastDecision}
-			</select>
-			<input type="submit" onclick="return confirm('{translate|escape:"jsparam" key="editor.submissionReview.confirmDecision"}')" name="submit" value="{translate key="editor.article.recordDecision"}" {if not $allowRecommendation}disabled="disabled"{/if} class="button" />
+			<div class="col-md-9">
+				<select name="decision" size="1" class="selectMenu"{if not $allowRecommendation} disabled="disabled"{/if}>
+					{html_options_translate options=$editorDecisionOptions selected=$lastDecision}
+				</select>
+			</div>
+			<div class="col-md-2">
+				<input type="submit" onclick="return confirm('{translate|escape:"jsparam" key="editor.submissionReview.confirmDecision"}')" name="submit" value="{translate key="editor.article.recordDecision"}" {if not $allowRecommendation}disabled="disabled"{/if} class="button" />
+			</div>
 			{if not $allowRecommendation}&nbsp;&nbsp;{translate key="editor.article.cannotRecord"}{/if}
 		</form>
 	</td>
@@ -29,15 +34,22 @@
 	<td class="label">{translate key="editor.article.decision"}</td>
 	<td class="value">
 		{foreach from=$submission->getDecisions($round) item=editorDecision key=decisionKey}
-			{if $decisionKey neq 0} | {/if}
-			{assign var="decision" value=$editorDecision.decision}
-			{translate key=$editorDecisionOptions.$decision}&nbsp;&nbsp;{if $editorDecision.dateDecided != 0}{$editorDecision.dateDecided|date_format:$dateFormatShort}{/if}
+			<div class="col-md-12">
+				{assign var="decision" value=$editorDecision.decision}
+				{translate key=$editorDecisionOptions.$decision}&nbsp;&nbsp;{if $editorDecision.dateDecided != 0}{$editorDecision.dateDecided|date_format:$dateFormatShort}{/if}
+			</div>
 		{foreachelse}
-			{translate key="common.none"}
+			<div class="col-md-12">
+				{translate key="common.none"}
+			</div>
 		{/foreach}
 	</td>
 </tr>
-<tr valign="top">
+</table>
+</div>
+<div class="well">
+<table width="100%" class="data">
+<tr>
 	<td class="label">{translate key="submission.notifyAuthor"}</td>
 	<td class="value">
 		{url|assign:"notifyAuthorUrl" op="emailEditorDecisionComment" articleId=$submission->getId()}
@@ -49,18 +61,23 @@
 		{else}
 			{icon name="mail" url=$notifyAuthorUrl}
 		{/if}
-
-		&nbsp;&nbsp;&nbsp;&nbsp;
-		{translate key="submission.editorAuthorRecord"}
+		
+		
+	</td>
+</tr>
+<tr>
+	<td class="label">{translate key="submission.editorAuthorRecord"}</td>
+	<td class="value">
 		{if $submission->getMostRecentEditorDecisionComment()}
 			{assign var="comment" value=$submission->getMostRecentEditorDecisionComment()}
 			<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getId() anchor=$comment->getId()}');" class="icon">{icon name="comment"}</a>&nbsp;&nbsp;{$comment->getDatePosted()|date_format:$dateFormatShort}
 		{else}
-			<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
+			<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getId()}');" class="icon btn btn-default btn-xs">{icon name="comment"} {translate key="common.noComments"}</a>
 		{/if}
 	</td>
 </tr>
 </table>
+</div>
 
 <form method="post" action="{url op="editorReview"}" enctype="multipart/form-data">
 <input type="hidden" name="articleId" value="{$submission->getId()}" />
@@ -123,7 +140,9 @@
 		<tr valign="top">
 			{if $firstItem}
 				{assign var="firstItem" value=false}
-				<td width="20%" rowspan="{$authorFiles|@count}" class="label">{translate key="submission.authorVersion"}</td>
+				<td width="20%" class="label">{translate key="submission.authorVersion"}</td>
+			{else}
+				<td></td>
 			{/if}
 			<td width="80%" class="value">
 				{if $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT || $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT}<input type="radio" name="editorDecisionFile" value="{$authorFile->getFileId()},{$authorFile->getRevision()}" /> {/if}<a href="{url op="downloadFile" path=$submission->getId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="file">{$authorFile->getFileName()|escape}</a>&nbsp;&nbsp;
@@ -144,7 +163,9 @@
 		<tr valign="top">
 			{if $firstItem}
 				{assign var="firstItem" value=false}
-				<td width="20%" rowspan="{$editorFiles|@count}" class="label">{translate key="submission.editorVersion"}</td>
+				<td width="20%" class="label">{translate key="submission.editorVersion"}</td>
+			{else}
+				<td></td>
 			{/if}
 			<td width="80%" class="value">
 				{if $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT || $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT}<input type="radio" name="editorDecisionFile" value="{$editorFile->getFileId()},{$editorFile->getRevision()}" /> {/if}<a href="{url op="downloadFile" path=$submission->getId()|to_array:$editorFile->getFileId():$editorFile->getRevision()}" class="file">{$editorFile->getFileName()|escape}</a>&nbsp;&nbsp;

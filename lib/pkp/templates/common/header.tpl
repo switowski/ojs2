@@ -30,6 +30,17 @@
 	{$metaCustomHeaders}
 	{if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" type="{$displayFavicon.mimeType|escape}" />{/if}
 	
+	<!-- Base Jquery -->
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>
+	<!-- Hide Document until are the javascript style changes are aplied -->
+	<script>
+	
+	</script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js"></script>
+	
+	<!-- Compatibility after the upgrade to version 1.11.3 of jQuery -->
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery-migrate-1.2.1.js"></script>
+	
 	<!-- W3.CSS -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	
@@ -38,20 +49,14 @@
 	
 	<!-- Bootstrap style -->
 	<link href="{$baseUrl}/styles/bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link href="{$baseUrl}/styles/bootstrap/bootstrap-theme.min.css" rel="stylesheet">
 	
 	<!-- Common style that overwrite the bootstrap to make the changes -->
 	<link rel="stylesheet" href="{$baseUrl}/styles/common.css" type="text/css" />
 	
 	<!-- Roboto font for the title -->
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
-
-	<!-- Base Jquery -->
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js"></script>
 	
-	<!-- Compatibility after the upgrade to version 1.11.3 of jQuery -->
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery-migrate-1.2.1.js"></script>
-
 	<!-- Default global locale keys for JavaScript -->
 	{include file="common/jsLocaleKeys.tpl" }
 

@@ -11,7 +11,6 @@
 {strip}
 {strip}
 {assign var="pageTitle" value="common.queue.long.$pageToDisplay"}
-{assign var="noTitle" value="true"}
 {url|assign:"currentUrl" page="editor"}
 {include file="common/header.tpl"}
 {/strip}

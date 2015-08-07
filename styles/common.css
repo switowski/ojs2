@@ -681,8 +681,8 @@ ul.tagit input[type="text"] {
 	.table a {
 		text-decoration: none;
 		padding:6px;
-		z-index:1000;
 	}
+
 	
 	.table-hover tbody tr:last-child:hover td, .table-hover tbody tr:last-child:hover th {
 	  	background-color: initial;
@@ -694,7 +694,23 @@ ul.tagit input[type="text"] {
 	  	cursor: pointer; 
 	  	cursor: hand;
 	}
+	
+	.table-border-around {border:1px solid #b2b2b2}
+	.table-border-around td, .table-border-around th {border:none}
 
+
+	.header-reviewer {
+		width:100%;
+		display: table;
+		margin-top:20px; 
+		padding-left:5px;
+		border:1px solid #b2b2b2;
+		border-radius: 5px 5px 0px 0px;
+	}
+	
+	.table-border-around .label {
+		line-height: 2;	
+	}
 
 /* @end */
 
