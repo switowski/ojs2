@@ -9,7 +9,7 @@
  *
  *}
 <div id="scheduling">
-<h3>{translate key="submission.scheduling"}</h3>
+<div class="page-header"><h3>{translate key="submission.scheduling"}</h3></div>
 
 <table class="data" width="100%">
 {if !$publicationFeeEnabled || $publicationPayment}
@@ -18,26 +18,28 @@
 			<td width="25%" class="label">
 				<label for="issueId">{translate key="editor.article.scheduleForPublication"}</label>
 			</td>
-			<td width="25%" class="value">
-				{if $publishedArticle}
-					{assign var=issueId value=$publishedArticle->getIssueId()}
-				{else}
-					{assign var=issueId value=0}
-				{/if}
-				<select name="issueId" id="issueId" class="selectMenu">
-					<option value="">{translate key="editor.article.scheduleForPublication.toBeAssigned"}</option>
-					{html_options options=$issueOptions|truncate:40:"..." selected=$issueId}
-				</select>
-			</td>
-			<td width="50%" class="value">
-				<input type="submit" value="{translate key="common.record"}" class="button defaultButton" />&nbsp;
-				{if $issueId}
-					{if $isEditor}
-						<a href="{url page="editor" op="issueToc" path=$issueId}" class="action">{translate key="issue.toc"}</a>
+			<td class="value">
+				<div class="col-md-6">
+					{if $publishedArticle}
+						{assign var=issueId value=$publishedArticle->getIssueId()}
 					{else}
-						<a href="{url page="issue" op="view" path=$issueId}" class="action">{translate key="issue.toc"}</a>
+						{assign var=issueId value=0}
 					{/if}
-				{/if}
+					<select name="issueId" id="issueId" class="selectMenu">
+						<option value="">{translate key="editor.article.scheduleForPublication.toBeAssigned"}</option>
+						{html_options options=$issueOptions|truncate:40:"..." selected=$issueId}
+					</select>
+				</div>
+				<div class="col-md-6">
+					<input type="submit" value="{translate key="common.confirm"}" class="button btn btn-default defaultButton" />&nbsp;
+					{if $issueId}
+						{if $isEditor}
+							<a href="{url page="editor" op="issueToc" path=$issueId}" class="action">{translate key="issue.toc"}</a>
+						{else}
+							<a href="{url page="issue" op="view" path=$issueId}" class="action">{translate key="issue.toc"}</a>
+						{/if}
+					{/if}
+				</div>
 			</td>
 		</tr>
 	</form>
@@ -48,21 +50,26 @@
 					<label for="issueId">{translate key="editor.issues.published"}</label>
 				</td>
 				<td class="value">
-					{* Find good values for starting and ending year options *}
-					{assign var=currentYear value=$smarty.now|date_format:"%Y"}
-					{if $publishedArticle->getDatePublished()}
-						{assign var=publishedYear value=$publishedArticle->getDatePublished()|date_format:"%Y"}
-						{math|assign:"minYear" equation="min(x,y)-10" x=$publishedYear y=$currentYear}
-						{math|assign:"maxYear" equation="max(x,y)+2" x=$publishedYear y=$currentYear}
-					{else}
-						{* No issue publication date info *}
-						{math|assign:"minYear" equation="x-10" x=$currentYear}
-						{math|assign:"maxYear" equation="x+2" x=$currentYear}
-					{/if}
-					{html_select_date prefix="datePublished" time=$publishedArticle->getDatePublished()|default:"---" all_extra="class=\"selectMenu\"" start_year=$minYear end_year=$maxYear year_empty="-" month_empty="-" day_empty="-"}
-				</td>
-				<td class="value">
-					<input type="submit" value="{translate key="common.record"}" class="button defaultButton" />&nbsp;
+					<div class="col-md-6">
+						{* Find good values for starting and ending year options *}
+						{assign var=currentYear value=$smarty.now|date_format:"%Y"}
+						{if $publishedArticle->getDatePublished()}
+							{assign var=publishedYear value=$publishedArticle->getDatePublished()|date_format:"%Y"}
+							{math|assign:"minYear" equation="min(x,y)-10" x=$publishedYear y=$currentYear}
+							{math|assign:"maxYear" equation="max(x,y)+2" x=$publishedYear y=$currentYear}
+						{else}
+							{* No issue publication date info *}
+							{math|assign:"minYear" equation="x-10" x=$currentYear}
+							{math|assign:"maxYear" equation="x+2" x=$currentYear}
+						{/if}
+						<div class="change-input-date">
+							{html_select_date prefix="datePublished" time=$publishedArticle->getDatePublished()|default:"---" all_extra="class=\"selectMenu\"" start_year=$minYear end_year=$maxYear year_empty="-" month_empty="-" day_empty="-"}
+						</div>
+						<input type="text" value="" style="display:none"/>
+					</div>
+					<div class="col-md-6">
+						<input type="submit" value="{translate key="common.confirm"}" class="button btn btn-default defaultButton" />&nbsp;
+					</div>
 				</td>
 			</tr>
 		</form>

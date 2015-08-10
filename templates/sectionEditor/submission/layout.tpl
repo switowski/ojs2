@@ -13,7 +13,7 @@
 {assign var=layoutEditor value=$submission->getUserBySignoffType('SIGNOFF_LAYOUT')}
 
 <div id="layout">
-<h3>{translate key="submission.layout"}</h3>
+<div class="page-header"><h3>{translate key="submission.layout"}</h3></div>
 
 {if $useLayoutEditors}
 <div id="layoutEditors">

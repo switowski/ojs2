@@ -712,7 +712,7 @@ ul.tagit input[type="text"] {
 		line-height: 2;	
 	}
 
-	#editorDecision .label, #peerReview .label {
+	#editorDecision .label, #peerReview .label, #submission .label, #copyedit .label {
 		text-align:left;
 	}
 

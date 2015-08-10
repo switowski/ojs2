@@ -38,11 +38,13 @@
 
 <div class="separator"></div>
 
+{if $finalCopyeditFile}
 {include file="sectionEditor/submission/layout.tpl"}
 
 <div class="separator"></div>
 
 {include file="sectionEditor/submission/proofread.tpl"}
+{/if}
 
 {include file="common/footer.tpl"}
 

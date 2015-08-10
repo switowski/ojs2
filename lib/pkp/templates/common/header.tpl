@@ -172,7 +172,7 @@
 		<div id="user-nav-on"  class="user-nav user-nav-on">
 			<a href="#" class="dropdown-toggle user-option" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 				<div style="width:100%;height:30px">
-					<span class="hello-text" style="">Hello,</span>
+					<span class="hello-text" style="">You are logged in as...</span>
 					<span class="menu-option user-name"><strong>{$emailUser}</strong></span>
 				</div>
 			</a>

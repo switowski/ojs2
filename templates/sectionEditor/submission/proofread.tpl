@@ -12,7 +12,7 @@
 {assign var=proofreader value=$submission->getUserBySignoffType('SIGNOFF_PROOFREADING_PROOFREADER')}
 
 <div id="proofread">
-<h3>{translate key="submission.proofreading"}</h3>
+<div class="page-header"><h3>{translate key="submission.proofreading"}</h3></div>
 
 {if $useProofreaders}
 <table class="data" width="100%">
