@@ -174,13 +174,13 @@ function sortSearch(heading, direction) {
 <h3>{translate key="editor.navigation.issues"}</h3>
 
 <div class="col-md-4 list-group equilibrium">
-		<a class="list-group-item btn btn-info btn-sm" href="{url op="createIssue"}">{translate key="editor.navigation.createIssue"}</a>
-		<a class="list-group-item btn btn-info btn-sm" href="{url op="futureIssues"}">{translate key="editor.navigation.futureIssues"}</a>
-		<a class="list-group-item btn btn-info btn-sm" href="{url op="backIssues"}">{translate key="editor.navigation.issueArchive"}</a>
+		<a class="list-group-item" href="{url op="createIssue"}">{translate key="editor.navigation.createIssue"}</a>
+		<a class="list-group-item" href="{url op="futureIssues"}">{translate key="editor.navigation.futureIssues"}</a>
+		<a class="list-group-item" href="{url op="backIssues"}">{translate key="editor.navigation.issueArchive"}</a>
 		{call_hook name="Templates::Editor::Index::Issues"}
 </div>
 <div class="col-md-4 list-group">
-	<a class="list-group-item btn btn-info btn-sm" href="{url op="notifyUsers"}">{translate key="editor.notifyUsers"}</a>
+	<a class="list-group-item" href="{url op="notifyUsers"}">{translate key="editor.notifyUsers"}</a>
 </div>
 
 <div class="col-md-12">
