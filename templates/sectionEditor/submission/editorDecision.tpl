@@ -163,17 +163,19 @@
 	</div>
 	
 	{if $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT}
+		<div>&nbsp;</div>
 		<div class="col-md-12">
 			<div class="col-md-10 col-md-offset-2">
 				{translate key="editor.article.resubmitFileForPeerReview"}
-				<input type="submit" name="resubmit" {if !($editorRevisionExists or $authorRevisionExists or $reviewVersionExists)}disabled="disabled" {/if}value="{translate key="form.resubmit"}" class="button" />
+				<input type="submit" name="resubmit" {if !($editorRevisionExists or $authorRevisionExists or $reviewVersionExists)}disabled="disabled" {/if}value="{translate key="form.resubmit"}" class="button btn btn-default" />
 			</div>
 		</div>
 	{elseif $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT}
+		<div>&nbsp;</div>
 		<div class="col-md-12">
 			<div class="col-md-10 col-md-offset-2">
 				{if !($editorRevisionExists or $authorRevisionExists or $reviewVersionExists) or !$submission->getMostRecentEditorDecisionComment()}{assign var=copyeditingUnavailable value=1}{else}{assign var=copyeditingUnavailable value=0}{/if}
-				<input type="submit" {if $copyeditingUnavailable}disabled="disabled" {/if}name="setCopyeditFile" value="{translate key="editor.submissionReview.sendToCopyediting"}" class="button" />
+				<input type="submit" {if $copyeditingUnavailable}disabled="disabled" {/if}name="setCopyeditFile" value="{translate key="editor.submissionReview.sendToCopyediting"}" class="button btn btn-default" />
 				{if $copyeditingUnavailable}
 					<br/>
 					<span class="instruct">{translate key="editor.submissionReview.cannotSendToCopyediting"}</span>

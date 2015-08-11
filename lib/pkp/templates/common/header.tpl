@@ -46,6 +46,7 @@
 	
 	<!-- Jquery UI Style -->
 	<link href="{$baseUrl}/lib/pkp/styles/lib/jqueryUi/jqueryUi.css" rel="stylesheet">
+	<link href="{$baseUrl}/lib/pkp/styles/lib/jquery.pnotify.default.css" rel="stylesheet">
 	
 	<!-- Bootstrap style -->
 	<link href="{$baseUrl}/styles/bootstrap/bootstrap.min.css" rel="stylesheet">

@@ -234,7 +234,7 @@
 {/if}
 <div id="citationEditor" class="composite-ui">
 	<div id="citationEditorMainTabs">
-		<button id="fullScreenButton" type="button">{translate key="common.fullscreen"}</button>
+		{*<button id="fullScreenButton" type="button">{translate key="common.fullscreen"}</button>*}
 		<ul class="main-tabs">
 			{if !$introductionHide}<li><a href="#citationEditorTabIntroduction">{translate key="submission.citations.editor.introduction"}</a></li>{/if}
 			<li><a href="#citationEditorTabEdit">{translate key="submission.citations.editor.edit"}</a></li>

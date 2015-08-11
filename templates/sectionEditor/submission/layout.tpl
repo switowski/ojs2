@@ -27,7 +27,8 @@
 </div>
 {/if}
 
-<table width="100%" class="info">
+<table width="100%" class="info table table-striped table-condensed">
+<thead>
 	<tr>
 		<td width="28%" colspan="2">&nbsp;</td>
 		<td width="18%" class="heading">{translate key="submission.request"}</td>
@@ -35,6 +36,8 @@
 		<td width="16%" class="heading">{translate key="submission.complete"}</td>
 		<td width="22%" colspan="2" class="heading">{translate key="submission.acknowledge"}</td>
 	</tr>
+</thead>
+<tbody>
 	<tr>
 		<td colspan="2">
 			{translate key="submission.layout.layoutVersion"}
@@ -95,9 +98,6 @@
 			{/if}
 		</td>
 	</tr>
-	<tr>
-		<td colspan="7" class="separator">&nbsp;</td>
-	</tr>
 
 	<tr>
 		<td colspan="2">{translate key="submission.layout.galleyFormat"}</td>
@@ -123,9 +123,6 @@
 	</tr>
 	{/foreach}
 	<tr>
-		<td colspan="7" class="separator">&nbsp;</td>
-	</tr>
-	<tr>
 		<td width="28%" colspan="2">{translate key="submission.supplementaryFiles"}</td>
 		<td width="34%" colspan="2" class="heading">{translate key="common.file"}</td>
 		<td width="16%" class="heading">{translate key="common.order"}</td>
@@ -146,9 +143,7 @@
 		<td colspan="7" class="nodata">{translate key="common.none"}</td>
 	</tr>
 	{/foreach}
-	<tr>
-		<td colspan="7" class="separator">&nbsp;</td>
-	</tr>
+</tbody>
 </table>
 
 <form method="post" action="{url op="uploadLayoutFile"}"  enctype="multipart/form-data">

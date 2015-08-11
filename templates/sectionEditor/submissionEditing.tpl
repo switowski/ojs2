@@ -38,7 +38,11 @@
 
 <div class="separator"></div>
 
-{if $finalCopyeditFile}
+{assign var="finalCopyeditSignoff" value=$submission->getSignoff('SIGNOFF_COPYEDITING_FINAL')}
+{if $finalCopyeditSignoff->getDateCompleted() or $submission->getGalleys()|@count gt 0 }
+{* If the last step of copyediting is completed (it is signed) or if it was send 
+directly to the last step of the process (It will have at least one galley) *}
+
 {include file="sectionEditor/submission/layout.tpl"}
 
 <div class="separator"></div>
