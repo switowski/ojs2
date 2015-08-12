@@ -18,6 +18,10 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<script>
+	var alternativeTitle = '<h2>{translate key="article.submission"} {$submission->getId()}</h2>';
+</script>
+
 <script type="text/javascript">
 {literal}
 <!--
@@ -32,181 +36,170 @@ function confirmSubmissionCheck() {
 {/literal}
 </script>
 <div id="submissionToBeReviewed">
-<h3>{translate key="reviewer.article.submissionToBeReviewed"}</h3>
-
-<table width="100%" class="data">
-<tr valign="top">
-	<td width="20%" class="label">{translate key="article.title"}</td>
-	<td width="80%" class="value">{$submission->getLocalizedTitle()|strip_unsafe_html}</td>
-</tr>
-<tr valign="top">
-	<td class="label">{translate key="article.journalSection"}</td>
-	<td class="value">{$submission->getSectionTitle()|escape}</td>
-</tr>
-<tr valign="top">
-	<td class="label">{translate key="article.abstract"}</td>
-	<td class="value">{$submission->getLocalizedAbstract()|strip_unsafe_html|nl2br}</td>
-</tr>
-{assign var=editAssignments value=$submission->getEditAssignments()}
-{foreach from=$editAssignments item=editAssignment}
-	{if !$notFirstEditAssignment}
-		{assign var=notFirstEditAssignment value=1}
-		<tr valign="top">
-			<td class="label">{translate key="reviewer.article.submissionEditor"}</td>
-			<td class="value">
-	{/if}
-			{assign var=emailString value=$editAssignment->getEditorFullName()|concat:" <":$editAssignment->getEditorEmail():">"}
-			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getLocalizedTitle()|strip_tags articleId=$articleId}
-			{$editAssignment->getEditorFullName()|escape} {icon name="mail" url=$url}
-			{if !$editAssignment->getCanEdit() || !$editAssignment->getCanReview()}
-				{if $editAssignment->getCanEdit()}
-					({translate key="submission.editing"})
-				{else}
-					({translate key="submission.review"})
-				{/if}
+<div class="panel panel-default">
+  	<div class="panel-heading">
+    	<h3 style="margin:0">{translate key="reviewer.article.submissionToBeReviewed"}</h3>
+  	</div>
+  	<div class="panel-body">
+		<div class="col-md-12">
+			<div class="label col-md-2">{translate key="article.title"}</div>
+			<div class="col-md-10">{$submission->getLocalizedTitle()|strip_unsafe_html}</div>
+		</div>
+		<div class="col-md-12">
+			<div class="label col-md-2">{translate key="article.journalSection"}</div>
+			<div class="col-md-10">{$submission->getSectionTitle()|escape}</div>
+		</div>
+		<div class="col-md-12">
+			<div class="label col-md-2">{translate key="article.abstract"}</div>
+			<div class="col-md-10">{$submission->getLocalizedAbstract()|strip_unsafe_html|nl2br}</div>
+		</div>
+		{assign var=editAssignments value=$submission->getEditAssignments()}
+		{foreach from=$editAssignments item=editAssignment}
+			{if !$notFirstEditAssignment}
+				{assign var=notFirstEditAssignment value=1}
+				<div class="col-md-12">
+					<div class="label col-md-2">{translate key="reviewer.article.submissionEditor"}</div>
+					<div class="col-md-10">
+			{else}
+				<div class="col-md-12">
+					<div class="col-md-10 col-md-offset-2">
 			{/if}
-			<br/>
-{/foreach}
-{if $notFirstEditAssignment}
-		</td>
-	</tr>
-{/if}
-	<tr valign="top">
-	       <td class="label">{translate key="submission.metadata"}</td>
-	       <td class="value">
-		       <a href="{url op="viewMetadata" path=$reviewId|to_array:$articleId}" class="action" target="_new">{translate key="submission.viewMetadata"}</a>
-	       </td>
-	</tr>
-</table>
+					{assign var=emailString value=$editAssignment->getEditorFullName()|concat:" <":$editAssignment->getEditorEmail():">"}
+					{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getLocalizedTitle()|strip_tags articleId=$articleId}
+					{$editAssignment->getEditorFullName()|escape} {icon name="mail" url=$url}
+					{if !$editAssignment->getCanEdit() || !$editAssignment->getCanReview()}
+						{if $editAssignment->getCanEdit()}
+							({translate key="submission.editing"})
+						{else}
+							({translate key="submission.review"})
+						{/if}
+					{/if}
+					</div>
+				</div>
+		{/foreach}
+			<div class="col-md-12">
+					<div class="label col-md-2">{translate key="submission.metadata"}</div>
+					<div class="col-md-10">
+				       <a href="{url op="viewMetadata" path=$reviewId|to_array:$articleId}" class="action btn btn-default btn-xs" target="_new"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">subject</i> {translate key="submission.viewMetadata"}</a>
+			       </div>
+			</div>
+	</div>
 </div>
-<div class="separator"></div>
+
 <div id="reviewSchedule">
-<h3>{translate key="reviewer.article.reviewSchedule"}</h3>
-<table width="100%" class="data">
-<tr valign="top">
-	<td class="label" width="20%">{translate key="reviewer.article.schedule.request"}</td>
-	<td class="value" width="80%">{if $submission->getDateNotified()}{$submission->getDateNotified()|date_format:$dateFormatShort}{else}&mdash;{/if}</td>
-</tr>
-<tr valign="top">
-	<td class="label">{translate key="reviewer.article.schedule.response"}</td>
-	<td class="value">{if $submission->getDateConfirmed()}{$submission->getDateConfirmed()|date_format:$dateFormatShort}{else}&mdash;{/if}</td>
-</tr>
-<tr valign="top">
-	<td class="label">{translate key="reviewer.article.schedule.submitted"}</td>
-	<td class="value">{if $submission->getDateCompleted()}{$submission->getDateCompleted()|date_format:$dateFormatShort}{else}&mdash;{/if}</td>
-</tr>
-<tr valign="top">
-	<td class="label">{translate key="reviewer.article.schedule.due"}</td>
-	<td class="value">{if $submission->getDateDue()}{$submission->getDateDue()|date_format:$dateFormatShort}{else}&mdash;{/if}</td>
-</tr>
-</table>
+	<div class="page-header"><h3>{translate key="reviewer.article.reviewSchedule"}</h3></div>
+	<div class="row">
+		<div class="label col-md-2">{translate key="reviewer.article.schedule.request"}</div>
+		<div class="col-md-10">{if $submission->getDateNotified()}{$submission->getDateNotified()|date_format:$dateFormatShort}{else}&mdash;{/if}</div>
+	</div>
+	<div class="row">
+		<div class="label col-md-2">{translate key="reviewer.article.schedule.response"}</div>
+		<div class="col-md-10">{if $submission->getDateConfirmed()}{$submission->getDateConfirmed()|date_format:$dateFormatShort}{else}&mdash;{/if}</div>
+	</div>
+	<div class="row">
+		<div class="label col-md-2">{translate key="reviewer.article.schedule.submitted"}</div>
+		<div class="col-md-10">{if $submission->getDateCompleted()}{$submission->getDateCompleted()|date_format:$dateFormatShort}{else}&mdash;{/if}</div>
+	</div>
+	<div class="row">
+		<div class="label col-md-2">{translate key="reviewer.article.schedule.due"}</div>
+		<div class="col-md-10">{if $submission->getDateDue()}{$submission->getDateDue()|date_format:$dateFormatShort}{else}&mdash;{/if}</div>
+	</div>
 </div>
 <div class="separator"></div>
 
 <div id="reviewSteps">
-<h3>{translate key="reviewer.article.reviewSteps"}</h3>
+<div class="page-header"><h3>{translate key="reviewer.article.reviewSteps"}</h3></div>
 
 {include file="common/formErrors.tpl"}
 
 {assign var="currentStep" value=1}
 
-<table width="100%" class="data">
-<tr valign="top">
+<div class="col-md-12 well">
 	{assign var=editAssignments value=$submission->getEditAssignments}
 	{* FIXME: Should be able to assign primary editorial contact *}
 	{if $editAssignments[0]}{assign var=firstEditAssignment value=$editAssignments[0]}{/if}
-	<td width="3%">{$currentStep|escape}.{assign var="currentStep" value=$currentStep+1}</td>
-	<td width="97%"><span class="instruct">{translate key="reviewer.article.notifyEditorA"}{if $firstEditAssignment}, {$firstEditAssignment->getEditorFullName()|escape},{/if} {translate key="reviewer.article.notifyEditorB"}</span></td>
-</tr>
-<tr valign="top">
-	<td>&nbsp;</td>
-	<td>
+	<div class="row col-md-1" style="font-size:30px;text-align: center;">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
+	<div class="col-md-11">
+		<div class="row"><span class="instruct">{translate key="reviewer.article.notifyEditorA"}{if $firstEditAssignment}, {$firstEditAssignment->getEditorFullName()|escape},{/if} {translate key="reviewer.article.notifyEditorB"}</span></div>
+		<div class="row">
 		{translate key="submission.response"}&nbsp;&nbsp;&nbsp;&nbsp;
 		{if not $confirmedStatus}
 			{url|assign:"acceptUrl" op="confirmReview" reviewId=$reviewId}
 			{url|assign:"declineUrl" op="confirmReview" reviewId=$reviewId declineReview=1}
 
 			{if !$submission->getCancelled()}
-				<a href="{$acceptUrl}">{translate key="reviewer.article.canDoReview"}</a> {icon name="mail" url=$acceptUrl}
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="{$declineUrl}">{translate key="reviewer.article.cannotDoReview"}</a> {icon name="mail" url=$declineUrl}
+				<a href="{$acceptUrl}" class="btn btn-success btn-xs">{translate key="reviewer.article.canDoReview"}</a>
+				<a href="{$declineUrl}" class="btn btn-danger btn-xs">{translate key="reviewer.article.cannotDoReview"}</a>
 			{else}
 				{translate key="reviewer.article.canDoReview"} {icon name="mail" disabled="disabled" url=$acceptUrl}
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				{translate key="reviewer.article.cannotDoReview"} {icon name="mail" disabled="disabled" url=$declineUrl}
 			{/if}
 		{else}
-			{if not $declined}{translate key="submission.accepted"}{else}{translate key="submission.rejected"}{/if}
+			{if not $declined}<span style="font-style:italic">{translate key="submission.accepted"}</span>{else}<span style="font-style:italic">{translate key="submission.rejected"}</span>{/if}
 		{/if}
-	</td>
-</tr>
-<tr>
-	<td colspan="2">&nbsp;</td>
-</tr>
-{if $journal->getLocalizedSetting('reviewGuidelines') != ''}
-<tr valign="top">
-        <td>{$currentStep|escape}.{assign var="currentStep" value=$currentStep+1}</td>
-	<td><span class="instruct">{translate key="reviewer.article.consultGuidelines"}</span></td>
-</tr>
-<tr>
-	<td colspan="2">&nbsp;</td>
-</tr>
-{/if}
-<tr valign="top">
-	<td>{$currentStep|escape}.{assign var="currentStep" value=$currentStep+1}</td>
-	<td><span class="instruct">{translate key="reviewer.article.downloadSubmission"}</span></td>
-</tr>
-<tr valign="top">
-	<td>&nbsp;</td>
-	<td>
-		<table width="100%" class="data">
-			{if ($confirmedStatus and not $declined) or not $journal->getSetting('restrictReviewerFileAccess')}
-			<tr valign="top">
-				<td width="30%" class="label">
-					{translate key="submission.submissionManuscript"}
-				</td>
-				<td class="value" width="70%">
-					{if $reviewFile}
-					{if $submission->getDateConfirmed() or not $journal->getSetting('restrictReviewerAccessToFile')}
-						<a href="{url op="downloadFile" path=$reviewId|to_array:$articleId:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>
-					{else}{$reviewFile->getFileName()|escape}{/if}
-					&nbsp;&nbsp;{$reviewFile->getDateModified()|date_format:$dateFormatShort}
-					{else}
-					{translate key="common.none"}
-					{/if}
-				</td>
-			</tr>
-			<tr valign="top">
-				<td class="label">
-					{translate key="article.suppFiles"}
-				</td>
-				<td class="value">
-					{assign var=sawSuppFile value=0}
-					{foreach from=$suppFiles item=suppFile}
-						{if $suppFile->getShowReviewers() }
-							{assign var=sawSuppFile value=1}
-							<a href="{url op="downloadFile" path=$reviewId|to_array:$articleId:$suppFile->getFileId()}" class="file">{$suppFile->getFileName()|escape}</a><br />
-						{/if}
-					{/foreach}
+		</div>
+	</div>
+</div>
 
-					{if !$sawSuppFile}
-						{translate key="common.none"}
+{if $journal->getLocalizedSetting('reviewGuidelines') != ''}
+<div class="col-md-12 well">
+	<div class="row col-md-1" style="font-size:30px;text-align: center;">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
+	<div class="col-md-11"><span class="instruct">{translate key="reviewer.article.consultGuidelines"}</span></div>
+</div>
+{/if}
+<div class="col-md-12 well">
+	<div class="row col-md-1" style="font-size:30px;text-align: center;">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
+	<div class="col-md-11">
+		<div class="row"><span class="instruct">{translate key="reviewer.article.downloadSubmission"}</span></div>
+		<div class="row">
+			{if ($confirmedStatus and not $declined) or not $journal->getSetting('restrictReviewerFileAccess')}
+			<div class="label col-md-3">
+				{translate key="submission.submissionManuscript"}
+			</div>
+			<div class="col-md-9">
+				{if $reviewFile}
+				{if $submission->getDateConfirmed() or not $journal->getSetting('restrictReviewerAccessToFile')}
+					<a href="{url op="downloadFile" path=$reviewId|to_array:$articleId:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>
+				{else}{$reviewFile->getFileName()|escape}{/if}
+				&nbsp;&nbsp;{$reviewFile->getDateModified()|date_format:$dateFormatShort}
+				{else}
+				{translate key="common.none"}
+				{/if}
+			</div>
+		<div class="row">
+		</div>
+			<div class="label col-md-3">
+				{translate key="article.suppFiles"}
+			</div>
+			<div class="col-md-9">
+				{assign var=sawSuppFile value=0}
+				{foreach from=$suppFiles item=suppFile}
+					{if $suppFile->getShowReviewers() }
+						<div class="row col-md-12">
+						{assign var=sawSuppFile value=1}
+						<a href="{url op="downloadFile" path=$reviewId|to_array:$articleId:$suppFile->getFileId()}" class="file">{$suppFile->getFileName()|escape}</a><br />
+						</div>
 					{/if}
-				</td>
-			</tr>
+				{/foreach}
+
+				{if !$sawSuppFile}
+					{translate key="common.none"}
+				{/if}
+			</div>
 			{else}
-			<tr><td class="nodata">{translate key="reviewer.article.restrictedFileAccess"}</td></tr>
+			<div class="label col-md-12">{translate key="reviewer.article.restrictedFileAccess"}</div>
 			{/if}
-		</table>
-	</td>
-</tr>
-<tr>
-	<td colspan="2">&nbsp;</td>
-</tr>
+		</div>
+	</div>
+</div>
+
+<table>
 {if $currentJournal->getSetting('requireReviewerCompetingInterests')}
-	<tr valign="top">
-		<td>{$currentStep|escape}.{assign var="currentStep" value=$currentStep+1}</td>
-		<td>
+<div class="col-md-12 well">
+	<div class="row col-md-1" style="font-size:30px;text-align: center;">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
+	<div class="col-md-11">
+		<div class="row">
 			{url|assign:"competingInterestGuidelinesUrl" page="information" op="competingInterestGuidelines"}
 			<span class="instruct">{translate key="reviewer.article.enterCompetingInterests" competingInterestGuidelinesUrl=$competingInterestGuidelinesUrl}</span>
 			{if not $confirmedStatus or $declined or $submission->getCancelled() or $submission->getRecommendation()}<br/>
@@ -217,140 +210,131 @@ function confirmSubmissionCheck() {
 					<input {if $cannotChangeCI}disabled="disabled" {/if}class="button defaultButton" type="submit" value="{translate key="common.save"}" />
 				</form>
 			{/if}
-		</td>
-	<tr>
-		<td colspan="2">&nbsp;</td>
-	</tr>
+		</div>
+	</div>
+</div>
 {/if}{* $currentJournal->getSetting('requireReviewerCompetingInterests') *}
 
 {if $reviewAssignment->getReviewFormId()}
-	<tr valign="top">
-		<td>{$currentStep|escape}.{assign var="currentStep" value=$currentStep+1}</td>
-		<td><span class="instruct">{translate key="reviewer.article.enterReviewForm"}</span></td>
-	</tr>
-	<tr valign="top">
-		<td>&nbsp;</td>
-		<td>
+<div class="col-md-12 well">
+	<div class="row col-md-1" style="font-size:30px;text-align: center;">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
+	<div class="col-md-11">
+		<div class="row"><span class="instruct">{translate key="reviewer.article.enterReviewForm"}</span></div>
+		<div class="row">
 			{if $confirmedStatus and not $declined}
-				<a href="{url op="editReviewFormResponse" path=$reviewId|to_array:$reviewAssignment->getReviewFormId()}" class="icon">
-					{translate key="submission.reviewForm"}
-					{icon name="comment"}
+				<a href="{url op="editReviewFormResponse" path=$reviewId|to_array:$reviewAssignment->getReviewFormId()}" class="btn btn-default btn-sm">
+					REVIEW
 				</a>
 			{else}
-				{translate key="submission.reviewForm"}
-				{icon name="comment" disabled="disabled"}
+				<a href="#" class="btn btn-default btn-sm disabled">
+					REVIEW
+				</a>
 			{/if}
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2">&nbsp;</td>
-	</tr>
+		</div>
+	</div>
+</div>
 {else}{* $reviewAssignment->getReviewFormId() *}
-	<tr valign="top">
-		<td>{$currentStep|escape}.{assign var="currentStep" value=$currentStep+1}</td>
-		<td><span class="instruct">{translate key="reviewer.article.enterReviewA"}</span></td>
-	</tr>
-	<tr valign="top">
-		<td>&nbsp;</td>
-		<td>
+<div class="col-md-12 well">
+	<div class="row col-md-1" style="font-size:30px;text-align: center;">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
+	<div class="col-md-11">
+		<div class="row"><span class="instruct">{translate key="reviewer.article.enterReviewA"}</span></div>
+		<div class="row">
 			{if $confirmedStatus and not $declined}
-				<a href="javascript:openComments('{url op="viewPeerReviewComments" path=$articleId|to_array:$reviewId}');" class="icon">
-					{translate key="submission.logType.review"}
-					{icon name="comment"}
+				<a href="javascript:openComments('{url op="viewPeerReviewComments" path=$articleId|to_array:$reviewId}');" class="btn btn-default btn-sm">
+					REVIEW
 				</a>
 			{else}
-				{translate key="submission.logType.review"}
-				{icon name="comment" disabled="disabled"}
+				<a href="#" class="btn btn-default btn-sm disabled">
+					REVIEW
+				</a>
 			{/if}
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2">&nbsp;</td>
-	</tr>
+		</div>
+	</div>
+</div>
 {/if}{* $reviewAssignment->getReviewFormId() *}
-<tr valign="top">
-	<td>{$currentStep|escape}.{assign var="currentStep" value=$currentStep+1}</td>
-	<td><span class="instruct">{translate key="reviewer.article.uploadFile"}</span></td>
-</tr>
-<tr valign="top">
-	<td>&nbsp;</td>
-	<td>
-		<table class="data" width="100%">
-			{foreach from=$submission->getReviewerFileRevisions() item=reviewerFile key=key}
-				{assign var=uploadedFileExists value="1"}
-				<tr valign="top">
-				<td class="label" width="30%">
-					{if $key eq "0"}
-						{translate key="reviewer.article.uploadedFile"}
-					{/if}
-				</td>
-				<td class="value" width="70%">
-					<a href="{url op="downloadFile" path=$reviewId|to_array:$articleId:$reviewerFile->getFileId():$reviewerFile->getRevision()}" class="file">{$reviewerFile->getFileName()|escape}</a>
-					{$reviewerFile->getDateModified()|date_format:$dateFormatShort}
-					{if ($submission->getRecommendation() === null || $submission->getRecommendation() === '') && (!$submission->getCancelled())}
-						<a class="action" href="{url op="deleteReviewerVersion" path=$reviewId|to_array:$reviewerFile->getFileId():$reviewerFile->getRevision()}">{translate key="common.delete"}</a>
-					{/if}
-				</td>
-				</tr>
-			{foreachelse}
-				<tr valign="top">
-				<td class="label" width="30%">
-					{translate key="reviewer.article.uploadedFile"}
-				</td>
-				<td class="nodata">
-					{translate key="common.none"}
-				</td>
-				</tr>
-			{/foreach}
-		</table>
-		{if $submission->getRecommendation() === null || $submission->getRecommendation() === ''}
-			<form method="post" action="{url op="uploadReviewerVersion"}" enctype="multipart/form-data">
-				<input type="hidden" name="reviewId" value="{$reviewId|escape}" />
-				<input type="file" name="upload" {if not $confirmedStatus or $declined or $submission->getCancelled()}disabled="disabled"{/if} class="uploadField" />
-				<input type="submit" name="submit" value="{translate key="common.upload"}" {if not $confirmedStatus or $declined or $submission->getCancelled()}disabled="disabled"{/if} class="button" />
-			</form>
-
-			{if $currentJournal->getSetting('showEnsuringLink')}
-			<span class="instruct">
-				<a class="action" href="javascript:openHelp('{get_help_id key="editorial.sectionEditorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.article.ensuringBlindReview"}</a>
-			</span>
-			{/if}
-		{/if}
-	</td>
-</tr>
-<tr>
-	<td colspan="2">&nbsp;</td>
-</tr>
-<tr valign="top">
-	<td>{$currentStep|escape}.{assign var="currentStep" value=$currentStep+1}</td>
-	<td><span class="instruct">{translate key="reviewer.article.selectRecommendation"}</span></td>
-</tr>
-<tr valign="top">
-	<td>&nbsp;</td>
-	<td>
-		<table class="data" width="100%">
-			<tr valign="top">
-				<td class="label" width="30%">{translate key="submission.recommendation"}</td>
-				<td class="value" width="70%">
-				{if $submission->getRecommendation() !== null && $submission->getRecommendation() !== ''}
-					{assign var="recommendation" value=$submission->getRecommendation()}
-					<strong>{translate key=$reviewerRecommendationOptions.$recommendation}</strong>&nbsp;&nbsp;
-					{$submission->getDateCompleted()|date_format:$dateFormatShort}
-				{else}
-					<form id="recommendation" method="post" action="{url op="recordRecommendation"}">
-					<input type="hidden" name="reviewId" value="{$reviewId|escape}" />
-					<select name="recommendation" {if not $confirmedStatus or $declined or $submission->getCancelled() or (!$reviewFormResponseExists and !$reviewAssignment->getMostRecentPeerReviewComment() and !$uploadedFileExists)}disabled="disabled"{/if} class="selectMenu">
-						{html_options_translate options=$reviewerRecommendationOptions selected=''}
-					</select>&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="submit" name="submit" onclick="return confirmSubmissionCheck()" class="button" value="{translate key="reviewer.article.submitReview"}" {if not $confirmedStatus or $declined or $submission->getCancelled() or (!$reviewFormResponseExists and !$reviewAssignment->getMostRecentPeerReviewComment() and !$uploadedFileExists)}disabled="disabled"{/if} />
+<div class="col-md-12 well">
+	<div class="row col-md-1" style="font-size:30px;text-align: center;">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
+	<div class="col-md-11">
+		<div class="row"><span class="instruct">{translate key="reviewer.article.uploadFile"}</span></div>
+		<div class="row">
+			{if $submission->getRecommendation() === null || $submission->getRecommendation() === ''}
+				<div class="col-md-6">
+					<form method="post" action="{url op="uploadReviewerVersion"}" enctype="multipart/form-data">
+						<input type="hidden" name="reviewId" value="{$reviewId|escape}" />
+						<input type="file" name="upload" {if not $confirmedStatus or $declined or $submission->getCancelled()}disabled="disabled"{/if} class="uploadField" />
+						<input type="submit" name="submit" value="{translate key="common.upload"}" {if not $confirmedStatus or $declined or $submission->getCancelled()}disabled="disabled"{/if} class="button" />
 					</form>
-				{/if}
-				</td>
-			</tr>
-		</table>
-	</td>
-</tr>
-</table>
+		
+					{if $currentJournal->getSetting('showEnsuringLink')}
+					<span class="instruct">
+						<a class="action btn btn-xs btn-default" href="javascript:openHelp('{get_help_id key="editorial.sectionEditorsRole.review.blindPeerReview" url="true"}')" style="margin-top:10px"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">warning</i> {translate key="reviewer.article.ensuringBlindReview"}</a>
+					</span>
+					{/if}
+				</div>
+			{/if}
+
+		
+			<div class="col-md-6">
+				{foreach from=$submission->getReviewerFileRevisions() item=reviewerFile key=key}
+					<div class="row">
+						{assign var=uploadedFileExists value="1"}
+						<div class="col-md-4 label">
+							{if $key eq "0"}
+								{translate key="reviewer.article.uploadedFile"}
+							{/if}
+						</div>
+						<div class="col-md-8">
+							<a href="{url op="downloadFile" path=$reviewId|to_array:$articleId:$reviewerFile->getFileId():$reviewerFile->getRevision()}" class="file">{$reviewerFile->getFileName()|escape}</a>
+							{$reviewerFile->getDateModified()|date_format:$dateFormatShort}
+							{if ($submission->getRecommendation() === null || $submission->getRecommendation() === '') && (!$submission->getCancelled())}
+								<a class="action btn btn-xs btn-default" href="{url op="deleteReviewerVersion" path=$reviewId|to_array:$reviewerFile->getFileId():$reviewerFile->getRevision()}"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">delete</i> {translate key="common.delete"}</a>
+							{/if}
+						</div>
+					</div>
+				{foreachelse}
+					<div class="row">
+						<div class="col-md-4 label">
+							{translate key="reviewer.article.uploadedFile"}
+						</div>
+						<div class="col-md-8">
+							{translate key="common.none"}
+						</div>
+					</div>
+				{/foreach}
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="col-md-12 well">
+	<div class="row col-md-1" style="font-size:30px;text-align: center;">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
+	<div class="col-md-11">
+		<div class="row"><span class="instruct">{translate key="reviewer.article.selectRecommendation"}</span></div>
+		<div class="row">
+			<div class="col-md-3 label">{translate key="submission.recommendation"}</div>
+			<div class="col-md-9">
+					{if $submission->getRecommendation() !== null && $submission->getRecommendation() !== ''}
+						{assign var="recommendation" value=$submission->getRecommendation()}
+						<strong>{translate key=$reviewerRecommendationOptions.$recommendation}</strong>&nbsp;&nbsp;
+						{$submission->getDateCompleted()|date_format:$dateFormatShort}
+					{else}
+						<form id="recommendation" method="post" action="{url op="recordRecommendation"}">
+						<input type="hidden" name="reviewId" value="{$reviewId|escape}" />
+						<div class="col-md-6">
+							<select name="recommendation" {if not $confirmedStatus or $declined or $submission->getCancelled() or (!$reviewFormResponseExists and !$reviewAssignment->getMostRecentPeerReviewComment() and !$uploadedFileExists)}disabled="disabled"{/if} class="selectMenu">
+								{html_options_translate options=$reviewerRecommendationOptions selected=''}
+							</select>&nbsp;&nbsp;&nbsp;&nbsp;
+						</div>
+						<div class="col-md-6">
+							<input type="submit" name="submit" onclick="return confirmSubmissionCheck()" class="button" value="{translate key="reviewer.article.submitReview"}" {if not $confirmedStatus or $declined or $submission->getCancelled() or (!$reviewFormResponseExists and !$reviewAssignment->getMostRecentPeerReviewComment() and !$uploadedFileExists)}disabled="disabled"{/if} />
+						</div>
+						</form>
+					{/if}
+			</div>
+		</div>
+	</div>
+</div>
 </div>
 {if $journal->getLocalizedSetting('reviewGuidelines') != ''}
 <div class="separator"></div>

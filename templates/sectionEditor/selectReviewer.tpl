@@ -26,8 +26,11 @@ function sortSearch(heading, direction) {
 {/literal}
 </script>
 
+<script>
+	var alternativeTitle = '<h2>{translate key="editor.article.selectReviewer"}</h2>';
+</script>
+
 <div id="selectReviewer">
-<h3>{translate key="editor.article.selectReviewer"}</h3>
 
 <div class="col-md-12">
 <p><a class="btn btn-default btn-xs" href="{url op="enrollSearch" path=$articleId}">{translate key="sectionEditor.review.enrollReviewer"}</a>
