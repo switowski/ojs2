@@ -107,6 +107,8 @@ function sortSearch(heading, direction) {
 </form>
 </div>
 
+<div class="clearfix"></div>
+
 {if $displayResults}
 	<div id="submissions">
 

@@ -485,6 +485,7 @@ ul.tagit input[type="text"] {
 		font-size: 100%;
 		line-height: normal;
 		white-space: initial;
+		text-align:left;
 	}
 	
 	label {
@@ -713,10 +714,6 @@ ul.tagit input[type="text"] {
 		line-height: 2;	
 	}
 
-	#editorDecision .label, #peerReview .label, #submission .label, #copyedit .label,
-	#status .label, #metadata .label {
-		text-align:left;
-	}
 
 /* @end */
 

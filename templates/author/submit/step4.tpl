@@ -66,7 +66,7 @@ function confirmForgottenUpload() {
 <tr>
 	<td width="30%" class="label">{fieldLabel name="uploadSuppFile" key="author.submit.uploadSuppFile"}</td>
 	<td width="70%" class="value">
-		<input type="file" name="uploadSuppFile" id="uploadSuppFile"  class="uploadField ignore-file" /> <input name="submitUploadSuppFile" type="submit" class="button" value="{translate key="common.upload"}" />
+		<input type="file" name="uploadSuppFile" id="uploadSuppFile"  class="uploadField" /> <input name="submitUploadSuppFile" type="submit" class="button" value="{translate key="common.upload"}" />
 		{if $currentJournal->getSetting('showEnsuringLink')}<a class="action" href="javascript:openHelp('{get_help_id key="editorial.sectionEditorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.article.ensuringBlindReview"}</a>{/if}
 	</td>
 </tr>

@@ -115,6 +115,8 @@ function sortSearch(heading, direction) {
 </form>
 </div>
 
+<div class="clearfix"></div>
+
 {include file="editor/$pageToDisplay.tpl"}
 
 {include file="common/footer.tpl"}

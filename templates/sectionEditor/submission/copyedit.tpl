@@ -33,7 +33,7 @@
 </div>
 
 <div class="col-md-12 well">
-	<div class="col-md-1" style="font-size:50px">1</div>
+	<div class="col-md-1" style="font-size:50px;text-align: center">1</div>
 		{assign var="initialCopyeditSignoff" value=$submission->getSignoff('SIGNOFF_COPYEDITING_INITIAL')}
 	<div class="col-md-3"><h4>{translate key="submission.copyedit.initialCopyedit"}</h4></div>
 	<div class="col-md-2">
@@ -108,7 +108,7 @@
 </div>
 
 <div class="col-md-12 well disabled">
-	<div class="col-md-1" style="font-size:50px">2</div>
+	<div class="col-md-1" style="font-size:50px;text-align: center">2</div>
 		{assign var="authorCopyeditSignoff" value=$submission->getSignoff('SIGNOFF_COPYEDITING_AUTHOR')}
 	<div class="col-md-3"><h4>{translate key="submission.copyedit.editorAuthorReview"}</h4></div>
 	<div class="col-md-2">
@@ -160,7 +160,7 @@
 	</div>
 </div>
 <div class="col-md-12 well disabled">
-	<div class="col-md-1" style="font-size:50px">3</div>
+	<div class="col-md-1" style="font-size:50px;text-align: center">3</div>
 		{assign var="finalCopyeditSignoff" value=$submission->getSignoff('SIGNOFF_COPYEDITING_FINAL')}
 	<div class="col-md-3"><h4>{translate key="submission.copyedit.finalCopyedit"}</h4></div>
 	<div class="col-md-2">
