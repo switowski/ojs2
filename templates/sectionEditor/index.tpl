@@ -14,17 +14,11 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<ul class="menu">
-	<li{if ($pageToDisplay == "submissionsInReview")} class="current"{/if}><a href="{url path="submissionsInReview"}">{translate key="common.queue.short.submissionsInReview"}</a></li>
-	<li{if ($pageToDisplay == "submissionsInEditing")} class="current"{/if}><a href="{url path="submissionsInEditing"}">{translate key="common.queue.short.submissionsInEditing}</a></li>
-	<li{if ($pageToDisplay == "submissionsArchives")} class="current"{/if}><a href="{url path="submissionsArchives"}">{translate key="common.queue.short.submissionsArchives"}</a></li>
+<ul class="nav nav-tabs nav-justified">
+	<li role="presentation"{if ($pageToDisplay == "submissionsInReview")} class="active"{/if}><a href="{url path="submissionsInReview"}">{translate key="common.queue.short.submissionsInReview"}</a></li>
+	<li role="presentation"{if ($pageToDisplay == "submissionsInEditing")} class="active"{/if}><a href="{url path="submissionsInEditing"}">{translate key="common.queue.short.submissionsInEditing}</a></li>
+	<li role="presentation"{if ($pageToDisplay == "submissionsArchives")} class="active"{/if}><a href="{url path="submissionsArchives"}">{translate key="common.queue.short.submissionsArchives"}</a></li>
 </ul>
-
-<form action="#">
-<ul class="filter">
-	<li>{translate key="editor.submissions.inSection"}: <select name="filterSection" onchange="location.href='{url|escape:"javascript" path=$pageToDisplay searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth dateSearchField=$dateSearchField filterSection="SECTION_ID" escape=false}'.replace('SECTION_ID', this.options[this.selectedIndex].value)" size="1" class="selectMenu">{html_options options=$sectionOptions selected=$filterSection}</select></li>
-</ul>
-</form>
 
 {if !$dateFrom}
 {assign var="dateFrom" value="--"}
@@ -47,33 +41,67 @@ function sortSearch(heading, direction) {
 {/literal}
 </script>
 
+<div class="col-md-12 well">
 <form method="post" id="submit" action="{url op="index" path=$pageToDisplay}">
+	<div class="col-md-12">
+		<div class="col-md-2" style="padding-top: 5px;font-weight: bold;text-align: center;">{translate key="editor.submissions.inSection"}</div>
+		<div class="col-md-10"><select name="filterSection" size="1" class="selectMenu">{html_options options=$sectionOptions selected=$filterSection}</select></div>
+	</div>
+	<div class="row col-md-12" style="margin-top: -10px;margin-bottom: -10px;"><hr></div>
+	{if $section}<input type="hidden" name="section" value="{$section|escape:"quotes"}"/>{/if}
 	<input type="hidden" name="sort" value="id"/>
 	<input type="hidden" name="sortDirection" value="ASC"/>
-	<select name="searchField" size="1" class="selectMenu">
-		{html_options_translate options=$fieldOptions selected=$searchField}
-	</select>
-	<select name="searchMatch" size="1" class="selectMenu">
-		<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
-		<option value="is"{if $searchMatch == 'is'} selected="selected"{/if}>{translate key="form.is"}</option>
-		<option value="startsWith"{if $searchMatch == 'startsWith'} selected="selected"{/if}>{translate key="form.startsWith"}</option>
-	</select>
-	<input type="text" size="15" name="search" class="textField" value="{$search|escape}" />
-	<br/>
-	<select name="dateSearchField" size="1" class="selectMenu">
-		{html_options_translate options=$dateFieldOptions selected=$dateSearchField}
-	</select>
-	{translate key="common.between"}
-	{html_select_date prefix="dateFrom" time=$dateFrom all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="-5" end_year="+1"}
-	{translate key="common.and"}
-	{html_select_date prefix="dateTo" time=$dateTo all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="-5" end_year="+1"}
-	<input type="hidden" name="dateToHour" value="23" />
-	<input type="hidden" name="dateToMinute" value="59" />
-	<input type="hidden" name="dateToSecond" value="59" />
-	<br/>
-	<input type="submit" value="{translate key="common.search"}" class="button" />
+	<div class="col-md-12">
+		<div class="col-md-2">
+			<select name="searchField" size="1">
+				{html_options_translate options=$fieldOptions selected=$searchField}
+			</select>
+		</div>
+		<div class="col-md-1 remove-on-mobile" style="text-align: center;"><i class="material-icons">forward</i></div>
+		<div class="col-md-2">
+			<select name="searchMatch" size="1">
+				<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
+				<option value="is"{if $searchMatch == 'is'} selected="selected"{/if}>{translate key="form.is"}</option>
+				<option value="startsWith"{if $searchMatch == 'startsWith'} selected="selected"{/if}>{translate key="form.startsWith"}</option>
+			</select>
+		</div>
+		<div class="col-md-1 remove-on-mobile" style="text-align: center;"><i class="material-icons">forward</i></div>
+		<div class="col-md-6" >
+			<input type="text" size="15" name="search" value="{$search|escape}" />
+		</div>
+	</div>
+	<div class="row col-md-12" style="margin-top: -10px;margin-bottom: -10px;"><hr></div>
+	<div class="col-md-12">
+		<div class="col-md-3">
+			<select name="dateSearchField" size="1">
+				{html_options_translate options=$dateFieldOptions selected=$dateSearchField}
+			</select>
+		</div>
+		<div class="col-md-2" style="text-align: center;padding-top:5px">{translate key="common.between"}</div>
+		<div class="col-md-3">
+			<div class="change-input-date">
+				{html_select_date prefix="dateFrom" time=$dateFrom all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="-5" end_year="+1"}
+			</div>
+			<input type="text" value="" style="display:none"/>
+		</div>
+		<div class="col-md-1" style="text-align: center;padding-top:5px">{translate key="common.and"}</div>
+		<div class="col-md-3">
+			<div class="change-input-date">
+				{html_select_date prefix="dateTo" time=$dateTo all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="-5" end_year="+1"}
+			</div>
+			<input type="text" value="" style="display:none"/>
+		</div>
+		<input type="hidden" name="dateToHour" value="23" />
+		<input type="hidden" name="dateToMinute" value="59" />
+		<input type="hidden" name="dateToSecond" value="59" />
+	</div>
+	<div class="col-md-3 col-md-offset-5" >
+		<input type="submit" value="{translate key="common.search"}" class="btn btn-success btn-lg btn-block" style="margin-top:10px" />
+	</div>
 </form>
-&nbsp;
+</div>
+
+<div class="clearfix"></div>
 
 {include file="sectionEditor/$pageToDisplay.tpl"}
 
