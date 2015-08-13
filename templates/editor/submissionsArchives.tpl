@@ -37,7 +37,7 @@
 			{elseif $status == STATUS_PUBLISHED}
 				<span class="hoverize-text">{print_issue_id articleId="$articleId"}</span>
 			{elseif $status == STATUS_DECLINED}
-				<span style="margin:5px">{translate key="submissions.declined"}</span><a class="btn btn-danger btn-xs" onclick="return cernConfirm('{translate|escape:"jsparam" key="editor.submissionArchive.confirmDelete"}','window.location.href = \\'{url op="deleteSubmission" path=$articleId}\\'', true, event)">{translate key="common.delete"}</a>
+				<span style="margin:5px">{translate key="submissions.declined"}</span><a class="btn btn-danger btn-xs" onclick="return cernConfirm('{translate|escape:"jsparam" key="editor.submissionArchive.confirmDelete"}','window.location.href = \'{url op="deleteSubmission" path=$articleId}\'', true, event)">{translate key="common.delete"}</a>
 			{/if}
 		</td>
 	</tr>
