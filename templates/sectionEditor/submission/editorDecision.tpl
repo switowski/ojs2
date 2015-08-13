@@ -14,7 +14,7 @@
 <div class="well col-md-12">
 	<div class="col-md-12">
 		<div class="label col-md-2">{translate key="editor.article.selectDecision"}</div>
-		<div class="col-md-10">
+		<div class="row col-md-10">
 			<form method="post" action="{url op="recordDecision"}">
 				<input type="hidden" name="articleId" value="{$submission->getId()}" />
 				<div class="col-md-9">
@@ -25,22 +25,20 @@
 				<div class="col-md-2">
 					<input type="submit" onclick="return confirm('{translate|escape:"jsparam" key="editor.submissionReview.confirmDecision"}')" name="submit" value="{translate key="editor.article.recordDecision"}" {if not $allowRecommendation}disabled="disabled"{/if} class="button" />
 				</div>
-				{if not $allowRecommendation}&nbsp;&nbsp;{translate key="editor.article.cannotRecord"}{/if}
 			</form>
 		</div>
+		{if not $allowRecommendation}
+			<div class="col-md-10 col-md-offset-2" style="font-style:italic">{translate key="editor.article.cannotRecord"}</div>
+		{/if}
 	</div>
 	<div class="col-md-12">
 		<div class="label col-md-2">{translate key="editor.article.decision"}</div>
 		<div class="col-md-10">
 			{foreach from=$submission->getDecisions($round) item=editorDecision key=decisionKey}
-				<div class="col-md-12">
-					{assign var="decision" value=$editorDecision.decision}
-					{translate key=$editorDecisionOptions.$decision}&nbsp;&nbsp;{if $editorDecision.dateDecided != 0}{$editorDecision.dateDecided|date_format:$dateFormatShort}{/if}
-				</div>
+				{assign var="decision" value=$editorDecision.decision}
+				{translate key=$editorDecisionOptions.$decision}&nbsp;&nbsp;{if $editorDecision.dateDecided != 0}{$editorDecision.dateDecided|date_format:$dateFormatShort}{/if}
 			{foreachelse}
-				<div class="col-md-12">
-					{translate key="common.none"}
-				</div>
+				{translate key="common.none"}
 			{/foreach}
 		</div>
 	</div>
@@ -48,7 +46,8 @@
 
 <div class="well col-md-12">
 	<div class="col-md-12">
-		<div class="label col-md-12">{translate key="submission.notifyAuthor"}
+		<div class="label col-md-2">{translate key="submission.notifyAuthor"}</div>
+		<div class="col-md-10">
 			{url|assign:"notifyAuthorUrl" op="emailEditorDecisionComment" articleId=$submission->getId()}
 	
 			{if $decision == SUBMISSION_EDITOR_DECISION_DECLINE}
@@ -62,7 +61,8 @@
 	</div>
 
 	<div class="col-md-12">
-		<div class="label col-md-12">{translate key="submission.editorAuthorRecord"}
+		<div class="label col-md-2">{translate key="submission.editorAuthorRecord"}</div>
+		<div class="col-md-10">
 			{if $submission->getMostRecentEditorDecisionComment()}
 				{assign var="comment" value=$submission->getMostRecentEditorDecisionComment()}
 				<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getId() anchor=$comment->getId()}');" class="icon btn btn-default btn-xs">{icon name="comment"} {$comment->getDatePosted()|date_format:$dateFormatShort}</a>
