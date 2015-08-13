@@ -14,6 +14,10 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<script>
+	var alternativeTitle = '<h3>{translate key="article.submissions"}</h3>';
+</script>
+
 <ul class="nav nav-tabs nav-justified">
 	<li role="presentation"{if ($pageToDisplay == "submissionsInReview")} class="active"{/if}><a href="{url path="submissionsInReview"}">{translate key="common.queue.short.submissionsInReview"}</a></li>
 	<li role="presentation"{if ($pageToDisplay == "submissionsInEditing")} class="active"{/if}><a href="{url path="submissionsInEditing"}">{translate key="common.queue.short.submissionsInEditing}</a></li>

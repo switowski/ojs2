@@ -14,6 +14,10 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<script>
+	var alternativeTitle = '<h2>{translate key="article.submission"} {$submission->getId()}</h2>';
+</script>
+
 <ul class="nav nav-tabs nav-justified">
 	<li role="presentation"><a href="{url op="submission" path=$submission->getId()}">{translate key="submission.summary"}</a></li>
 	<li role="presentation" class="active"><a href="{url op="submissionReview" path=$submission->getId()}">{translate key="submission.review"}</a></li>
