@@ -13,7 +13,7 @@
 {assign var=layoutEditor value=$submission->getUserBySignoffType('SIGNOFF_LAYOUT')}
 
 <div id="layout">
-<h3>{translate key="submission.layout"}</h3>
+<div class="page-header"><h3>{translate key="submission.layout"}</h3></div>
 
 {if $useLayoutEditors}
 <div id="layoutEditors">
@@ -26,8 +26,9 @@
 </div>
 {/if}
 
-<table width="100%" class="info">
+<table width="100%" class="info table table-striped table-condensed">
 	{if $useLayoutEditors}
+<thead>
 	<tr>
 		<td width="40%" colspan="2">{translate key="submission.layout.layoutVersion"}</td>
 		<td width="15%" class="heading">{translate key="submission.request"}</td>
@@ -35,6 +36,8 @@
 		<td width="15%" class="heading">{translate key="submission.complete"}</td>
 		<td class="heading">{translate key="submission.views"}</td>
 	</tr>
+</thead>
+<tbody>
 	<tr>
 		<td colspan="2">
 			{if $layoutFile}
@@ -53,9 +56,8 @@
 			{$layoutSignoff->getDateCompleted()|date_format:$dateFormatShort|default:"&mdash;"}
 		</td>
 	</tr>
-	<tr>
-		<td colspan="6" class="separator">&nbsp;</td>
-	</tr>
+	{else}
+<tbody>
 	{/if}
 	<tr>
 		<td width="40%" colspan="2">{translate key="submission.layout.galleyFormat"}</td>
@@ -75,9 +77,6 @@
 	</tr>
 	{/foreach}
 	<tr>
-		<td colspan="6" class="separator">&nbsp;</td>
-	</tr>
-	<tr>
 		<td colspan="2">{translate key="submission.supplementaryFiles"}</td>
 		<td colspan="4" class="heading">{translate key="common.file"}</td>
 	</tr>
@@ -92,18 +91,16 @@
 		<td colspan="6" class="nodata">{translate key="common.none"}</td>
 	</tr>
 	{/foreach}
-	<tr>
-		<td colspan="6" class="separator">&nbsp;</td>
-	</tr>
+<tbody>
 </table>
 
 <div id="layoutComments">
 {translate key="submission.layout.layoutComments"}
 {if $submission->getMostRecentLayoutComment()}
 	{assign var="comment" value=$submission->getMostRecentLayoutComment()}
-	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getId() anchor=$comment->getId()}');" class="icon">{icon name="comment"}</a>{$comment->getDatePosted()|date_format:$dateFormatShort}
+	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getId() anchor=$comment->getId()}');" class="icon btn btn-default btn-xs">{icon name="comment"} {$comment->getDatePosted()|date_format:$dateFormatShort}</a>
 {else}
-	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
+	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getId()}');" class="icon btn btn-default btn-xs">{icon name="comment"} {translate key="common.noComments"}</a>
 {/if}
 </div>
 </div>

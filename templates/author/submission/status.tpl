@@ -9,13 +9,15 @@
  *
  *}
 <div id="status">
-<h3>{translate key="common.status"}</h3>
+<div class="page-header"><h3>{translate key="common.status"}</h3></div>
 
-<table width="100%" class="data">
-	<tr>
-		{assign var="status" value=$submission->getSubmissionStatus()}
-		<td width="20%" class="label">{translate key="common.status"}</td>
-		<td width="80%" class="value">
+<div class="row">
+	<div class="col-md-12">
+		<div class="label col-md-2">
+			{assign var="status" value=$submission->getSubmissionStatus()}
+			{translate key="common.status"}
+		</div>
+		<div class="col-md-10">
 			{if $status == STATUS_ARCHIVED}{translate key="submissions.archived"}
 			{elseif $status==STATUS_QUEUED_UNASSIGNED}{translate key="submissions.queuedUnassigned"}
 			{elseif $status==STATUS_QUEUED_EDITING}{translate key="submissions.queuedEditing"}
@@ -23,16 +25,16 @@
 			{elseif $status==STATUS_PUBLISHED}{translate key="submissions.published"}&nbsp;&nbsp;&nbsp;&nbsp;{$issue->getIssueIdentification()|escape}
 			{elseif $status==STATUS_DECLINED}{translate key="submissions.declined"}
 			{/if}
-		</td>
-	</tr>
-	<tr>
-		<td class="label">{translate key="submission.initiated"}</td>
-		<td colspan="2" class="value">{$submission->getDateStatusModified()|date_format:$dateFormatShort}</td>
-	</tr>
-	<tr>
-		<td class="label">{translate key="submission.lastModified"}</td>
-		<td colspan="2" class="value">{$submission->getLastModified()|date_format:$dateFormatShort}</td>
-	</tr>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="label col-md-2">{translate key="submission.initiated"}</div>
+		<div class="col-md-10">{$submission->getDateStatusModified()|date_format:$dateFormatShort}</div>
+	</div>
+	<div class="col-md-12">
+		<div class="label col-md-2">{translate key="submission.lastModified"}</div>
+		<div class="col-md-10">{$submission->getLastModified()|date_format:$dateFormatShort}</div>
+	</div>
 </table>
 </div>
 

@@ -9,7 +9,8 @@
  *
  *}
 <div id="peerReview">
-<h3>{translate key="submission.peerReview"}</h3>
+
+<div class="page-header"><h3>{translate key="submission.peerReview"}</h3></div>
 
 {assign var=start value="A"|ord}
 {section name="round" loop=$submission->getCurrentRound()}
@@ -18,96 +19,98 @@
 {assign var=editorFiles value=$submission->getEditorFileRevisions($round)}
 {assign var="viewableFiles" value=$authorViewableFilesByRound[$round]}
 
-<h4>{translate key="submission.round" round=$round}</h4>
 
-<table class="data" width="100%">
-	<tr valign="top">
-		<td class="label" width="20%">
-			{translate key="submission.reviewVersion"}
-		</td>
-		<td class="value" width="80%">
-			{assign var="reviewFile" value=$reviewFilesByRound[$round]}
-			{if $reviewFile}
-				<a href="{url op="downloadFile" path=$submission->getId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>&nbsp;&nbsp;{$reviewFile->getDateModified()|date_format:$dateFormatShort}
-			{else}
-				{translate key="common.none"}
-			{/if}
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label" width="20%">
-			{translate key="submission.initiated"}
-		</td>
-		<td class="value" width="80%">
-			{if $reviewEarliestNotificationByRound[$round]}
-				{$reviewEarliestNotificationByRound[$round]|date_format:$dateFormatShort}
-			{else}
-				&mdash;
-			{/if}
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label" width="20%">
-			{translate key="submission.lastModified"}
-		</td>
-		<td class="value" width="80%">
-			{if $reviewModifiedByRound[$round]}
-				{$reviewModifiedByRound[$round]|date_format:$dateFormatShort}
-			{else}
-				&mdash;
-			{/if}
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label" width="20%">
-			{translate key="common.uploadedFile"}
-		</td>
-		<td class="value" width="80%">
-			{foreach from=$viewableFiles item=reviewerFiles key=reviewer}
-				{foreach from=$reviewerFiles item=viewableFilesForReviewer key=reviewId}
-					{assign var="roundIndex" value=$reviewIndexesByRound[$round][$reviewId]}
-					{assign var=thisReviewer value=$start+$roundIndex|chr}
-					{foreach from=$viewableFilesForReviewer item=viewableFile}
-						{translate key="user.role.reviewer"} {$thisReviewer|escape}
-						<a href="{url op="downloadFile" path=$submission->getId()|to_array:$viewableFile->getFileId():$viewableFile->getRevision()}" class="file">{$viewableFile->getFileName()|escape}</a>&nbsp;&nbsp;{$viewableFile->getDateModified()|date_format:$dateFormatShort}<br />
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h4 style="margin:0">{translate key="submission.round" round=$round}</h4>
+	</div>
+	<div class="panel-body">
+		<div class="col-md-12">
+			<div class="label col-md-2">
+				{translate key="submission.reviewVersion"}
+			</div>
+			<div class="col-md-10">
+				{assign var="reviewFile" value=$reviewFilesByRound[$round]}
+				{if $reviewFile}
+					<a href="{url op="downloadFile" path=$submission->getId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>&nbsp;&nbsp;{$reviewFile->getDateModified()|date_format:$dateFormatShort}
+				{else}
+					{translate key="common.none"}
+				{/if}
+			</div>
+		</div>
+		<div class="col-md-12">
+			<div class="label col-md-2">
+				{translate key="submission.initiated"}
+			</div>
+			<div class="col-md-10">
+				{if $reviewEarliestNotificationByRound[$round]}
+					{$reviewEarliestNotificationByRound[$round]|date_format:$dateFormatShort}
+				{else}
+					&mdash;
+				{/if}
+			</div>
+		</div>
+		<div class="col-md-12">
+			<div class="label col-md-2">
+				{translate key="submission.lastModified"}
+			</div>
+			<div class="col-md-10">
+				{if $reviewModifiedByRound[$round]}
+					{$reviewModifiedByRound[$round]|date_format:$dateFormatShort}
+				{else}
+					&mdash;
+				{/if}
+			</div>
+		</div>
+		<div class="col-md-12">
+			<div class="label col-md-2">
+				{translate key="common.uploadedFile"}
+			</div>
+			<div class="col-md-10">
+				{foreach from=$viewableFiles item=reviewerFiles key=reviewer}
+					{foreach from=$reviewerFiles item=viewableFilesForReviewer key=reviewId}
+						{assign var="roundIndex" value=$reviewIndexesByRound[$round][$reviewId]}
+						{assign var=thisReviewer value=$start+$roundIndex|chr}
+						{foreach from=$viewableFilesForReviewer item=viewableFile}
+							{translate key="user.role.reviewer"} {$thisReviewer|escape}
+							<a href="{url op="downloadFile" path=$submission->getId()|to_array:$viewableFile->getFileId():$viewableFile->getRevision()}" class="file">{$viewableFile->getFileName()|escape}</a>&nbsp;&nbsp;{$viewableFile->getDateModified()|date_format:$dateFormatShort}<br />
+						{/foreach}
 					{/foreach}
-				{/foreach}
-			{foreachelse}
-				{translate key="common.none"}
-			{/foreach}
-		</td>
-	</tr>
-	{if !$smarty.section.round.last}
-		<tr valign="top">
-			<td class="label" width="20%">
-				{translate key="submission.editorVersion"}
-			</td>
-			<td class="value" width="80%">
-				{foreach from=$editorFiles item=editorFile key=key}
-					<a href="{url op="downloadFile" path=$submission->getId()|to_array:$editorFile->getFileId():$editorFile->getRevision()}" class="file">{$editorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$editorFile->getDateModified()|date_format:$dateFormatShort}<br />
 				{foreachelse}
 					{translate key="common.none"}
 				{/foreach}
-			</td>
-		</tr>
-		<tr valign="top">
-			<td class="label" width="20%">
-				{translate key="submission.authorVersion"}
-			</td>
-			<td class="value" width="80%">
-				{foreach from=$authorFiles item=authorFile key=key}
-					<a href="{url op="downloadFile" path=$submission->getId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="file">{$authorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$authorFile->getDateModified()|date_format:$dateFormatShort}<br />
-				{foreachelse}
-					{translate key="common.none"}
-				{/foreach}
-			</td>
-		</tr>
-	{/if}
-</table>
+			</div>
+		</div>
+		{if !$smarty.section.round.last}
+			<div class="col-md-12">
+				<div class="label col-md-2">
+					{translate key="submission.editorVersion"}
+				</div>
+				<div class="col-md-10">
+					{foreach from=$editorFiles item=editorFile key=key}
+						<a href="{url op="downloadFile" path=$submission->getId()|to_array:$editorFile->getFileId():$editorFile->getRevision()}" class="file">{$editorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$editorFile->getDateModified()|date_format:$dateFormatShort}<br />
+					{foreachelse}
+						{translate key="common.none"}
+					{/foreach}
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="label col-md-2">
+					{translate key="submission.authorVersion"}
+				</div>
+				<div class="col-md-10">
+					{foreach from=$authorFiles item=authorFile key=key}
+						<a href="{url op="downloadFile" path=$submission->getId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="file">{$authorFile->getFileName()|escape}</a>&nbsp;&nbsp;{$authorFile->getDateModified()|date_format:$dateFormatShort}<br />
+					{foreachelse}
+						{translate key="common.none"}
+					{/foreach}
+				</div>
+			</div>
+		{/if}
+	</div>
+</div>
 
-{if !$smarty.section.round.last}
-	<div class="separator"></div>
-{/if}
 
 {/section}
 </div>
