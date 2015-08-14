@@ -23,8 +23,6 @@
 	{assign var="howToKeyName" value="author.submit.howToSubmitNoPhone"}
 {/if}
 
-<p>{translate key=$howToKeyName supportName=$journalSettings.supportName supportEmail=$journalSettings.supportEmail supportPhone=$journalSettings.supportPhone}</p>
-
 <div class="separator"></div>
 
 <div id="submissionFileInfo">
