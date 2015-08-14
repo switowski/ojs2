@@ -12,7 +12,7 @@
 {assign var=layoutEditor value=$submission->getUserBySignoffType('SIGNOFF_LAYOUT')}
 
 <div id="layout">
-<h3>{translate key="submission.layout"}</h3>
+<div class="page-header"><h3>{translate key="submission.layout"}</h3></div>
 
 {if $useLayoutEditors}
 <div id="layoutEditors">
@@ -25,11 +25,14 @@
 </div>
 {/if}
 
-<table width="100%" class="info">
+<table width="100%" class="info table table-striped table-condensed">
+<thead>
 	<tr>
-		<td width="40%" colspan="2">{translate key="submission.layout.galleyFormat"}</td>
-		<td width="60%" class="heading">{translate key="common.file"}</td>
+		<td colspan="2">{translate key="submission.layout.galleyFormat"}</td>
+		<td class="heading">{translate key="common.file"}</td>
 	</tr>
+</thead>
+<tbody>
 	{foreach name=galleys from=$submission->getGalleys() item=galley}
 	<tr>
 		<td width="5%">{$smarty.foreach.galleys.iteration}.</td>
@@ -59,18 +62,16 @@
 		<td colspan="3" class="nodata">{translate key="common.none"}</td>
 	</tr>
 	{/foreach}
-	<tr>
-		<td colspan="3" class="separator">&nbsp;</td>
-	</tr>
+</tbody>
 </table>
 
 <div id="layoutComments">
 {translate key="submission.layout.layoutComments"}
 {if $submission->getMostRecentLayoutComment()}
 	{assign var="comment" value=$submission->getMostRecentLayoutComment()}
-	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getId() anchor=$comment->getId()}');" class="icon">{icon name="comment"}</a>{$comment->getDatePosted()|date_format:$dateFormatShort}
+	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getId() anchor=$comment->getId()}');" class="icon btn btn-default btn-xs">{icon name="comment"} {$comment->getDatePosted()|date_format:$dateFormatShort}</a>
 {else}
-	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
+	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getId()}');" class="icon btn btn-default btn-xs">{icon name="comment"} {translate key="common.noComments"}</a>
 {/if}
 </div>
 </div>
