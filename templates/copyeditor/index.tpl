@@ -14,7 +14,7 @@
 {/strip}
 
 <script>
-	var alternativeTitle = '<h3>{translate key="article.submissions"}</h3>';
+	var alternativeTitle = '<h2>{translate key="article.submissions"}</h2>';
 </script>
 
 
