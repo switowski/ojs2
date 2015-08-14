@@ -13,6 +13,10 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<script>
+	var alternativeTitle = '';
+</script>
+
 <div class="row bs-wizard" style="border-bottom:0;">               
 	<div class="col-xs-offset-1 col-xs-2 bs-wizard-step {if $submitStep > 1}complete{elseif $submitStep == 1}active{elseif $submissionProgress < 1}disabled{/if}">
       	<div class="text-center bs-wizard-stepnum">Step 1</div>
