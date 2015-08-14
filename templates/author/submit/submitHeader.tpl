@@ -13,20 +13,40 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<ul class="steplist">
-<li id="step1" {if $submitStep == 1} class="current"{/if}>{if $submitStep != 1 && $submissionProgress >= 1}<a href="{url op="submit" path="1" articleId=$articleId}">{/if}
-{translate key="author.submit.start"}{if $submitStep != 1 && $submissionProgress >= 1}</a>{/if}</li>
-
-<li id="step2" {if $submitStep == 2} class="current"{/if}>{if $submitStep != 2 && $submissionProgress >= 2}<a href="{url op="submit" path="2" articleId=$articleId}">{/if}
-{translate key="author.submit.upload"}{if $submitStep != 2 && $submissionProgress >= 2}</a>{/if}</li>
-
-<li id="step3" {if $submitStep == 3} class="current"{/if}>{if $submitStep != 3 && $submissionProgress >= 3}<a href="{url op="submit" path="3" articleId=$articleId}">{/if}
-{translate key="author.submit.metadata"}{if $submitStep != 3 && $submissionProgress >= 3}</a>{/if}</li>
-
-<li id="step4" {if $submitStep == 4} class="current"{/if}>{if $submitStep != 4 && $submissionProgress >= 4}<a href="{url op="submit" path="4" articleId=$articleId}">{/if}
-{translate key="author.submit.supplementaryFiles"}{if $submitStep != 4 && $submissionProgress >= 4}</a>{/if}</li>
-
-<li id="step5" {if $submitStep == 5} class="current"{/if}>{if $submitStep != 5 && $submissionProgress >= 5}<a href="{url op="submit" path="5" articleId=$articleId}">{/if}
-{translate key="author.submit.confirmation"}{if $submitStep != 5 && $submissionProgress >= 5}</a>{/if}</li>
-</ul>
+<div class="row bs-wizard" style="border-bottom:0;">               
+	<div class="col-xs-offset-1 col-xs-2 bs-wizard-step {if $submitStep > 1}complete{elseif $submitStep == 1}active{elseif $submissionProgress < 1}disabled{/if}">
+      	<div class="text-center bs-wizard-stepnum">Step 1</div>
+      	<div class="progress"><div class="progress-bar"></div></div>
+      	<a href="{url op="submit" path="1" articleId=$articleId}" class="bs-wizard-dot"></a>
+      	<div class="bs-wizard-info text-center">{translate key="author.submit.start"}</div>
+    </div>
+    
+    <div class="col-xs-2 bs-wizard-step {if $submitStep > 2}complete{elseif $submitStep == 2}active{elseif $submissionProgress < 2}disabled{/if}">
+      	<div class="text-center bs-wizard-stepnum">Step 2</div>
+      	<div class="progress"><div class="progress-bar"></div></div>
+      	<a href="{url op="submit" path="2" articleId=$articleId}" class="bs-wizard-dot"></a>
+      	<div class="bs-wizard-info text-center">{translate key="author.submit.upload"}</div>
+    </div>
+    
+    <div class="col-xs-2 bs-wizard-step {if $submitStep > 3}complete{elseif $submitStep == 3}active{elseif $submissionProgress < 3}disabled{/if}">
+      	<div class="text-center bs-wizard-stepnum">Step 3</div>
+      	<div class="progress"><div class="progress-bar"></div></div>
+      	<a href="{url op="submit" path="3" articleId=$articleId}" class="bs-wizard-dot"></a>
+      	<div class="bs-wizard-info text-center">{translate key="author.submit.metadata"}</div>
+    </div>
+    
+    <div class="col-xs-2 bs-wizard-step {if $submitStep > 4}complete{elseif $submitStep == 4}active{elseif $submissionProgress < 4}disabled{/if}">
+      	<div class="text-center bs-wizard-stepnum">Step 4</div>
+      	<div class="progress"><div class="progress-bar"></div></div>
+      	<a href="{url op="submit" path="4" articleId=$articleId}" class="bs-wizard-dot"></a>
+      	<div class="bs-wizard-info text-center">{translate key="author.submit.supplementaryFiles"}</div>
+    </div>
+    
+    <div class="col-xs-2 bs-wizard-step {if $submitStep > 5}complete{elseif $submitStep == 5}active{elseif $submissionProgress < 5}disabled{/if}">
+      	<div class="text-center bs-wizard-stepnum">Step 5</div>
+      	<div class="progress"><div class="progress-bar"></div></div>
+      	<a href="{url op="submit" path="5" articleId=$articleId}" class="bs-wizard-dot"></a>
+      	<div class="bs-wizard-info text-center">{translate key="author.submit.confirmation"}</div>
+    </div>
+</div>
 
