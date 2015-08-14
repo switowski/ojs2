@@ -649,6 +649,11 @@ ul.tagit input[type="text"] {
 	.table-border-around .label {
 		line-height: 2;	
 	}
+	
+	#checklist label {
+	    padding-top: 0;
+	    font-weight: normal;
+	}
 
 
 /* @end */

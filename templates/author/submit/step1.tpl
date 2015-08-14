@@ -36,7 +36,7 @@
 {else}{* if count($sectionOptions) == 2 *}
 <div id="section">
 
-<h3>{translate key="author.submit.journalSection"}</h3>
+<div class="page-header" style="margin-top: 0;"><h3>{translate key="author.submit.journalSection"}</h3></div>
 
 {url|assign:"url" page="about"}
 <p>{translate key="author.submit.journalSectionDescription" aboutUrl=$url}</p>
@@ -65,7 +65,7 @@
 	{* There are several submission locales available; allow choice *}
 	<div id="submissionLocale">
 
-	<h3>{translate key="author.submit.submissionLocale"}</h3>
+	<div class="page-header"><h3>{translate key="author.submit.submissionLocale"}</h3></div>
 	<p>{translate key="author.submit.submissionLocaleDescription"}</p>
 
 	<table class="data" width="100%">
@@ -107,33 +107,39 @@ function checkSubmissionChecklist() {
 	<div class="separator"></div>
 {/if}
 
+{assign var="number" value="1"}
 {if $currentJournal->getLocalizedSetting('submissionChecklist')}
 {foreach name=checklist from=$currentJournal->getLocalizedSetting('submissionChecklist') key=checklistId item=checklistItem}
 	{if $checklistItem.content}
 		{if !$notFirstChecklistItem}
 			{assign var=notFirstChecklistItem value=1}
 			<div id="checklist">
-			<h3>{translate key="author.submit.submissionChecklist"}</h3>
-			<p>{translate key="author.submit.submissionChecklistDescription"}</p>
-			<table width="100%" class="data">
+				<div class="page-header"><h3>{translate key="author.submit.submissionChecklist"}</h3></div>
+				
+				<div id="div-all-checklist" style="margin-bottom:20px">
+					<div style="display:none"><input type="checkbox" id="checklist-all" value="" /></div>
+					<div>{translate key="author.submit.submissionChecklistDescription"}</div>
+				</div>
+				
+				<div class="row">
 		{/if}
-		<tr valign="top">
-			<td width="5%"><input type="checkbox" id="checklist-{$smarty.foreach.checklist.iteration}" name="checklist[]" value="{$checklistId|escape}"{if $articleId || $submissionChecklist} checked="checked"{/if} /></td>
-			<td width="95%"><label for="checklist-{$smarty.foreach.checklist.iteration}">{$checklistItem.content|nl2br}</label></td>
+					<div class="col-xs-1"><input class="checkbox-remove" type="checkbox" id="checklist-{$smarty.foreach.checklist.iteration}" name="checklist[]" value="{$checklistId|escape}"{if $articleId || $submissionChecklist} checked="checked"{/if} /></div>
+					<div class="row col-xs-11"><td width="95%"><label for="checklist-{$smarty.foreach.checklist.iteration}"><span style="float:left">{$number}.&nbsp;</span>{$checklistItem.content|nl2br}</div>
 		</tr>
+		{assign var=number value=$number+1}
 	{/if}
 {/foreach}
 {if $notFirstChecklistItem}
-	</table>
-	</div>{* checklist *}
-	<div class="separator"></div>
+				</div>
+	
+			</div>{* checklist *}
 {/if}
 
 {/if}{* if count($sectionOptions) <= 1 *}
 
 {if $currentJournal->getLocalizedSetting('copyrightNotice') != ''}
 <div id="copyrightNotice">
-<h3>{translate key="about.copyrightNotice"}</h3>
+<div class="page-header"><h3>{translate key="about.copyrightNotice"}</h3></div>
 
 <p>{$currentJournal->getLocalizedSetting('copyrightNotice')|nl2br}</p>
 
@@ -152,7 +158,7 @@ function checkSubmissionChecklist() {
 {/if}{* $currentJournal->getLocalizedSetting('copyrightNotice') != '' *}
 
 <div id="privacyStatement">
-<h3>{translate key="author.submit.privacyStatement"}</h3>
+<div class="page-header"><h3>{translate key="author.submit.privacyStatement"}</h3></div>
 <br />
 {$currentJournal->getLocalizedSetting('privacyStatement')|nl2br}
 </div>
@@ -160,7 +166,7 @@ function checkSubmissionChecklist() {
 <div class="separator"></div>
 
 <div id="commentsForEditor">
-<h3>{translate key="author.submit.commentsForEditor"}</h3>
+<div class="page-header"><h3>{translate key="author.submit.commentsForEditor"}</h3></div>
 
 <table width="100%" class="data">
 <tr valign="top">
