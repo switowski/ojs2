@@ -654,6 +654,10 @@ ul.tagit input[type="text"] {
 	    padding-top: 0;
 	    font-weight: normal;
 	}
+	
+	#authors label, #titleAndAbstract label, #indexing label {
+		padding-top:0;
+	}
 
 
 /* @end */

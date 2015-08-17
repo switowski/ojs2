@@ -43,12 +43,10 @@
 
 <input type="hidden" name="submissionChecklist" value="1" />
 
-<table class="data" width="100%">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="sectionId" required="true" key="section.section"}</td>
-		<td width="80%" class="value"><select name="sectionId" id="sectionId" size="1" class="selectMenu">{html_options options=$sectionOptions selected=$sectionId}</select></td>
-	</tr>
-</table>
+<div class="col-md-12">
+	<div class="label col-md-2">{fieldLabel name="sectionId" required="true" key="section.section"}</div>
+	<div class="col-md-10"><select name="sectionId" id="sectionId" size="1" class="selectMenu">{html_options options=$sectionOptions selected=$sectionId}</select></div>
+</dvi>
 
 </div>{* section *}
 
@@ -68,12 +66,10 @@
 	<div class="page-header"><h3>{translate key="author.submit.submissionLocale"}</h3></div>
 	<p>{translate key="author.submit.submissionLocaleDescription"}</p>
 
-	<table class="data" width="100%">
-		<tr valign="top">
-			<td width="20%" class="label">{fieldLabel name="locale" required="true" key="article.language"}</td>
-			<td width="80%" class="value"><select name="locale" id="locale" size="1" class="selectMenu">{html_options options=$supportedSubmissionLocaleNames selected=$locale}</select></td>
-		</tr>
-	</table>
+	<div class="col-md-12">
+		<div class="label col-md-2">{fieldLabel name="locale" required="true" key="article.language"}</div>
+		<div class="col-md-10"><select name="locale" id="locale" size="1" class="selectMenu">{html_options options=$supportedSubmissionLocaleNames selected=$locale}</select></div>
+	</div>
 
 	<div class="separator"></div>
 
@@ -116,15 +112,15 @@ function checkSubmissionChecklist() {
 			<div id="checklist">
 				<div class="page-header"><h3>{translate key="author.submit.submissionChecklist"}</h3></div>
 				
-				<div id="div-all-checklist" style="margin-bottom:20px">
-					<div style="display:none"><input type="checkbox" id="checklist-all" value="" /></div>
+				<div id="div-all-checklist" class="row" style="margin-bottom:20px">
+					<div style="display:none"><input onclick="selectChecklist(this)" type="checkbox" id="checklist-all" value="" /></div>
 					<div>{translate key="author.submit.submissionChecklistDescription"}</div>
 				</div>
 				
 				<div class="row">
 		{/if}
 					<div class="col-xs-1"><input class="checkbox-remove" type="checkbox" id="checklist-{$smarty.foreach.checklist.iteration}" name="checklist[]" value="{$checklistId|escape}"{if $articleId || $submissionChecklist} checked="checked"{/if} /></div>
-					<div class="row col-xs-11"><td width="95%"><label for="checklist-{$smarty.foreach.checklist.iteration}"><span style="float:left">{$number}.&nbsp;</span>{$checklistItem.content|nl2br}</div>
+					<div class="col-xs-11"><td width="95%"><label for="checklist-{$smarty.foreach.checklist.iteration}"><span style="float:left">{$number}.&nbsp;</span>{$checklistItem.content|nl2br}</div>
 		</tr>
 		{assign var=number value=$number+1}
 	{/if}
@@ -168,19 +164,18 @@ function checkSubmissionChecklist() {
 <div id="commentsForEditor">
 <div class="page-header"><h3>{translate key="author.submit.commentsForEditor"}</h3></div>
 
-<table width="100%" class="data">
-<tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="commentsToEditor" key="author.submit.comments"}</td>
-	<td width="80%" class="value"><textarea name="commentsToEditor" id="commentsToEditor" rows="3" cols="40" class="textArea">{$commentsToEditor|escape}</textarea></td>
-</tr>
+<div class="col-md-12">
+	<div class="label col-md-2">{fieldLabel name="commentsToEditor" key="author.submit.comments"}</div>
+	<div class="col-md-10"><textarea name="commentsToEditor" id="commentsToEditor" rows="3" cols="40" class="textArea">{$commentsToEditor|escape}</textarea></div>
+</div>
 </table>
 </div>{* commentsForEditor *}
 
-<div class="separator"></div>
+<div class="clearfix"></div>
 
-<p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="{if $articleId}confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}'){else}document.location.href='{url page="author" escape=false}'{/if}" /></p>
+<div class="row" style="text-align:center;margin-top:20px"><input type="submit" value="NEXT STEP" class="btn btn-success btn-lg" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-default" onclick="{if $articleId}confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}'){else}document.location.href='{url page="author" escape=false}'{/if}" /></div>
 
-<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
+<div class="row" ><span class="formRequired">{translate key="common.requiredField"}</span></div>
 
 </form>
 
