@@ -47,7 +47,7 @@
 	</div>
 {else}
 	<div class="col-md-12">
-		<div class="label col-md-2">{translate key="author.submit.noSubmissionFile"}</div>
+		<div class="label col-md-12">{translate key="author.submit.noSubmissionFile"}</div>
 	</div>
 {/if}
 </div>
