@@ -655,8 +655,21 @@ ul.tagit input[type="text"] {
 	    font-weight: normal;
 	}
 	
-	#authors label, #titleAndAbstract label, #indexing label {
+	#authors label, #titleAndAbstract label, #indexing label,
+	#search label {
 		padding-top:0;
+	}
+	
+	@media (min-width: 990px) {
+		.check-box-all {
+			margin-left:-50px;
+		}
+	}
+	
+	@media (max-width:990px) {
+		.to-left {
+			float:left;
+		}
 	}
 
 
