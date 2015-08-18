@@ -14,13 +14,17 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<script>
+	var alternativeTitle = '<h2>{translate key="article.submission"} {$submission->getId()}</h2>';
+</script>
+
 {include file="copyeditor/submission/summary.tpl"}
 
-<div class="separator"></div>
+<div class="clearfix"></div>
 
 {include file="copyeditor/submission/copyedit.tpl"}
 
-<div class="separator"></div>
+<div class="clearfix"></div>
 
 {include file="copyeditor/submission/layout.tpl"}
 

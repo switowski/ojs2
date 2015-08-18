@@ -171,13 +171,7 @@
 					{fieldLabel name="uploadSuppFile" key="common.upload"}
 				{/if}
 			</td>
-			<td class="value"><input type="file" name="uploadSuppFile" id="uploadSuppFile" class="uploadField" />&nbsp;&nbsp;{translate key="author.submit.supplementaryFiles.saveToUpload"}</td>
-		</tr>
-		{if not ($suppFile && $suppFile->getFileId())}
-		<tr valign="top">
-			<td>&nbsp;</td>
-			<td class="value">
-				<input type="checkbox" name="showReviewers" id="showReviewers" value="1"{if $showReviewers==1} checked="checked"{/if} />&nbsp;
+			<td class="value"><input type="file" name="uploadSuppFile" id="uploadSuppFile" class="uploadField" />&nbsp;&nbsp;checkbox" name="showReviewers" id="showReviewers" value="1"{if $showReviewers==1} checked="checked"{/if} />&nbsp;
 				<label for="showReviewers">{translate key="author.submit.suppFile.availableToPeers"}</label>
 			</td>
 		</tr>

@@ -9,23 +9,24 @@
  *
  *}
 <div id="submissions">
-<table class="listing" width="100%">
-	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
+<table class="table table-condensed table-hover">
+<thead>
 	<tr class="heading" valign="bottom">
-		<td width="5%">{sort_heading key="common.id" sort='id'}</td>
-		<td width="5%"><span class="disabled">{translate key="submission.date.mmdd"}</span><br />{sort_heading key="common.assigned" sort='assignDate'}</td>
-		<td width="5%">{sort_heading key="submissions.sec" sort='section'}</td>
-		<td width="70%">{sort_heading key="article.title" sort='title'}</td>
-		<td width="5%">{sort_heading key="submission.due" sort='dueDate'}</td>
-		<td width="10%">{sort_heading key="submissions.reviewRound" sort='round'}</td>
+		<td>{sort_heading key="common.id" sort='id'}</td>
+		<td><span class="disabled">{translate key="submission.date.mmdd"}</span><br />{sort_heading key="common.assigned" sort='assignDate'}</td>
+		<td>{sort_heading key="submissions.sec" sort='section'}</td>
+		<td>{sort_heading key="article.title" sort='title'}</td>
+		<td>{sort_heading key="submission.due" sort='dueDate'}</td>
+		<td>{sort_heading key="submissions.reviewRound" sort='round'}</td>
 	</tr>
-	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
+</thead>
+<tbody>
 
 {iterate from=submissions item=submission}
 	{assign var="articleId" value=$submission->getId()}
 	{assign var="reviewId" value=$submission->getReviewId()}
 
-	<tr valign="top">
+	<tr valign="top" onclick="window.location = '{url op="submission" path=$reviewId}'">
 		<td>{$articleId|escape}</td>
 		<td>{$submission->getDateNotified()|date_format:$dateFormatTrunc}</td>
 		<td>{$submission->getSectionAbbrev()|escape}</td>
@@ -33,23 +34,18 @@
 		<td class="nowrap">{$submission->getDateDue()|date_format:$dateFormatTrunc}</td>
 		<td>{$submission->getRound()}</td>
 	</tr>
-	<tr>
-		<td colspan="6" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
 {/iterate}
 {if $submissions->wasEmpty()}
 <tr>
 		<td colspan="6" class="nodata">{translate key="submissions.noSubmissions"}</td>
 	</tr>
-	<tr>
-		<td colspan="6" class="endseparator">&nbsp;</td>
-	</tr>
 {else}
 	<tr>
-		<td colspan="3" align="left">{page_info iterator=$submissions}</td>
-		<td colspan="3" align="right">{page_links anchor="submissions" name="submissions" iterator=$submissions sort=$sort sortDirection=$sortDirection}</td>
+		<td colspan="3" align="left" style="font-weight: bold;padding-top:10px;">{page_info iterator=$submissions}</td>
+		<td colspan="3" align="right" class="footer-table-numbers">{page_links anchor="submissions" name="submissions" iterator=$submissions sort=$sort sortDirection=$sortDirection}</td>
 	</tr>
 {/if}
+</tbody>
 </table>
 </div>
 

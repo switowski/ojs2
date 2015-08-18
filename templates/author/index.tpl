@@ -13,18 +13,20 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<ul class="menu">
-	<li{if ($pageToDisplay == "active")} class="current"{/if}><a href="{url op="index" path="active"}">{translate key="common.queue.short.active"}</a></li>
-	<li{if ($pageToDisplay == "completed")} class="current"{/if}><a href="{url op="index" path="completed"}">{translate key="common.queue.short.completed"}</a></li>
-</ul>
+<script>
+	var alternativeTitle = '<h2>{translate key="article.submissions"}</h2>';
+</script>
 
-<br />
+<ul class="nav nav-tabs nav-justified">
+	<li role="presentation" {if ($pageToDisplay == "active")} class="active"{/if}><a href="{url op="index" path="active"}">{translate key="common.queue.short.active"}</a></li>
+	<li role="presentation" {if ($pageToDisplay == "completed")} class="active"{/if}><a href="{url op="index" path="completed"}">{translate key="common.queue.short.completed"}</a></li>
+</ul>
 
 {include file="author/$pageToDisplay.tpl"}
 <div id="submitStart">
-<h4>{translate key="author.submit.startHereTitle"}</h4>
+<div class="page-header"><h3>{translate key="author.submit.startHereTitle"}</h3></div>
 {url|assign:"submitUrl" op="submit"}
-{translate submitUrl=$submitUrl key="author.submit.startHereLink"}<br />
+<a href="{$submitUrl}" class="btn btn-primary btn-lg">New submission</a>
 </div>
 
 {call_hook name="Templates::Author::Index::AdditionalItems"}

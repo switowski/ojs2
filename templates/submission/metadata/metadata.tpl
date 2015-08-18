@@ -8,171 +8,142 @@
  * Subtemplate defining the submission metadata table. Non-form implementation.
  *}
 <div id="metadata">
-<h3>{translate key="submission.metadata"}</h3>
+<div class="page-header"><h3>{translate key="submission.metadata"}</h3></div>
 
 {if $canEditMetadata}
-	<p><a href="{url op="viewMetadata" path=$submission->getId()}" class="action">{translate key="submission.editMetadata"}</a></p>
+	<p><a href="{url op="viewMetadata" path=$submission->getId()}" class="action btn btn-default btn-sm"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">subject</i> {translate key="submission.editMetadata"}</a></p>
 	{call_hook name="Templates::Submission::Metadata::Metadata::AdditionalEditItems"}
 {/if}
 
 <div id="authors">
 <h4>{translate key="article.authors"}</h4>
 	
-<table width="100%" class="data">
-	{foreach name=authors from=$submission->getAuthors() item=author}
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="user.name"}</td>
-		<td width="80%" class="value">
+{foreach name=authors from=$submission->getAuthors() item=author}
+<div class="row well">
+	<div class="col-md-12">
+		<div class="label col-md-2">{translate key="user.name"}</div>
+		<div class="col-md-10">
 			{assign var=emailString value=$author->getFullName()|concat:" <":$author->getEmail():">"}
 			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle()|strip_tags articleId=$submission->getId()}
 			{$author->getFullName()|escape} {icon name="mail" url=$url}
-		</td>
-	</tr>
+		</div>
+	</div>
 	{if $author->getData('orcid')}
-		<tr valign="top">
-			<td class="label">{translate key="user.orcid"}</td>
-			<td class="value"><a href="{$author->getData('orcid')|escape}" target="_blank">{$author->getData('orcid')|escape}</a></td>
-		</tr>
+		<div class="col-md-12">
+			<div class="label col-md-2">{translate key="user.orcid"}</div>
+			<div class="col-md-10"><a href="{$author->getData('orcid')|escape}" target="_blank">{$author->getData('orcid')|escape}</a></div>
+		</div>
 	{/if}
 	{if $author->getUrl()}
-		<tr valign="top">
-			<td class="label">{translate key="user.url"}</td>
-			<td class="value"><a href="{$author->getUrl()|escape:"quotes"}">{$author->getUrl()|escape}</a></td>
-		</tr>
+		<div class="col-md-12">
+			<div class="label col-md-2">{translate key="user.url"}</div>
+			<div class="col-md-10"><a href="{$author->getUrl()|escape:"quotes"}">{$author->getUrl()|escape}</a></div>
+		</div>
 	{/if}
-	<tr valign="top">
-		<td class="label">{translate key="user.affiliation"}</td>
-		<td class="value">{$author->getLocalizedAffiliation()|escape|nl2br|default:"&mdash;"}</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{translate key="common.country"}</td>
-		<td class="value">{$author->getCountryLocalized()|escape|default:"&mdash;"}</td>
-	</tr>
+	<div class="col-md-12">
+		<div class="label col-md-2">{translate key="user.affiliation"}</div>
+		<div class="col-md-10">{$author->getLocalizedAffiliation()|escape|nl2br|default:"&mdash;"}</div>
+	</div>
+	<div class="col-md-12">
+		<div class="label col-md-2">{translate key="common.country"}</div>
+		<div class="col-md-10">{$author->getCountryLocalized()|escape|default:"&mdash;"}</div>
+	</div>
 	{if $currentJournal->getSetting('requireAuthorCompetingInterests')}
-		<tr valign="top">
-			<td class="label">
+		<div class="col-md-12">
+			<div class="label col-md-2">
 				{url|assign:"competingInterestGuidelinesUrl" page="information" op="competingInterestGuidelines"}
 				{translate key="author.competingInterests" competingInterestGuidelinesUrl=$competingInterestGuidelinesUrl}
-			</td>
-			<td class="value">{$author->getLocalizedCompetingInterests()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
-		</tr>
+			</div>
+			<div class="col-md-10">{$author->getLocalizedCompetingInterests()|strip_unsafe_html|nl2br|default:"&mdash;"}</div>
+		</div>
 	{/if}
-	<tr valign="top">
-		<td class="label">{translate key="user.biography"}</td>
-		<td class="value">{$author->getLocalizedBiography()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
-	</tr>
+	<div class="col-md-12">
+		<div class="label col-md-2">{translate key="user.biography"}</div>
+		<div class="col-md-10">{$author->getLocalizedBiography()|strip_unsafe_html|nl2br|default:"&mdash;"}</div>
+	</div>
 	{if $author->getPrimaryContact()}
-		<tr valign="top">
-			<td colspan="2" class="label">{translate key="author.submit.selectPrincipalContact"}</td>
-		</tr>
+		<div class="col-md-12">
+			<div class="label col-md-12" style="font-style: italic;text-align:center;">{translate key="author.submit.selectPrincipalContact"}</div>
+		</div>
 	{/if}
-	{if !$smarty.foreach.authors.last}
-		<tr>
-			<td colspan="2" class="separator">&nbsp;</td>
-		</tr>
-	{/if}
-	{/foreach}
-</table>
+</div>
+{/foreach}
 </div>
 
 <div id="titleAndAbstract">
 <h4>{translate key="submission.titleAndAbstract"}</h4>
 
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="article.title"}</td>
-		<td width="80%" class="value">{$submission->getLocalizedTitle()|strip_unsafe_html|default:"&mdash;"}</td>
-	</tr>
+<div class="row">
+	<div class="col-md-12">
+		<div class="label col-md-2">{translate key="article.title"}</div>
+		<div class="col-md-10">{$submission->getLocalizedTitle()|strip_unsafe_html|default:"&mdash;"}</div>
+	</div>
 
-	<tr>
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{translate key="article.abstract"}</td>
-		<td class="value">{$submission->getLocalizedAbstract()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
-	</tr>
-</table>
+	<div class="col-md-12">
+		<div class="label col-md-2">{translate key="article.abstract"}</div>
+		<div class="col-md-10">{$submission->getLocalizedAbstract()|strip_unsafe_html|nl2br|default:"&mdash;"}</div>
+	</div>
+</div>
 </div>
 
 <div id="indexing">
 <h4>{translate key="submission.indexing"}</h4>
 	
-<table width="100%" class="data">
+<div class="row">
 	{if $currentJournal->getSetting('metaDiscipline')}
-		<tr valign="top">
-			<td width="20%" class="label">{translate key="article.discipline"}</td>
-			<td width="80%" class="value">{$submission->getLocalizedDiscipline()|escape|default:"&mdash;"}</td>
-		</tr>
-		<tr>
-			<td colspan="2" class="separator">&nbsp;</td>
-		</tr>
+	<div class="col-md-12">
+		<div class="label col-md-2">{translate key="article.discipline"}</div>
+		<div class="col-md-10">{$submission->getLocalizedDiscipline()|escape|default:"&mdash;"}</div>
+	</div>
 	{/if}
 	{if $currentJournal->getSetting('metaSubjectClass')}
-		<tr valign="top">
-			<td width="20%" class="label">{translate key="article.subjectClassification"}</td>
-			<td width="80%" class="value">{$submission->getLocalizedSubjectClass()|escape|default:"&mdash;"}</td>
-		</tr>
-		<tr>
-			<td colspan="2" class="separator">&nbsp;</td>
-		</tr>
+	<div class="col-md-12">
+		<div class="label col-md-2">{translate key="article.subjectClassification"}</div>
+		<div class="col-md-10">{$submission->getLocalizedSubjectClass()|escape|default:"&mdash;"}</div>
+	</div>
 	{/if}
 	{if $currentJournal->getSetting('metaSubject')}
-		<tr valign="top">
-			<td width="20%" class="label">{translate key="article.subject"}</td>
-			<td width="80%" class="value">{$submission->getLocalizedSubject()|escape|default:"&mdash;"}</td>
-		</tr>
-		<tr>
-			<td colspan="2" class="separator">&nbsp;</td>
-		</tr>
+		<div class="col-md-12">
+			<div class="label col-md-2">{translate key="article.subject"}</div>
+			<div class="col-md-10">{$submission->getLocalizedSubject()|escape|default:"&mdash;"}</div>
+		</div>
 	{/if}
 	{if $currentJournal->getSetting('metaCoverage')}
-		<tr valign="top">
-			<td width="20%" class="label">{translate key="article.coverageGeo"}</td>
-			<td width="80%" class="value">{$submission->getLocalizedCoverageGeo()|escape|default:"&mdash;"}</td>
-		</tr>
-		<tr>
-			<td colspan="2" class="separator">&nbsp;</td>
-		</tr>
-		<tr valign="top">
-			<td class="label">{translate key="article.coverageChron"}</td>
-			<td class="value">{$submission->getLocalizedCoverageChron()|escape|default:"&mdash;"}</td>
-		</tr>
-		<tr>
-			<td colspan="2" class="separator">&nbsp;</td>
-		</tr>
-		<tr valign="top">
-			<td class="label">{translate key="article.coverageSample"}</td>
-			<td class="value">{$submission->getLocalizedCoverageSample()|escape|default:"&mdash;"}</td>
-		</tr>
-		<tr>
-			<td colspan="2" class="separator">&nbsp;</td>
-		</tr>
+		<div class="col-md-12">
+			<div class="label col-md-2">{translate key="article.coverageGeo"}</div>
+			<div class="col-md-10">{$submission->getLocalizedCoverageGeo()|escape|default:"&mdash;"}</div>
+		</div>
+		<div class="col-md-12">
+			<div class="label col-md-2">{translate key="article.coverageChron"}</div>
+			<div class="col-md-10">{$submission->getLocalizedCoverageChron()|escape|default:"&mdash;"}</div>
+		</div>
+		<div class="col-md-12">
+			<div class="label col-md-2">{translate key="article.coverageSample"}</div>
+			<div class="col-md-10">{$submission->getLocalizedCoverageSample()|escape|default:"&mdash;"}</div>
+		</div>
 	{/if}
 	{if $currentJournal->getSetting('metaType')}
-		<tr valign="top">
-			<td width="20%" class="label">{translate key="article.type"}</td>
-			<td width="80%" class="value">{$submission->getLocalizedType()|escape|default:"&mdash;"}</td>
-		</tr>
-		<tr>
-			<td colspan="2" class="separator">&nbsp;</td>
-		</tr>
+		<div class="col-md-12">
+			<div class="label col-md-2">{translate key="article.type"}</div>
+			<div class="col-md-10">{$submission->getLocalizedType()|escape|default:"&mdash;"}</div>
+		</div>
 	{/if}
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="article.language"}</td>
-		<td width="80%" class="value">{$submission->getLanguage()|escape|default:"&mdash;"}</td>
-	</tr>
-</table>
+	<div class="col-md-12">
+		<div class="label col-md-2">{translate key="article.language"}</div>
+		<div class="col-md-10">{$submission->getLanguage()|escape|default:"&mdash;"}</div>
+	</div>
+</div>
 </div>
 
 <div id="supportingAgencies">
 <h4>{translate key="submission.supportingAgencies"}</h4>
 	
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="submission.agencies"}</td>
-		<td width="80%" class="value">{$submission->getLocalizedSponsor()|escape|default:"&mdash;"}</td>
-	</tr>
-</table>
+<div class="row">
+	<div class="col-md-12">
+		<div class="label col-md-2">{translate key="submission.agencies"}</div>
+		<div class="col-md-10">{$submission->getLocalizedSponsor()|escape|default:"&mdash;"}</div>
+	</div>
+</div>
 </div>
 
 {call_hook name="Templates::Submission::Metadata::Metadata::AdditionalMetadata"}
@@ -181,12 +152,12 @@
 	<div id="citations">
 	<h4>{translate key="submission.citations"}</h4>
 
-	<table width="100%" class="data">
-		<tr valign="top">
-			<td width="20%" class="label">{translate key="submission.citations"}</td>
-			<td width="80%" class="value">{$submission->getCitations()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
-		</tr>
-	</table>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="label col-md-2">{translate key="submission.citations"}</div>
+			<div class="col-md-10">{$submission->getCitations()|strip_unsafe_html|nl2br|default:"&mdash;"}</div>
+		</div>
+	</div>
 	</div>
 {/if}
 

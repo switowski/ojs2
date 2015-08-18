@@ -12,7 +12,7 @@
 {assign var=proofreader value=$submission->getUserBySignoffType('SIGNOFF_PROOFREADING_PROOFREADER')}
 
 <div id="proofread">
-<h3>{translate key="submission.proofreading"}</h3>
+<div class="page-header"><h3>{translate key="submission.proofreading"}</h3></div>
 
 {if $useProofreaders}
 <table width="100%" class="data">
@@ -23,15 +23,18 @@
 </table>
 {/if}
 
-<a href="{url op="viewMetadata" path=$proofSignoff->getAssocId()}" class="action" target="_new">{translate key="submission.reviewMetadata"}</a>
+<a href="{url op="viewMetadata" path=$proofSignoff->getAssocId()}" class="action btn btn-default btn-xs" target="_new"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">subject</i> {translate key="submission.reviewMetadata"}</a>
 
-<table width="100%" class="info">
+<table width="100%" class="info table table-striped table-condensed">
+<thead>
 	<tr>
 		<td width="40%" colspan="2">&nbsp;</td>
 		<td width="20%" class="heading">{translate key="submission.request"}</td>
 		<td width="20%" class="heading">{translate key="submission.underway"}</td>
 		<td width="20%" class="heading">{translate key="submission.complete"}</td>
 	</tr>
+</thead>
+<tbody>
 	<tr>
 		<td width="5%">1.</td>
 		<td width="35%">{translate key="user.role.author"}</td>
@@ -65,21 +68,19 @@
 		<td>{$layoutEditorProofreadSignoff->getDateUnderway()|date_format:$dateFormatShort|default:"&mdash;"}</td>
 		<td>{$layoutEditorProofreadSignoff->getDateCompleted()|date_format:$dateFormatShort|default:"&mdash;"}</td>
 	</tr>
-	<tr>
-		<td colspan="5" class="separator">&nbsp;</td>
-	</tr>
+</tbody>
 </table>
 
 {translate key="submission.proofread.corrections"}
 {if $submission->getMostRecentProofreadComment()}
         {assign var="comment" value=$submission->getMostRecentProofreadComment()}
-        <a href="javascript:openComments('{url op="viewProofreadComments" path=$submission->getId() anchor=$comment->getId()}');" class="icon">{icon name="comment"}</a>{$comment->getDatePosted()|date_format:$dateFormatShort}
+        <a href="javascript:openComments('{url op="viewProofreadComments" path=$submission->getId() anchor=$comment->getId()}');" class="icon btn btn-default btn-xs">{icon name="comment"} {$comment->getDatePosted()|date_format:$dateFormatShort}</a>
 {else}
-        <a href="javascript:openComments('{url op="viewProofreadComments" path=$submission->getId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
+        <a href="javascript:openComments('{url op="viewProofreadComments" path=$submission->getId()}');" class="icon btn btn-default btn-xs">{icon name="comment"} {translate key="common.noComments"}</a>
 {/if}
 
 {if $currentJournal->getLocalizedSetting('proofInstructions')}
 &nbsp;&nbsp;
-<a href="javascript:openHelp('{url op="instructions" path="proof"}')" class="action">{translate key="submission.proofread.instructions"}</a>
+<a href="javascript:openHelp('{url op="instructions" path="proof"}')" class="action btn btn-default btn-xs"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">info_outline</i> {translate key="submission.proofread.instructions"}</a>
 {/if}
 </div>

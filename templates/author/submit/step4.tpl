@@ -31,50 +31,47 @@ function confirmForgottenUpload() {
 
 <p>{translate key="author.submit.supplementaryFilesInstructions"}</p>
 
-<table class="listing" width="100%">
-<tr>
-	<td colspan="5" class="headseparator">&nbsp;</td>
-</tr>
+<table class="table table-condensed table-stripped">
+<thead>
 <tr class="heading" valign="bottom">
-	<td width="5%">{translate key="common.id"}</td>
-	<td width="40%">{translate key="common.title"}</td>
-	<td width="25%">{translate key="common.originalFileName"}</td>
-	<td width="15%" class="nowrap">{translate key="common.dateUploaded"}</td>
-	<td width="15%" align="right">{translate key="common.action"}</td>
+	<td>{translate key="common.id"}</td>
+	<td>{translate key="common.title"}</td>
+	<td>{translate key="common.originalFileName"}</td>
+	<td class="nowrap">{translate key="common.dateUploaded"}</td>
+	<td align="right">{translate key="common.action"}</td>
 </tr>
-<tr>
-	<td colspan="6" class="headseparator">&nbsp;</td>
-</tr>
+</thead>
+<tbody>
 {foreach from=$suppFiles item=file}
 <tr valign="top">
 	<td>{$file->getSuppFileId()}</td>
 	<td>{$file->getSuppFileTitle()|escape}</td>
 	<td>{$file->getOriginalFileName()|escape}</td>
 	<td>{$file->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
-	<td align="right"><a href="{url op="submitSuppFile" path=$file->getSuppFileId() articleId=$articleId}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteSubmitSuppFile" path=$file->getSuppFileId() articleId=$articleId}" onclick="return confirm('{translate|escape:"jsparam" key="author.submit.confirmDeleteSuppFile"}')" class="action">{translate key="common.delete"}</a></td>
+	<td align="right">
+		<a href="{url op="submitSuppFile" path=$file->getSuppFileId() articleId=$articleId}" class="btn btn-default btn-xs"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">mode_edit</i> {translate key="common.edit"}</a>
+		<a href="{url op="deleteSubmitSuppFile" path=$file->getSuppFileId() articleId=$articleId}" onclick="return confirm('{translate|escape:"jsparam" key="author.submit.confirmDeleteSuppFile"}')" class="btn btn-danger btn-xs"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">delete</i> {translate key="common.delete"}</a>
+	</td>
 </tr>
 {foreachelse}
 <tr valign="top">
 	<td colspan="6" class="nodata">{translate key="author.submit.noSupplementaryFiles"}</td>
 </tr>
 {/foreach}
+</tbody>
 </table>
 
-<div class="separator"></div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="label col-md-3">{fieldLabel name="uploadSuppFile" key="author.submit.uploadSuppFile"}</div>
+		<div class="col-md-9">
+			<input type="file" name="uploadSuppFile" id="uploadSuppFile"  class="uploadField" /> <input name="submitUploadSuppFile" type="submit" class="button" value="{translate key="common.upload"}" />
+			{if $currentJournal->getSetting('showEnsuringLink')}<a class="action" href="javascript:openHelp('{get_help_id key="editorial.sectionEditorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.article.ensuringBlindReview"}</a>{/if}
+		</div>
+	</div>
+</div>
 
-<table class="data" width="100%">
-<tr>
-	<td width="30%" class="label">{fieldLabel name="uploadSuppFile" key="author.submit.uploadSuppFile"}</td>
-	<td width="70%" class="value">
-		<input type="file" name="uploadSuppFile" id="uploadSuppFile"  class="uploadField" /> <input name="submitUploadSuppFile" type="submit" class="button" value="{translate key="common.upload"}" />
-		{if $currentJournal->getSetting('showEnsuringLink')}<a class="action" href="javascript:openHelp('{get_help_id key="editorial.sectionEditorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.article.ensuringBlindReview"}</a>{/if}
-	</td>
-</tr>
-</table>
-
-<div class="separator"></div>
-
-<p><input type="submit" onclick="return confirmForgottenUpload()" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></p>
+<div class="row" style="text-align:center;margin-top:20px"><input type="submit" onclick="return confirmForgottenUpload()" value="NEXT STEP" class="btn btn-success btn-lg" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-default" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></div>
 
 </form>
 

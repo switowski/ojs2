@@ -12,7 +12,7 @@
 {assign var=proofreader value=$submission->getUserBySignoffType('SIGNOFF_PROOFREADING_PROOFREADER')}
 
 <div id="proofread">
-<h3>{translate key="submission.proofreading"}</h3>
+<div class="page-header"><h3>{translate key="submission.proofreading"}</h3></div>
 
 {if $useProofreaders}
 <table class="data" width="100%">
@@ -24,7 +24,8 @@
 </table>
 {/if}
 
-<table width="100%" class="info">
+<table width="100%" class="info table table-striped table-condensed">
+<thead>
 	<tr>
 		<td width="28%" colspan="2">&nbsp;</td>
 		<td width="18%" class="heading">{translate key="submission.request"}</td>
@@ -32,6 +33,8 @@
 		<td width="18%" class="heading">{translate key="submission.complete"}</td>
 		<td width="18%" class="heading">{translate key="submission.acknowledge"}</td>
 	</tr>
+</thead>
+<tbody>
 	<tr>
 		<td width="2%">1.</td>
 		<td width="26%">{translate key="user.role.author"}</td>
@@ -175,6 +178,7 @@
 	<tr>
 		<td colspan="6" class="separator">&nbsp;</td>
 	</tr>
+</tbody>
 </table>
 
 {translate key="submission.proofread.corrections"}

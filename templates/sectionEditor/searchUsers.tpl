@@ -15,23 +15,36 @@
 {/strip}
 
 <form id="submit" method="post" action="{url op="enrollSearch" path=$articleId}">
-	<select name="searchField" size="1" class="selectMenu">
-		{html_options_translate options=$fieldOptions selected=$searchField}
-	</select>
-	<select name="searchMatch" size="1" class="selectMenu">
-		<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
-		<option value="is"{if $searchMatch == 'is'} selected="selected"{/if}>{translate key="form.is"}</option>
-		<option value="startsWith"{if $searchMatch == 'startsWith'} selected="selected"{/if}>{translate key="form.startsWith"}</option>
-	</select>
-	<input type="text" size="15" name="search" class="textField" value="{$search|escape}" />&nbsp;<input type="submit" value="{translate key="common.search"}" class="button" />
+	<div class="col-md-3">
+		<select name="searchField" size="1" class="selectMenu">
+			{html_options_translate options=$fieldOptions selected=$searchField}
+		</select>
+	</div>
+	<div class="col-md-2">
+		<select name="searchMatch" size="1" class="selectMenu">
+			<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
+			<option value="is"{if $searchMatch == 'is'} selected="selected"{/if}>{translate key="form.is"}</option>
+			<option value="startsWith"{if $searchMatch == 'startsWith'} selected="selected"{/if}>{translate key="form.startsWith"}</option>
+		</select>
+	</div>
+	<div class="col-md-5">
+		<input type="text" size="15" name="search" class="textField" value="{$search|escape}" />
+	</div>
+	<div class="col-md-2">
+		<input type="submit" value="{translate key="common.search"}" class="button" />
+	</div>
 </form>
 
-<p>{foreach from=$alphaList item=letter}<a href="{url op="enrollSearch" path=$articleId searchInitial=$letter}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url op="enrollSearch" path=$articleId}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
+<div class="row col-md-12" style="margin-top: -10px;margin-bottom: -10px;"><hr></div>
+
+<div class="col-md-12">
+<p>{foreach from=$alphaList item=letter}<a class="btn btn-default btn-xs {if $letter == $searchInitial}active{/if}" href="{url op="enrollSearch" path=$articleId searchInitial=$letter}">{$letter|escape}</a> {/foreach}<a class="btn btn-default btn-xs {if $searchInitial==''}active{/if}" href="{url op="enrollSearch" path=$articleId}">{translate key="common.all"}</a></p>
+</div>
 
 <div id="users">
 <form action="{url op="enroll" path=$articleId}" method="post">
-<table width="100%" class="listing">
-<tr><td colspan="5" class="headseparator">&nbsp;</td></tr>
+<table class="table table-condensed">
+<thead>
 <tr class="heading" valign="bottom">
 	<td width="5%">&nbsp;</td>
 	<td width="25%">{translate key="user.username"}</td>
@@ -39,7 +52,8 @@
 	<td width="30%">{translate key="user.email"}</td>
 	<td width="13%">{translate key="common.action"}</td>
 </tr>
-<tr><td colspan="5" class="headseparator">&nbsp;</td></tr>
+</thead>
+<tbody>
 {iterate from=users item=user}
 {assign var="userid" value=$user->getId()}
 {assign var="stats" value=$statistics[$userid]}
@@ -48,24 +62,32 @@
 	<td><a class="action" href="{url op="userProfile" path=$userid}">{$user->getUsername()|escape}</a></td>
 	<td>{$user->getFullName(true)|escape}</td>
 	<td>{$user->getEmail(true)|escape}</td>
-	<td><a href="{url op="enroll" path=$articleId userId=$user->getId()}" class="action">{translate key="manager.people.enroll"}</a></td>
+	<td>
+		<a class="btn btn-success btn-xs" href="{url op="enroll" path=$articleId userId=$user->getId()}">
+			<i class="material-icons" style="font-size: 20px;padding-top:2px">trending_down</i>
+			<span style="position: relative;float: right;padding: 5px;">{translate key="manager.people.enroll"}</span>
+		</a>
+	</td>
 </tr>
-<tr><td colspan="5" class="{if $users->eof()}end{/if}separator">&nbsp;</td></tr>
+<tr>
 {/iterate}
 {if $users->wasEmpty()}
 	<tr>
 	<td colspan="5" class="nodata">{translate key="common.none"}</td>
 	</tr>
-	<tr><td colspan="5" class="endseparator">&nbsp;</td></tr>
 {else}
 	<tr>
-		<td colspan="3" align="left">{page_info iterator=$users}</td>
-		<td colspan="2" align="right">{page_links anchor="users" name="users" iterator=$users searchInitial=$searchInitial searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth}</td>
+		<td colspan="3" align="left" style="font-weight: bold;padding-top:10px;">{page_info iterator=$users}</td>
+		<td colspan="2" align="right" class="footer-table-numbers">{page_links anchor="users" name="users" iterator=$users searchInitial=$searchInitial searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth}</td>
 	</tr>
 {/if}
+</thead>
 </table>
 </div>
-<input type="submit" value="{translate key="manager.people.enrollSelected"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="manager" escape=false}'" />
+<div style="float:right">
+	<input type="submit" value="{translate key="manager.people.enrollSelected"}" class="btn btn-success btn-sm" /> 
+	<input type="button" value="{translate key="common.cancel"}" class="btn btn-danger btn-sm" onclick="document.location.href='{url page="manager" escape=false}'" />
+</div>
 
 </form>
 

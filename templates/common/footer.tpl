@@ -8,6 +8,7 @@
  * Common site footer.
  *
  *}
+ <div class="footer col-md-12">
 {strip}
 {if $pageFooter==''}
 	{if $currentJournal && $currentJournal->getSetting('onlineIssn')}
@@ -22,3 +23,4 @@
 {/if}
 {include file="core:common/footer.tpl"}
 {/strip}
+</div>

@@ -13,12 +13,15 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<ul class="menu">
-	<li{if ($pageToDisplay == "active")} class="current"{/if}><a href="{url path="active"}">{translate key="common.queue.short.active"}</a></li>
-	<li{if ($pageToDisplay == "completed")} class="current"{/if}><a href="{url path="completed"}">{translate key="common.queue.short.completed"}</a></li>
-</ul>
+<script>
+	var alternativeTitle = '<h2>{translate key="article.submissions"}</h2>';
+</script>
 
-<br />
+
+<ul class="nav nav-tabs nav-justified">
+	<li role="presentation"{if ($pageToDisplay == "active")} class="active"{/if}><a href="{url path="active"}">{translate key="common.queue.short.active"}</a></li>
+	<li role="presentation"{if ($pageToDisplay == "completed")} class="active"{/if}><a href="{url path="completed"}">{translate key="common.queue.short.completed"}</a></li>
+</ul>
 
 {include file="copyeditor/$pageToDisplay.tpl"}
 

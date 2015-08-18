@@ -30,25 +30,34 @@
 	{$metaCustomHeaders}
 	{if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" type="{$displayFavicon.mimeType|escape}" />{/if}
 	
+	<!-- Base Jquery -->
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>
+	<!-- Hide Document until are the javascript style changes are aplied -->
+	<script>
+	
+	</script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js"></script>
+	
+	<!-- Compatibility after the upgrade to version 1.11.3 of jQuery -->
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery-migrate-1.2.1.min.js"></script>
+	
 	<!-- W3.CSS -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	
+	<!-- Jquery UI Style -->
+	<link href="{$baseUrl}/lib/pkp/styles/lib/jqueryUi/jqueryUi.css" rel="stylesheet">
+	<link href="{$baseUrl}/lib/pkp/styles/lib/jquery.pnotify.default.css" rel="stylesheet">
+	
 	<!-- Bootstrap style -->
 	<link href="{$baseUrl}/styles/bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link href="{$baseUrl}/styles/bootstrap/bootstrap-theme.min.css" rel="stylesheet">
 	
 	<!-- Common style that overwrite the bootstrap to make the changes -->
 	<link rel="stylesheet" href="{$baseUrl}/styles/common.css" type="text/css" />
 	
 	<!-- Roboto font for the title -->
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
-
-	<!-- Base Jquery -->
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js"></script>
 	
-	<!-- Compatibility after the upgrade to version 1.11.3 of jQuery -->
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery-migrate-1.2.1.js"></script>
-
 	<!-- Default global locale keys for JavaScript -->
 	{include file="common/jsLocaleKeys.tpl" }
 
@@ -119,29 +128,7 @@
 </head>
 <body id="pkp-{$pageTitle|replace:'.':'-'}">
 <div id="container">
-<a href="{url page="index"}" style="text-decoration: none">
-<div id="header">
-<div id="headerTitle" class="jumbotron">
-<h1>
-{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
-	<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
-{/if}
-{if $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
-	<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" {if $displayPageHeaderTitleAltText != ''}alt="{$displayPageHeaderTitleAltText|escape}"{else}alt="{translate key="common.pageHeader.altText"}"{/if} />
-{elseif $displayPageHeaderTitle}
-	{$displayPageHeaderTitle}
-{elseif $alternatePageHeader}
-	{$alternatePageHeader}
-{elseif $siteTitle}
-	{$siteTitle}
-{else}
-	{$applicationName}
-{/if}
-</h1>
-</div>
-</div>
-</a>
-<nav id="navigation-bar" class="navbar navbar-default">
+<nav id="navigation-bar" class="navbar navbar-default navbar-fixed-top">
     <div class="col-md-1">
 		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 			<span class="sr-only">Toggle navigation</span>
@@ -186,7 +173,7 @@
 		<div id="user-nav-on"  class="user-nav user-nav-on">
 			<a href="#" class="dropdown-toggle user-option" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 				<div style="width:100%;height:30px">
-					<span class="hello-text" style="">Hello,</span>
+					<span class="hello-text" style="">You are logged in as...</span>
 					<span class="menu-option user-name"><strong>{$emailUser}</strong></span>
 				</div>
 			</a>
@@ -206,12 +193,34 @@
     
     <form method="post" id="searchForm" action="{url page="search"}">
 		<div class="search-nav">
-			<input id="simpleQuery" name="simpleQuery" type="text" class="form-control" placeholder="{translate key="common.search"}">
+			<input id="simpleQuery" name="simpleQuery" type="text" class="form-control search-input" placeholder="{translate key="common.search"}">
 			<input type="hidden" id="searchField" name="searchField" value="query">
 			<button type="submit" class="btn btn-default btn-sm"><i class="material-icons w3-xlarge">search</i></button>
 		</div>
 	</form>
 </nav>
+<a href="{url page="index"}" style="text-decoration: none">
+	<div id="header">
+		<div id="headerTitle" class="jumbotron">
+			<h1>
+				{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
+					<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
+				{/if}
+				{if $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
+					<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" {if $displayPageHeaderTitleAltText != ''}alt="{$displayPageHeaderTitleAltText|escape}"{else}alt="{translate key="common.pageHeader.altText"}"{/if} />
+				{elseif $displayPageHeaderTitle}
+					{$displayPageHeaderTitle}
+				{elseif $alternatePageHeader}
+					{$alternatePageHeader}
+				{elseif $siteTitle}
+					{$siteTitle}
+				{else}
+					{$applicationName}
+				{/if}
+			</h1>
+		</div>
+	</div>
+</a>
 
 <div id="body">
 

@@ -14,25 +14,29 @@
 {/strip}
 
 {if !$isLayoutEditor}{* Layout Editors can also access this page. *}
-	<ul class="menu">
-		<li><a href="{url op="createIssue"}">{translate key="editor.navigation.createIssue"}</a></li>
-		<li{if $unpublished} class="current"{/if}><a href="{url op="futureIssues"}">{translate key="editor.navigation.futureIssues"}</a></li>
-		<li{if !$unpublished} class="current"{/if}><a href="{url op="backIssues"}">{translate key="editor.navigation.issueArchive"}</a></li>
+	<ul class="nav nav-tabs nav-justified">
+		<li role="presentation"><a href="{url op="createIssue"}">{translate key="editor.navigation.createIssue"}</a></li>
+		<li role="presentation" {if $unpublished} class="active"{/if}><a href="{url op="futureIssues"}">{translate key="editor.navigation.futureIssues"}</a></li>
+		<li role="presentation" {if !$unpublished} class="active"{/if}><a href="{url op="backIssues"}">{translate key="editor.navigation.issueArchive"}</a></li>
 	</ul>
 {/if}
-<br />
+
+<script>
+	var alternativeTitle = '';
+</script>
 
 <form action="#">
-{translate key="issue.issue"}: <select name="issue" class="selectMenu" onchange="if(this.options[this.selectedIndex].value > 0) location.href='{url|escape:"javascript" op="issueToc" path="ISSUE_ID" escape=false}'.replace('ISSUE_ID', this.options[this.selectedIndex].value)" size="1">{html_options options=$issueOptions selected=$issueId}</select>
+<select name="issue" class="selectMenu" onchange="if(this.options[this.selectedIndex].value > 0) location.href='{url|escape:"javascript" op="issueToc" path="ISSUE_ID" escape=false}'.replace('ISSUE_ID', this.options[this.selectedIndex].value)" size="1">{html_options options=$issueOptions selected=$issueId}</select>
 </form>
 
-<div class="separator"></div>
+{if $unpublished}<div class="row col-md-12"><a href="{url page="issue" op="view" path=$issue->getBestIssueId()}" class="btn btn-default">{translate key="editor.issues.previewIssue"}</a></div>{/if}
 
-<ul class="menu">
-	<li><a href="{url op="issueToc" path=$issueId}">{translate key="issue.toc"}</a></li>
-	<li><a href="{url op="issueData" path=$issueId}">{translate key="editor.issues.issueData"}</a></li>
-	<li class="current"><a href="{url op="issueGalleys" path=$issueId}">{translate key="editor.issues.galleys"}</a></li>
-	{if $unpublished}<li><a href="{url page="issue" op="view" path=$issue->getBestIssueId()}">{translate key="editor.issues.previewIssue"}</a></li>{/if}
+<div class="clearfix"></div>
+
+<ul class="nav nav-tabs nav-justified" style="margin-top:20px">
+	<li role="presentation"><a href="{url op="issueToc" path=$issueId}">{translate key="issue.toc"}</a></li>
+	<li role="presentation"><a href="{url op="issueData" path=$issueId}">{translate key="editor.issues.issueData"}</a></li>
+	<li role="presentation" class="active"><a href="{url op="issueGalleys" path=$issueId}">{translate key="editor.issues.galleys"}</a></li>
 </ul>
 
 <form id="issueGalleys" method="post" action="{url op="uploadIssueGalley" path=$issueId}" enctype="multipart/form-data">
@@ -52,10 +56,8 @@
 	</tr>
 {/if}
 </table>
-<table width="100%" class="info">
-	<tr>
-		<td colspan="6" class="separator">&nbsp;</td>
-	</tr>
+<table width="100%" class="table table-condensed table-striped">
+<thead>
 	<tr>
 		<td colspan="2" class="heading">{translate key="submission.layout.galleyFormat"}</td>
 		<td class="heading">{translate key="common.file"}</td>
@@ -63,6 +65,8 @@
 		<td class="heading">{translate key="common.action"}</td>
 		<td class="heading">{translate key="submission.views"}</td>
 	</tr>
+</thead>
+<tbody>
 	{foreach name=galleys from=$issueGalleys item=galley}
 	<tr>
 		<td width="2%">{$smarty.foreach.galleys.iteration}.</td>
@@ -79,9 +83,7 @@
 		<td colspan="6" class="nodata">{translate key="editor.issues.noneIssueGalleys"}</td>
 	</tr>
 	{/foreach}
-	<tr>
-		<td colspan="6" class="separator">&nbsp;</td>
-	</tr>
+</tbody>
 </table>
 	<br />
 	<input type="file" name="galleyFile" id="galleyFile" size="10" class="uploadField" />

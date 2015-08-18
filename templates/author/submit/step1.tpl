@@ -17,8 +17,6 @@
 	{assign var="howToKeyName" value="author.submit.howToSubmitNoPhone"}
 {/if}
 
-<p>{translate key=$howToKeyName supportName=$journalSettings.supportName supportEmail=$journalSettings.supportEmail supportPhone=$journalSettings.supportPhone}</p>
-
 <div class="separator"></div>
 
 <form id="submit" method="post" action="{url op="saveSubmit" path=$submitStep}" onsubmit="return checkSubmissionChecklist()">
@@ -38,19 +36,17 @@
 {else}{* if count($sectionOptions) == 2 *}
 <div id="section">
 
-<h3>{translate key="author.submit.journalSection"}</h3>
+<div class="page-header" style="margin-top: 0;"><h3>{translate key="author.submit.journalSection"}</h3></div>
 
 {url|assign:"url" page="about"}
 <p>{translate key="author.submit.journalSectionDescription" aboutUrl=$url}</p>
 
 <input type="hidden" name="submissionChecklist" value="1" />
 
-<table class="data" width="100%">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="sectionId" required="true" key="section.section"}</td>
-		<td width="80%" class="value"><select name="sectionId" id="sectionId" size="1" class="selectMenu">{html_options options=$sectionOptions selected=$sectionId}</select></td>
-	</tr>
-</table>
+<div class="col-md-12">
+	<div class="label col-md-2">{fieldLabel name="sectionId" required="true" key="section.section"}</div>
+	<div class="col-md-10"><select name="sectionId" id="sectionId" size="1" class="selectMenu">{html_options options=$sectionOptions selected=$sectionId}</select></div>
+</dvi>
 
 </div>{* section *}
 
@@ -67,15 +63,13 @@
 	{* There are several submission locales available; allow choice *}
 	<div id="submissionLocale">
 
-	<h3>{translate key="author.submit.submissionLocale"}</h3>
+	<div class="page-header"><h3>{translate key="author.submit.submissionLocale"}</h3></div>
 	<p>{translate key="author.submit.submissionLocaleDescription"}</p>
 
-	<table class="data" width="100%">
-		<tr valign="top">
-			<td width="20%" class="label">{fieldLabel name="locale" required="true" key="article.language"}</td>
-			<td width="80%" class="value"><select name="locale" id="locale" size="1" class="selectMenu">{html_options options=$supportedSubmissionLocaleNames selected=$locale}</select></td>
-		</tr>
-	</table>
+	<div class="col-md-12">
+		<div class="label col-md-2">{fieldLabel name="locale" required="true" key="article.language"}</div>
+		<div class="col-md-10"><select name="locale" id="locale" size="1" class="selectMenu">{html_options options=$supportedSubmissionLocaleNames selected=$locale}</select></div>
+	</div>
 
 	<div class="separator"></div>
 
@@ -109,33 +103,39 @@ function checkSubmissionChecklist() {
 	<div class="separator"></div>
 {/if}
 
+{assign var="number" value="1"}
 {if $currentJournal->getLocalizedSetting('submissionChecklist')}
 {foreach name=checklist from=$currentJournal->getLocalizedSetting('submissionChecklist') key=checklistId item=checklistItem}
 	{if $checklistItem.content}
 		{if !$notFirstChecklistItem}
 			{assign var=notFirstChecklistItem value=1}
 			<div id="checklist">
-			<h3>{translate key="author.submit.submissionChecklist"}</h3>
-			<p>{translate key="author.submit.submissionChecklistDescription"}</p>
-			<table width="100%" class="data">
+				<div class="page-header"><h3>{translate key="author.submit.submissionChecklist"}</h3></div>
+				
+				<div id="div-all-checklist" class="row" style="margin-bottom:20px">
+					<div style="display:none"><input onclick="selectChecklist(this)" type="checkbox" id="checklist-all" value="" /></div>
+					<div>{translate key="author.submit.submissionChecklistDescription"}</div>
+				</div>
+				
+				<div class="row">
 		{/if}
-		<tr valign="top">
-			<td width="5%"><input type="checkbox" id="checklist-{$smarty.foreach.checklist.iteration}" name="checklist[]" value="{$checklistId|escape}"{if $articleId || $submissionChecklist} checked="checked"{/if} /></td>
-			<td width="95%"><label for="checklist-{$smarty.foreach.checklist.iteration}">{$checklistItem.content|nl2br}</label></td>
+					<div class="col-xs-1"><input class="checkbox-remove" type="checkbox" id="checklist-{$smarty.foreach.checklist.iteration}" name="checklist[]" value="{$checklistId|escape}"{if $articleId || $submissionChecklist} checked="checked"{/if} /></div>
+					<div class="col-xs-11"><td width="95%"><label for="checklist-{$smarty.foreach.checklist.iteration}"><span style="float:left">{$number}.&nbsp;</span>{$checklistItem.content|nl2br}</div>
 		</tr>
+		{assign var=number value=$number+1}
 	{/if}
 {/foreach}
 {if $notFirstChecklistItem}
-	</table>
-	</div>{* checklist *}
-	<div class="separator"></div>
+				</div>
+	
+			</div>{* checklist *}
 {/if}
 
 {/if}{* if count($sectionOptions) <= 1 *}
 
 {if $currentJournal->getLocalizedSetting('copyrightNotice') != ''}
 <div id="copyrightNotice">
-<h3>{translate key="about.copyrightNotice"}</h3>
+<div class="page-header"><h3>{translate key="about.copyrightNotice"}</h3></div>
 
 <p>{$currentJournal->getLocalizedSetting('copyrightNotice')|nl2br}</p>
 
@@ -154,7 +154,7 @@ function checkSubmissionChecklist() {
 {/if}{* $currentJournal->getLocalizedSetting('copyrightNotice') != '' *}
 
 <div id="privacyStatement">
-<h3>{translate key="author.submit.privacyStatement"}</h3>
+<div class="page-header"><h3>{translate key="author.submit.privacyStatement"}</h3></div>
 <br />
 {$currentJournal->getLocalizedSetting('privacyStatement')|nl2br}
 </div>
@@ -162,21 +162,20 @@ function checkSubmissionChecklist() {
 <div class="separator"></div>
 
 <div id="commentsForEditor">
-<h3>{translate key="author.submit.commentsForEditor"}</h3>
+<div class="page-header"><h3>{translate key="author.submit.commentsForEditor"}</h3></div>
 
-<table width="100%" class="data">
-<tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="commentsToEditor" key="author.submit.comments"}</td>
-	<td width="80%" class="value"><textarea name="commentsToEditor" id="commentsToEditor" rows="3" cols="40" class="textArea">{$commentsToEditor|escape}</textarea></td>
-</tr>
+<div class="col-md-12">
+	<div class="label col-md-2">{fieldLabel name="commentsToEditor" key="author.submit.comments"}</div>
+	<div class="col-md-10"><textarea name="commentsToEditor" id="commentsToEditor" rows="3" cols="40" class="textArea">{$commentsToEditor|escape}</textarea></div>
+</div>
 </table>
 </div>{* commentsForEditor *}
 
-<div class="separator"></div>
+<div class="clearfix"></div>
 
-<p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="{if $articleId}confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}'){else}document.location.href='{url page="author" escape=false}'{/if}" /></p>
+<div class="row" style="text-align:center;margin-top:20px"><input type="submit" value="NEXT STEP" class="btn btn-success btn-lg" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-default" onclick="{if $articleId}confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}'){else}document.location.href='{url page="author" escape=false}'{/if}" /></div>
 
-<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
+<div class="row" ><span class="formRequired">{translate key="common.requiredField"}</span></div>
 
 </form>
 

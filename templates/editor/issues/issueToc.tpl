@@ -29,30 +29,34 @@ $(document).ready(function() {
 </script>
 
 {if !$isLayoutEditor}{* Layout Editors can also access this page. *}
-	<ul class="menu">
-		<li><a href="{url op="createIssue"}">{translate key="editor.navigation.createIssue"}</a></li>
-		<li{if $unpublished} class="current"{/if}><a href="{url op="futureIssues"}">{translate key="editor.navigation.futureIssues"}</a></li>
-		<li{if !$unpublished} class="current"{/if}><a href="{url op="backIssues"}">{translate key="editor.navigation.issueArchive"}</a></li>
+	<ul class="nav nav-tabs nav-justified">
+		<li role="presentation"><a href="{url op="createIssue"}">{translate key="editor.navigation.createIssue"}</a></li>
+		<li role="presentation" {if $unpublished} class="active"{/if}><a href="{url op="futureIssues"}">{translate key="editor.navigation.futureIssues"}</a></li>
+		<li role="presentation" {if !$unpublished} class="active"{/if}><a href="{url op="backIssues"}">{translate key="editor.navigation.issueArchive"}</a></li>
 	</ul>
 {/if}
 
 {if not $noIssue}
-<br />
+<script>
+	var alternativeTitle = '';
+</script>
 
 <form action="#">
-{translate key="issue.issue"}: <select name="issue" class="selectMenu" onchange="if(this.options[this.selectedIndex].value > 0) location.href='{url|escape:"javascript" op="issueToc" path="ISSUE_ID" escape=false}'.replace('ISSUE_ID', this.options[this.selectedIndex].value)" size="1">{html_options options=$issueOptions|truncate:40:"..." selected=$issueId}</select>
+<select name="issue" class="selectMenu" onchange="if(this.options[this.selectedIndex].value > 0) location.href='{url|escape:"javascript" op="issueToc" path="ISSUE_ID" escape=false}'.replace('ISSUE_ID', this.options[this.selectedIndex].value)" size="1">{html_options options=$issueOptions|truncate:400:"..." selected=$issueId}</select>
 </form>
 
-<div class="separator"></div>
+{if $unpublished}<div class="row col-md-12"><a href="{url page="issue" op="view" path=$issue->getBestIssueId()}" class="btn btn-default">{translate key="editor.issues.previewIssue"}</a></div>{/if}
 
-<ul class="menu">
-	<li class="current"><a href="{url op="issueToc" path=$issueId}">{translate key="issue.toc"}</a></li>
-	<li><a href="{url op="issueData" path=$issueId}">{translate key="editor.issues.issueData"}</a></li>
-	<li><a href="{url op="issueGalleys" path=$issueId}">{translate key="editor.issues.galleys"}</a></li>
-	{if $unpublished}<li><a href="{url page="issue" op="view" path=$issue->getBestIssueId()}">{translate key="editor.issues.previewIssue"}</a></li>{/if}
+<div class="clearfix"></div>
+
+<ul class="nav nav-tabs nav-justified" style="margin-top:20px">
+	<li role="presentation" class="active"><a href="{url op="issueToc" path=$issueId}">{translate key="issue.toc"}</a></li>
+	<li role="presentation"><a href="{url op="issueData" path=$issueId}">{translate key="editor.issues.issueData"}</a></li>
+	<li role="presentation"><a href="{url op="issueGalleys" path=$issueId}">{translate key="editor.issues.galleys"}</a></li>
 	{call_hook name="Templates::Editor::Issues::IssueToc::IssuePages"}
 </ul>
 
+<div class="panel panel-default" style="margin-top:-1px">
 <h3>{translate key="issue.toc"}</h3>
 {url|assign:"url" op="resetSectionOrder" path=$issueId}
 {if $customSectionOrderingExists}{translate key="editor.issues.resetSectionOrder" url=$url}<br/>{/if}
@@ -121,7 +125,7 @@ $(document).ready(function() {
 <div class="separator"></div>
 {/foreach}
 
-<input type="submit" value="{translate key="common.save"}" class="button defaultButton" />
+<input type="submit" value="{translate key="common.save"}" class="btn btn-success" />
 {if $unpublished && !$isLayoutEditor}
 	{* Unpublished; give the option to publish it. *}
 	<input type="button" value="{translate key="editor.issues.publishIssue"}" onclick="confirmAction('{url op="publishIssue" path=$issueId}', '{translate|escape:"jsparam" key="editor.issues.confirmPublish"}')" class="button" />
@@ -131,7 +135,7 @@ $(document).ready(function() {
 {/if}
 
 </form>
-
+</div>
 {/if}
 
 {include file="common/footer.tpl"}

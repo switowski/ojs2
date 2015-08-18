@@ -14,23 +14,24 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<ul class="menu">
-	<li><a href="{url op="submission" path=$submission->getId()}">{translate key="submission.summary"}</a></li>
-	<li><a href="{url op="submissionReview" path=$submission->getId()}">{translate key="submission.review"}</a></li>
-	<li class="current"><a href="{url op="submissionEditing" path=$submission->getId()}">{translate key="submission.editing"}</a></li>
+<script>
+	var alternativeTitle = '<h2>{translate key="article.submission"} {$submission->getId()}</h2>';
+</script>
+
+<ul class="nav nav-tabs nav-justified">
+	<li role="presentation"><a href="{url op="submission" path=$submission->getId()}">{translate key="submission.summary"}</a></li>
+	<li role="presentation"><a href="{url op="submissionReview" path=$submission->getId()}">{translate key="submission.review"}</a></li>
+	<li role="presentation" class="active"><a href="{url op="submissionEditing" path=$submission->getId()}">{translate key="submission.editing"}</a></li>
 </ul>
+
 
 {include file="author/submission/summary.tpl"}
 
-<div class="separator"></div>
-
 {include file="author/submission/copyedit.tpl"}
 
-<div class="separator"></div>
+<div class="clearfix"></div>
 
 {include file="author/submission/layout.tpl"}
-
-<div class="separator"></div>
 
 {include file="author/submission/proofread.tpl"}
 

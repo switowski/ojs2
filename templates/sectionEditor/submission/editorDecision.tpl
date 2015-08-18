@@ -9,58 +9,69 @@
  *
  *}
 <div id="editorDecision">
-<h3>{translate key="submission.editorDecision"}</h3>
+<div class="page-header"><h3>{translate key="submission.editorDecision"}</h3></div>
 
-<table id="table1" width="100%" class="data">
-<tr valign="top">
-	<td class="label" width="20%">{translate key="editor.article.selectDecision"}</td>
-	<td width="80%" class="value">
-		<form method="post" action="{url op="recordDecision"}">
-			<input type="hidden" name="articleId" value="{$submission->getId()}" />
-			<select name="decision" size="1" class="selectMenu"{if not $allowRecommendation} disabled="disabled"{/if}>
-				{html_options_translate options=$editorDecisionOptions selected=$lastDecision}
-			</select>
-			<input type="submit" onclick="return confirm('{translate|escape:"jsparam" key="editor.submissionReview.confirmDecision"}')" name="submit" value="{translate key="editor.article.recordDecision"}" {if not $allowRecommendation}disabled="disabled"{/if} class="button" />
-			{if not $allowRecommendation}&nbsp;&nbsp;{translate key="editor.article.cannotRecord"}{/if}
-		</form>
-	</td>
-</tr>
-<tr valign="top">
-	<td class="label">{translate key="editor.article.decision"}</td>
-	<td class="value">
-		{foreach from=$submission->getDecisions($round) item=editorDecision key=decisionKey}
-			{if $decisionKey neq 0} | {/if}
-			{assign var="decision" value=$editorDecision.decision}
-			{translate key=$editorDecisionOptions.$decision}&nbsp;&nbsp;{if $editorDecision.dateDecided != 0}{$editorDecision.dateDecided|date_format:$dateFormatShort}{/if}
-		{foreachelse}
-			{translate key="common.none"}
-		{/foreach}
-	</td>
-</tr>
-<tr valign="top">
-	<td class="label">{translate key="submission.notifyAuthor"}</td>
-	<td class="value">
-		{url|assign:"notifyAuthorUrl" op="emailEditorDecisionComment" articleId=$submission->getId()}
-
-		{if $decision == SUBMISSION_EDITOR_DECISION_DECLINE}
-			{* The last decision was a decline; notify the user that sending this message will archive the submission. *}
-			{translate|escape:"quotes"|assign:"confirmString" key="editor.submissionReview.emailWillArchive"}
-			{icon name="mail" url=$notifyAuthorUrl onclick="return confirm('$confirmString')"}
-		{else}
-			{icon name="mail" url=$notifyAuthorUrl}
+<div class="well col-md-12">
+	<div class="col-md-12">
+		<div class="label col-md-2">{translate key="editor.article.selectDecision"}</div>
+		<div class="row col-md-10">
+			<form method="post" action="{url op="recordDecision"}">
+				<input type="hidden" name="articleId" value="{$submission->getId()}" />
+				<div class="col-md-9">
+					<select name="decision" size="1" class="selectMenu"{if not $allowRecommendation} disabled="disabled"{/if}>
+						{html_options_translate options=$editorDecisionOptions selected=$lastDecision}
+					</select>
+				</div>
+				<div class="col-md-2">
+					<input type="submit" onclick="return confirm('{translate|escape:"jsparam" key="editor.submissionReview.confirmDecision"}')" name="submit" value="{translate key="editor.article.recordDecision"}" {if not $allowRecommendation}disabled="disabled"{/if} class="button" />
+				</div>
+			</form>
+		</div>
+		{if not $allowRecommendation}
+			<div class="col-md-10 col-md-offset-2" style="font-style:italic">{translate key="editor.article.cannotRecord"}</div>
 		{/if}
+	</div>
+	<div class="col-md-12">
+		<div class="label col-md-2">{translate key="editor.article.decision"}</div>
+		<div class="col-md-10">
+			{foreach from=$submission->getDecisions($round) item=editorDecision key=decisionKey}
+				{assign var="decision" value=$editorDecision.decision}
+				{translate key=$editorDecisionOptions.$decision}&nbsp;&nbsp;{if $editorDecision.dateDecided != 0}{$editorDecision.dateDecided|date_format:$dateFormatShort}{/if}
+			{foreachelse}
+				{translate key="common.none"}
+			{/foreach}
+		</div>
+	</div>
+</div>
 
-		&nbsp;&nbsp;&nbsp;&nbsp;
-		{translate key="submission.editorAuthorRecord"}
-		{if $submission->getMostRecentEditorDecisionComment()}
-			{assign var="comment" value=$submission->getMostRecentEditorDecisionComment()}
-			<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getId() anchor=$comment->getId()}');" class="icon">{icon name="comment"}</a>&nbsp;&nbsp;{$comment->getDatePosted()|date_format:$dateFormatShort}
-		{else}
-			<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
-		{/if}
-	</td>
-</tr>
-</table>
+<div class="well col-md-12">
+	<div class="col-md-12">
+		<div class="label col-md-2">{translate key="submission.notifyAuthor"}</div>
+		<div class="col-md-10">
+			{url|assign:"notifyAuthorUrl" op="emailEditorDecisionComment" articleId=$submission->getId()}
+	
+			{if $decision == SUBMISSION_EDITOR_DECISION_DECLINE}
+				{* The last decision was a decline; notify the user that sending this message will archive the submission. *}
+				{translate|escape:"quotes"|assign:"confirmString" key="editor.submissionReview.emailWillArchive"}
+				{icon name="mail" url=$notifyAuthorUrl onclick="return confirm('$confirmString')"}
+			{else}
+				{icon name="mail" url=$notifyAuthorUrl}
+			{/if}
+		</div>
+	</div>
+
+	<div class="col-md-12">
+		<div class="label col-md-2">{translate key="submission.editorAuthorRecord"}</div>
+		<div class="col-md-10">
+			{if $submission->getMostRecentEditorDecisionComment()}
+				{assign var="comment" value=$submission->getMostRecentEditorDecisionComment()}
+				<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getId() anchor=$comment->getId()}');" class="icon btn btn-default btn-xs">{icon name="comment"} {$comment->getDatePosted()|date_format:$dateFormatShort}</a>
+			{else}
+				<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getId()}');" class="icon btn btn-default btn-xs">{icon name="comment"} {translate key="common.noComments"}</a>
+			{/if}
+		</div>
+	</div>
+</div>
 
 <form method="post" action="{url op="editorReview"}" enctype="multipart/form-data">
 <input type="hidden" name="articleId" value="{$submission->getId()}" />
@@ -80,33 +91,12 @@
 	{assign var="reviewVersionExists" value=1}
 {/if}
 
-<table id="table2" class="data" width="100%">
-	{if $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT}
-		<tr>
-			<td width="20%">&nbsp;</td>
-			<td width="80%">
-				{translate key="editor.article.resubmitFileForPeerReview"}
-				<input type="submit" name="resubmit" {if !($editorRevisionExists or $authorRevisionExists or $reviewVersionExists)}disabled="disabled" {/if}value="{translate key="form.resubmit"}" class="button" />
-			</td>
-		</tr>
-	{elseif $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT}
-		<tr valign="top">
-			<td width="20%">&nbsp;</td>
-			<td width="80%">
-				{if !($editorRevisionExists or $authorRevisionExists or $reviewVersionExists) or !$submission->getMostRecentEditorDecisionComment()}{assign var=copyeditingUnavailable value=1}{else}{assign var=copyeditingUnavailable value=0}{/if}
-				<input type="submit" {if $copyeditingUnavailable}disabled="disabled" {/if}name="setCopyeditFile" value="{translate key="editor.submissionReview.sendToCopyediting"}" class="button" />
-				{if $copyeditingUnavailable}
-					<br/>
-					<span class="instruct">{translate key="editor.submissionReview.cannotSendToCopyediting"}</span>
-				{/if}
-			</td>
-		</tr>
-	{/if}
-
+<div class="well col-md-12">
+	<div class="col-md-12"><div class="col-md-2 label">Author versions</div></div>
 	{if $reviewFile}
-		<tr valign="top">
-			<td width="20%" class="label">{translate key="submission.reviewVersion"}</td>
-			<td width="50%" class="value">
+		<div class="col-md-12">
+			<div class="col-md-2" style="font-style: italic;">Original submission</div>
+			<div class="col-md-10">
 				{if $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT || $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT}
 					<input type="radio" name="editorDecisionFile" value="{$reviewFile->getFileId()},{$reviewFile->getRevision()}" />
 				{/if}
@@ -115,61 +105,86 @@
 				{if $copyeditFile && $copyeditFile->getSourceFileId() == $reviewFile->getFileId()}
 					&nbsp;&nbsp;&nbsp;&nbsp;{translate key="submission.sent"}&nbsp;&nbsp;{$copyeditFile->getDateUploaded()|date_format:$dateFormatShort}
 				{/if}
-			</td>
-		</tr>
+			</div>
+		</div>
 	{/if}
 	{assign var="firstItem" value=true}
 	{foreach from=$authorFiles item=authorFile key=key}
-		<tr valign="top">
+		<div class="col-md-12">
 			{if $firstItem}
 				{assign var="firstItem" value=false}
-				<td width="20%" rowspan="{$authorFiles|@count}" class="label">{translate key="submission.authorVersion"}</td>
+				<div class="col-md-2" style="font-style: italic;">Reviewed version</div>
+			{else}
+				<div class="label col-md-10">&nbsp;</div>
 			{/if}
-			<td width="80%" class="value">
+			<div class="col-md-9">
 				{if $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT || $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT}<input type="radio" name="editorDecisionFile" value="{$authorFile->getFileId()},{$authorFile->getRevision()}" /> {/if}<a href="{url op="downloadFile" path=$submission->getId()|to_array:$authorFile->getFileId():$authorFile->getRevision()}" class="file">{$authorFile->getFileName()|escape}</a>&nbsp;&nbsp;
 				{$authorFile->getDateModified()|date_format:$dateFormatShort}
 				{if $copyeditFile && ($copyeditFile->getSourceFileId() == $authorFile->getFileId() && $copyeditFile->getSourceRevision() == $authorFile->getRevision())}
 					&nbsp;&nbsp;&nbsp;&nbsp;{translate key="submission.sent"}&nbsp;&nbsp;{$copyeditFile->getDateUploaded()|date_format:$dateFormatShort}
 				{/if}
-			</td>
-		</tr>
+			</div>
+		</div>
 	{foreachelse}
-		<tr valign="top">
-			<td width="20%" class="label">{translate key="submission.authorVersion"}</td>
-			<td width="80%" class="nodata">{translate key="common.none"}</td>
-		</tr>
+		<div class="col-md-12">
+			<div class="col-md-2" style="font-style: italic;">Reviewed version</div>
+			<div class="col-md-10">{translate key="common.none"}</div>
+		</div>
 	{/foreach}
 	{assign var="firstItem" value=true}
 	{foreach from=$editorFiles item=editorFile key=key}
-		<tr valign="top">
+		<div class="col-md-12">
 			{if $firstItem}
 				{assign var="firstItem" value=false}
-				<td width="20%" rowspan="{$editorFiles|@count}" class="label">{translate key="submission.editorVersion"}</td>
+				<div class="label col-md-2">{translate key="submission.editorVersion"}</div>
+			{else}
+				<div class="label col-md-2">&nbsp;</div>
 			{/if}
-			<td width="80%" class="value">
+			<div class="col-md-10">
 				{if $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT || $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT}<input type="radio" name="editorDecisionFile" value="{$editorFile->getFileId()},{$editorFile->getRevision()}" /> {/if}<a href="{url op="downloadFile" path=$submission->getId()|to_array:$editorFile->getFileId():$editorFile->getRevision()}" class="file">{$editorFile->getFileName()|escape}</a>&nbsp;&nbsp;
 				{$editorFile->getDateModified()|date_format:$dateFormatShort}&nbsp;&nbsp;&nbsp;&nbsp;
 				{if $copyeditFile && ($copyeditFile->getSourceFileId() == $editorFile->getFileId() && $copyeditFile->getSourceRevision() == $editorFile->getRevision())}
 					{translate key="submission.sent"}&nbsp;&nbsp;{$copyeditFile->getDateUploaded()|date_format:$dateFormatShort}&nbsp;&nbsp;&nbsp;&nbsp;
 				{/if}
 				<a href="{url op="deleteArticleFile" path=$submission->getId()|to_array:$editorFile->getFileId():$editorFile->getRevision()}" class="action">{translate key="common.delete"}</a>
-			</td>
-		</tr>
+			</div>
+		</div>
 	{foreachelse}
-		<tr valign="top">
-			<td width="20%" class="label">{translate key="submission.editorVersion"}</td>
-			<td width="80%" class="nodata">{translate key="common.none"}</td>
-		</tr>
+		<div class="col-md-12">
+			<div class="label col-md-2">{translate key="submission.editorVersion"}</div>
+			<div class="col-md-10">{translate key="common.none"}</div>
+		</div>
 	{/foreach}
-	<tr valign="top">
-		<td class="label">&nbsp;</td>
-		<td class="value">
+	<div class="col-md-12">
+		<div class="col-md-10 col-md-offset-2">
 			<input type="file" name="upload" class="uploadField" />
 			<input type="submit" name="submit" value="{translate key="common.upload"}" class="button" />
-		</td>
-	</tr>
+		</div>
+	</div>
+	
+	{if $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT}
+		<div>&nbsp;</div>
+		<div class="col-md-12">
+			<div class="col-md-10 col-md-offset-2">
+				{translate key="editor.article.resubmitFileForPeerReview"}
+				<input type="submit" name="resubmit" {if !($editorRevisionExists or $authorRevisionExists or $reviewVersionExists)}disabled="disabled" {/if}value="{translate key="form.resubmit"}" class="button btn btn-default" />
+			</div>
+		</div>
+	{elseif $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT}
+		<div>&nbsp;</div>
+		<div class="col-md-12">
+			<div class="col-md-10 col-md-offset-2">
+				{if !($editorRevisionExists or $authorRevisionExists or $reviewVersionExists) or !$submission->getMostRecentEditorDecisionComment()}{assign var=copyeditingUnavailable value=1}{else}{assign var=copyeditingUnavailable value=0}{/if}
+				<input type="submit" {if $copyeditingUnavailable}disabled="disabled" {/if}name="setCopyeditFile" value="{translate key="editor.submissionReview.sendToCopyediting"}" class="button btn btn-default" />
+				{if $copyeditingUnavailable}
+					<br/>
+					<span class="instruct">{translate key="editor.submissionReview.cannotSendToCopyediting"}</span>
+				{/if}
+			</div>
+		</div>
+	{/if}
 
-</table>
+</div>
 
 </form>
 </div>

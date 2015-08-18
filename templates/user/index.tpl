@@ -15,7 +15,7 @@
 
 {if $isSiteAdmin}
 	{assign var="hasRole" value=1}
-	<a href="{url journal="index" page=$isSiteAdmin->getRolePath()}" class="btn btn-sm btn-info">{translate key=$isSiteAdmin->getRoleName()}</a>
+	<a href="{url journal="index" page=$isSiteAdmin->getRolePath()}" class="btn btn-sm btn-default">{translate key=$isSiteAdmin->getRoleName()}</a>
 	{call_hook name="Templates::User::Index::Site"}
 {/if}
 
@@ -31,13 +31,13 @@
 	
 		{if $isValid.JournalManager.$journalId}
 			<div class="col-md-10">
-				<a href="{url journal=$journalPath page="manager"}" class="btn btn-sm btn-info">{translate key="user.role.manager"}</a>
-				{if $setupIncomplete.$journalId}<a href="{url journal=$journalPath page="manager" op="setup" path="1"}" class="btn btn-sm btn-info">{translate key="manager.setup"}</a>{/if}
+				<a href="{url journal=$journalPath page="manager"}" class="btn btn-sm btn-default">{translate key="user.role.manager"}</a>
+				{if $setupIncomplete.$journalId}<a href="{url journal=$journalPath page="manager" op="setup" path="1"}" class="btn btn-sm btn-default">{translate key="manager.setup"}</a>{/if}
 			</div>
 		{/if}
 		{if $isValid.SubscriptionManager.$journalId}
 			<div class="col-md-10"> 
-				<a href="{url journal=$journalPath page="subscriptionManager"}" class="btn btn-sm btn-info">{translate key="user.role.subscriptionManager"}</a>
+				<a href="{url journal=$journalPath page="subscriptionManager"}" class="btn btn-sm btn-default">{translate key="user.role.subscriptionManager"}</a>
 			</div>
 		{/if}
 		
@@ -57,7 +57,7 @@
 					{else}<span class="disabled list-group-item">{translate key="common.queue.short.completed"}<span class="badge">0</span></span>{/if}
 				</div>
 				<div class="list-group">
-					<a href="{url journal=$journalPath page="author" op="submit"}" class="list-group-item" style="font-style: italic">{translate key="author.submit"}</a>
+					<a href="{url journal=$journalPath page="author" op="submit"}" class="btn btn-default btn-block">{translate key="author.submit"}</a>
 				</div>
 			</div>
 		{/if}
@@ -92,8 +92,8 @@
 						{else}<span class="disabled list-group-item">{translate key="common.queue.short.submissionsInEditing"} <span class="badge">0</span></span>{/if}
 				</div>
 				<div class="list-group">
-					<a href="{url journal=$journalPath page="editor" op="createIssue"}" class="list-group-item" style="font-style: italic">{translate key="editor.issues.createIssue"}</a> 
-					<a href="{url journal=$journalPath page="editor" op="notifyUsers"}" class="list-group-item" style="font-style: italic">{translate key="editor.notifyUsers"}</a>
+					<a href="{url journal=$journalPath page="editor" op="createIssue"}" class="btn btn-default btn-block">{translate key="editor.issues.createIssue"}</a> 
+					<a href="{url journal=$journalPath page="editor" op="notifyUsers"}" class="btn btn-default btn-block">{translate key="editor.notifyUsers"}</a>
 				</div>
 			</div>
 		{/if}
@@ -193,7 +193,7 @@
 	{/if}{* $currentJournal *}
 {/if}{* !$hasRole *}
 
-<div class="col-md-12">
+<div class="row col-md-12">
 	<div id="myAccount" class="pull-right">
 		{if $hasOtherJournals}
 			{if !$showAllJournals}

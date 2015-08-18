@@ -18,20 +18,16 @@
 {include file="common/formErrors.tpl"}
 
 <h3>{translate key="author.submit.filesSummary"}</h3>
-<table class="listing" width="100%">
-<tr>
-	<td colspan="5" class="headseparator">&nbsp;</td>
-</tr>
+<table class="table table-condensed table-stripped">
+<thead>
 <tr class="heading" valign="bottom">
-	<td width="10%">{translate key="common.id"}</td>
-	<td width="35%">{translate key="common.originalFileName"}</td>
-	<td width="25%">{translate key="common.type"}</td>
-	<td width="20%" class="nowrap">{translate key="common.fileSize"}</td>
-	<td width="10%" class="nowrap">{translate key="common.dateUploaded"}</td>
-</tr>
-<tr>
-	<td colspan="5" class="headseparator">&nbsp;</td>
-</tr>
+	<td>{translate key="common.id"}</td>
+	<td>{translate key="common.originalFileName"}</td>
+	<td>{translate key="common.type"}</td>
+	<td class="nowrap">{translate key="common.fileSize"}</td>
+	<td class="nowrap">{translate key="common.dateUploaded"}</td>
+</thead>
+<tbody>
 {foreach from=$files item=file}
 <tr valign="top">
 	<td>{$file->getFileId()}</td>
@@ -45,6 +41,7 @@
 <td colspan="5" class="nodata">{translate key="author.submit.noFiles"}</td>
 </tr>
 {/foreach}
+</tbody>
 </table>
 
 <div class="separator"></div>
@@ -81,12 +78,12 @@
 		</table> 
 	{/if}
 
-	<div class="separator"></div>
+	<div class="clearfix"></div>
 {/if}
 
 {call_hook name="Templates::Author::Submit::Step5::AdditionalItems"}
 
-<p><input type="submit" value="{translate key="author.submit.finishSubmission"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></p>
+<div class="row" style="text-align:center;margin-top:20px"><input type="submit" value="{translate key="author.submit.finishSubmission"}" class="btn btn-success btn-lg" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-default" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></div>
 
 </form>
 

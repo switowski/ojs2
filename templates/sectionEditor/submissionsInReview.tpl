@@ -9,7 +9,8 @@
  *
  *}
 <div id="submissions">
-<table width="100%" class="listing">
+<table width="100%" class="table table-condensed table-hover">
+<thead>
 	<tr><td colspan="7" class="headseparator">&nbsp;</td></tr>
 	<tr class="heading" valign="bottom">
 		<td width="5%">{sort_search key="common.id" sort="id"}</td>
@@ -29,13 +30,13 @@
 		</td>
 		<td width="5%">{translate key="submissions.ruling"}</td>
 	</tr>
-	<tr><td colspan="7" class="headseparator">&nbsp;</td></tr>
-
+</thead>
+<tbody>
 {iterate from=submissions item=submission}
 
 	{assign var="articleId" value=$submission->getId()}
 	{assign var="highlightClass" value=$submission->getHighlightClass()}
-	<tr valign="top"{if $highlightClass} class="{$highlightClass|escape}"{/if}>
+	<tr onclick="window.location = '{url op="submissionReview" path=$submission->getId()}'"valign="top"{if $highlightClass} class="{$highlightClass|escape}"{/if}>
 		<td>{$submission->getId()}</td>
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
 		<td>{$submission->getSectionAbbrev()|escape}</td>
@@ -74,23 +75,18 @@
 			{/foreach}			
 		</td>
 	</tr>
-	<tr>
-		<td colspan="7" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
 {/iterate}
 {if $submissions->wasEmpty()}
 	<tr>
 		<td colspan="7" class="nodata">{translate key="submissions.noSubmissions"}</td>
 	</tr>
-	<tr>
-		<td colspan="7" class="endseparator">&nbsp;</td>
-	</tr>
 {else}
 	<tr>
-		<td colspan="5" align="left">{page_info iterator=$submissions}</td>
-		<td colspan="2" align="right">{page_links anchor="submissions" name="submissions" iterator=$submissions searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth dateSearchField=$dateSearchField section=$section sort=$sort sortDirection=$sortDirection}</td>
+		<td colspan="5" align="left" style="font-weight: bold;padding-top:10px;">{page_info iterator=$submissions}</td>
+		<td colspan="2" align="right" class="footer-table-numbers">{page_links anchor="submissions" name="submissions" iterator=$submissions searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth dateSearchField=$dateSearchField section=$section sort=$sort sortDirection=$sortDirection}</td>
 	</tr>
 {/if}
+</tbody>
 </table>
 </div>
 
