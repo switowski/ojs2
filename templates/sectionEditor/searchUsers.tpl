@@ -35,7 +35,7 @@
 	</div>
 </form>
 
-<div class="row col-md-12" style="margin-top: -10px;margin-bottom: -10px;"><hr></div>
+<div class="row col-md-12 margin-minus-10-top-bottom"><hr></div>
 
 <div class="col-md-12">
 <p>{foreach from=$alphaList item=letter}<a class="btn btn-default btn-xs {if $letter == $searchInitial}active{/if}" href="{url op="enrollSearch" path=$articleId searchInitial=$letter}">{$letter|escape}</a> {/foreach}<a class="btn btn-default btn-xs {if $searchInitial==''}active{/if}" href="{url op="enrollSearch" path=$articleId}">{translate key="common.all"}</a></p>
@@ -64,8 +64,8 @@
 	<td>{$user->getEmail(true)|escape}</td>
 	<td>
 		<a class="btn btn-success btn-xs" href="{url op="enroll" path=$articleId userId=$user->getId()}">
-			<i class="material-icons" style="font-size: 20px;padding-top:2px">trending_down</i>
-			<span style="position: relative;float: right;padding: 5px;">{translate key="manager.people.enroll"}</span>
+			<i class="material-icons icon-inside-button">trending_down</i>
+			{translate key="manager.people.enroll"}
 		</a>
 	</td>
 </tr>
@@ -77,7 +77,7 @@
 	</tr>
 {else}
 	<tr>
-		<td colspan="3" align="left" style="font-weight: bold;padding-top:10px;">{page_info iterator=$users}</td>
+		<td colspan="3" align="left" class="number-results-table">{page_info iterator=$users}</td>
 		<td colspan="2" align="right" class="footer-table-numbers">{page_links anchor="users" name="users" iterator=$users searchInitial=$searchInitial searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth}</td>
 	</tr>
 {/if}

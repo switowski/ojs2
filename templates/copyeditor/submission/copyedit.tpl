@@ -11,13 +11,13 @@
 <div id="copyedit">
 <div class="page-header"><h3>{translate key="submission.copyediting"}</h3></div>
 
-<div class="row" style="margin-bottom:10px">
+<div class="row margin-bottom-10">
 	<div class="col-md-6">
-		<a href="{url op="viewMetadata" path=$submission->getId()}" class="action btn btn-default btn-sm"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">subject</i> {translate key="submission.reviewMetadata"}</a>
+		<a href="{url op="viewMetadata" path=$submission->getId()}" class="action btn btn-default btn-sm"><i class="material-icons icon-inside-button">subject</i> {translate key="submission.reviewMetadata"}</a>
 	</div>
 	<div class="col-md-6">
 		{if $currentJournal->getLocalizedSetting('copyeditInstructions')}
-		<a style="float:right;text-transform: uppercase" href="javascript:openHelp('{url op="instructions" path="copy"}')" class="action btn btn-default btn-sm to-left"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">info_outline</i> {translate key="submission.copyedit.instructions"}</a>
+		<a href="javascript:openHelp('{url op="instructions" path="copy"}')" class="action btn btn-default btn-sm copyeditor-instructions"><i class="material-icons icon-inside-button">info_outline</i> {translate key="submission.copyedit.instructions"}</a>
 		{/if}
 	</div>
 </div>
@@ -41,7 +41,7 @@
 </table>
 
 <div class="col-md-12 well">
-	<div class="col-md-1" style="font-size:50px;text-align: center">1</div>
+	<div class="col-md-1 step-copyediting-number">1</div>
 	{assign var="initialCopyeditSignoff" value=$submission->getSignoff('SIGNOFF_COPYEDITING_INITIAL')}
 	<div class="col-md-5"><h4>{translate key="submission.copyedit.initialCopyedit"}</h4></div>
 	<div class="col-md-2">
@@ -86,7 +86,7 @@
 </div>
 
 <div class="col-md-12 well">
-	<div class="col-md-1" style="font-size:50px;text-align: center">2</div>
+	<div class="col-md-1 step-copyediting-number">2</div>
 	{assign var="authorCopyeditSignoff" value=$submission->getSignoff('SIGNOFF_COPYEDITING_AUTHOR')}
 	<div class="col-md-5"><h4>{translate key="submission.copyedit.editorAuthorReview"}</h4></div>
 	<div class="col-md-2">
@@ -112,7 +112,7 @@
 </div>
 
 <div class="col-md-12 well">
-	<div class="col-md-1" style="font-size:50px;text-align: center">3</div>
+	<div class="col-md-1 step-copyediting-number">3</div>
 	{assign var="finalCopyeditSignoff" value=$submission->getSignoff('SIGNOFF_COPYEDITING_FINAL')}
 	<div class="col-md-5"><h4>{translate key="submission.copyedit.finalCopyedit"}</h4></div>
 	<div class="col-md-2">
@@ -161,9 +161,9 @@
 	<div class="col-md-10">
 		{if $submission->getMostRecentCopyeditComment()}
 			{assign var="comment" value=$submission->getMostRecentCopyeditComment()}
-			<a href="javascript:openComments('{url op="viewCopyeditComments" path=$submission->getId() anchor=$comment->getId()}');" class="icon btn btn-default btn-xs">{icon name="comment"} {$comment->getDatePosted()|date_format:$dateFormatShort}</a>
+			<a href="javascript:openComments('{url op="viewCopyeditComments" path=$submission->getId() anchor=$comment->getId()}');" class="btn btn-default btn-xs">{icon name="comment"} {$comment->getDatePosted()|date_format:$dateFormatShort}</a>
 		{else}
-			<a href="javascript:openComments('{url op="viewCopyeditComments" path=$submission->getId()}');" class="icon btn btn-default btn-xs">{icon name="comment"} {translate key="common.noComments"}</a>
+			<a href="javascript:openComments('{url op="viewCopyeditComments" path=$submission->getId()}');" class="btn btn-default btn-xs">{icon name="comment"} {translate key="common.noComments"}</a>
 		{/if}
 	</div>
 </div>

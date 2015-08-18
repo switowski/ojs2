@@ -11,7 +11,7 @@
 <div id="submission">
 <div class="panel panel-default">
   	<div class="panel-heading">
-    	<h3 style="margin:0">{translate key="article.submission"}</h3>
+    	<h3 class="panel-header-without-margin">{translate key="article.submission"}</h3>
   	</div>
   	<div class="panel-body">
 		<div class="col-md-12">

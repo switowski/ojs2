@@ -28,15 +28,17 @@
 			</form>
 		</div>
 		{if not $allowRecommendation}
-			<div class="col-md-10 col-md-offset-2" style="font-style:italic">{translate key="editor.article.cannotRecord"}</div>
+			<div class="col-md-10 col-md-offset-2 info-text">{translate key="editor.article.cannotRecord"}</div>
 		{/if}
 	</div>
 	<div class="col-md-12">
 		<div class="label col-md-2">{translate key="editor.article.decision"}</div>
 		<div class="col-md-10">
 			{foreach from=$submission->getDecisions($round) item=editorDecision key=decisionKey}
-				{assign var="decision" value=$editorDecision.decision}
-				{translate key=$editorDecisionOptions.$decision}&nbsp;&nbsp;{if $editorDecision.dateDecided != 0}{$editorDecision.dateDecided|date_format:$dateFormatShort}{/if}
+				<div class="row col-md-12">
+					{assign var="decision" value=$editorDecision.decision}
+					{translate key=$editorDecisionOptions.$decision}&nbsp;&nbsp;{if $editorDecision.dateDecided != 0}{$editorDecision.dateDecided|date_format:$dateFormatShort}{/if}
+				</div>
 			{foreachelse}
 				{translate key="common.none"}
 			{/foreach}
@@ -65,9 +67,9 @@
 		<div class="col-md-10">
 			{if $submission->getMostRecentEditorDecisionComment()}
 				{assign var="comment" value=$submission->getMostRecentEditorDecisionComment()}
-				<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getId() anchor=$comment->getId()}');" class="icon btn btn-default btn-xs">{icon name="comment"} {$comment->getDatePosted()|date_format:$dateFormatShort}</a>
+				<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getId() anchor=$comment->getId()}');" class="btn btn-default btn-xs">{icon name="comment"} {$comment->getDatePosted()|date_format:$dateFormatShort}</a>
 			{else}
-				<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getId()}');" class="icon btn btn-default btn-xs">{icon name="comment"} {translate key="common.noComments"}</a>
+				<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getId()}');" class="btn btn-default btn-xs">{icon name="comment"} {translate key="common.noComments"}</a>
 			{/if}
 		</div>
 	</div>
@@ -95,7 +97,7 @@
 	<div class="col-md-12"><div class="col-md-2 label">Author versions</div></div>
 	{if $reviewFile}
 		<div class="col-md-12">
-			<div class="col-md-2" style="font-style: italic;">Original submission</div>
+			<div class="col-md-2 info-text">Original submission</div>
 			<div class="col-md-10">
 				{if $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT || $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT}
 					<input type="radio" name="editorDecisionFile" value="{$reviewFile->getFileId()},{$reviewFile->getRevision()}" />
@@ -113,7 +115,7 @@
 		<div class="col-md-12">
 			{if $firstItem}
 				{assign var="firstItem" value=false}
-				<div class="col-md-2" style="font-style: italic;">Reviewed version</div>
+				<div class="col-md-2 info-text">Reviewed version</div>
 			{else}
 				<div class="label col-md-10">&nbsp;</div>
 			{/if}
@@ -127,7 +129,7 @@
 		</div>
 	{foreachelse}
 		<div class="col-md-12">
-			<div class="col-md-2" style="font-style: italic;">Reviewed version</div>
+			<div class="col-md-2 info-text">Reviewed version</div>
 			<div class="col-md-10">{translate key="common.none"}</div>
 		</div>
 	{/foreach}
@@ -146,7 +148,7 @@
 				{if $copyeditFile && ($copyeditFile->getSourceFileId() == $editorFile->getFileId() && $copyeditFile->getSourceRevision() == $editorFile->getRevision())}
 					{translate key="submission.sent"}&nbsp;&nbsp;{$copyeditFile->getDateUploaded()|date_format:$dateFormatShort}&nbsp;&nbsp;&nbsp;&nbsp;
 				{/if}
-				<a href="{url op="deleteArticleFile" path=$submission->getId()|to_array:$editorFile->getFileId():$editorFile->getRevision()}" class="action">{translate key="common.delete"}</a>
+				<a href="{url op="deleteArticleFile" path=$submission->getId()|to_array:$editorFile->getFileId():$editorFile->getRevision()}" class="btn btn-danger btn-xs">{translate key="common.delete"}</a>
 			</div>
 		</div>
 	{foreachelse}
@@ -155,7 +157,7 @@
 			<div class="col-md-10">{translate key="common.none"}</div>
 		</div>
 	{/foreach}
-	<div class="col-md-12">
+	<div class="col-md-12 margin-top-10">
 		<div class="col-md-10 col-md-offset-2">
 			<input type="file" name="upload" class="uploadField" />
 			<input type="submit" name="submit" value="{translate key="common.upload"}" class="button" />

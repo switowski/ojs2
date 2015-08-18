@@ -48,7 +48,7 @@
 	</tr>
 {else}
 	<tr>
-		<td align="left" style="font-weight: bold;padding-top:10px;">{page_info iterator=$issues}</td>
+		<td align="left" class="number-results-table">{page_info iterator=$issues}</td>
 		<td colspan="2" align="right" class="footer-table-numbers">{page_links anchor="issues" name="issues" iterator=$issues}</td>
 	</tr>
 {/if}

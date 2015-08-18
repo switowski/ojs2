@@ -49,14 +49,14 @@ $(document).ready(function() {
 
 <div class="clearfix"></div>
 
-<ul class="nav nav-tabs nav-justified" style="margin-top:20px">
+<ul class="nav nav-tabs nav-justified margin-top-20">
 	<li role="presentation" class="active"><a href="{url op="issueToc" path=$issueId}">{translate key="issue.toc"}</a></li>
 	<li role="presentation"><a href="{url op="issueData" path=$issueId}">{translate key="editor.issues.issueData"}</a></li>
 	<li role="presentation"><a href="{url op="issueGalleys" path=$issueId}">{translate key="editor.issues.galleys"}</a></li>
 	{call_hook name="Templates::Editor::Issues::IssueToc::IssuePages"}
 </ul>
 
-<div class="panel panel-default" style="margin-top:-1px">
+<div class="panel panel-default panel-issue">
 <h3>{translate key="issue.toc"}</h3>
 {url|assign:"url" op="resetSectionOrder" path=$issueId}
 {if $customSectionOrderingExists}{translate key="editor.issues.resetSectionOrder" url=$url}<br/>{/if}

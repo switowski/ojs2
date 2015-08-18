@@ -12,7 +12,7 @@
 
 <div class="panel panel-default">
   	<div class="panel-heading">
-    	<h3 style="margin:0">{translate key="article.submission"}</h3>
+    	<h3 class="panel-header-without-margin">{translate key="article.submission"}</h3>
   	</div>
   	<div class="panel-body">
 
@@ -61,19 +61,19 @@
 					{else}
 						{$suppFile->getDateSubmitted()|date_format:$dateFormatShort}&nbsp;&nbsp;
 					{/if}
-					<a href="{url op="editSuppFile" from="submission" path=$submission->getId()|to_array:$suppFile->getId()}" class="action btn btn-xs btn-default"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">mode_edit</i> {translate key="common.edit"}</a>
-					<a href="{url op="deleteSuppFile" from="submission" path=$submission->getId()|to_array:$suppFile->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="author.submit.confirmDeleteSuppFile"}')" class="action btn btn-xs btn-default"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">delete</i> {translate key="common.delete"}</a>
+					<a href="{url op="editSuppFile" from="submission" path=$submission->getId()|to_array:$suppFile->getId()}" class="action btn btn-xs btn-default"><i class="material-icons icon-inside-button">mode_edit</i> {translate key="common.edit"}</a>
+					<a href="{url op="deleteSuppFile" from="submission" path=$submission->getId()|to_array:$suppFile->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="author.submit.confirmDeleteSuppFile"}')" class="action btn btn-xs btn-default"><i class="material-icons icon-inside-button">delete</i> {translate key="common.delete"}</a>
 				{if !$notFirst} {*First*}
 				</div>
 				<div class="col-md-6">
-					<a href="{url op="addSuppFile" from="submission" path=$submission->getId()}" class="action btn btn-xs btn-default"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">add</i> {translate key="submission.addSuppFile"}</a>
+					<a href="{url op="addSuppFile" from="submission" path=$submission->getId()}" class="action btn btn-xs btn-default"><i class="material-icons icon-inside-button">add</i> {translate key="submission.addSuppFile"}</a>
 				</div>
 				{else} {*Rest*}
 				</div>
 				{/if}
 				{assign var=notFirst value=1}
 			{foreachelse}
-				{translate key="common.none"}&nbsp;&nbsp;&nbsp;&nbsp;<a href="{url op="addSuppFile" from="submission" path=$submission->getId()}" class="action btn btn-xs btn-default"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">add</i> {translate key="submission.addSuppFile"}</a>
+				{translate key="common.none"}&nbsp;&nbsp;&nbsp;&nbsp;<a href="{url op="addSuppFile" from="submission" path=$submission->getId()}" class="action btn btn-xs btn-default"><i class="material-icons icon-inside-button">add</i> {translate key="submission.addSuppFile"}</a>
 			{/foreach}
 			</div>
 		</div>

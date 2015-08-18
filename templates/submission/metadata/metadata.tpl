@@ -11,7 +11,7 @@
 <div class="page-header"><h3>{translate key="submission.metadata"}</h3></div>
 
 {if $canEditMetadata}
-	<p><a href="{url op="viewMetadata" path=$submission->getId()}" class="action btn btn-default btn-sm"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">subject</i> {translate key="submission.editMetadata"}</a></p>
+	<p><a href="{url op="viewMetadata" path=$submission->getId()}" class="action btn btn-default btn-sm"><i class="material-icons icon-inside-button">subject</i> {translate key="submission.editMetadata"}</a></p>
 	{call_hook name="Templates::Submission::Metadata::Metadata::AdditionalEditItems"}
 {/if}
 
@@ -63,7 +63,7 @@
 	</div>
 	{if $author->getPrimaryContact()}
 		<div class="col-md-12">
-			<div class="label col-md-12" style="font-style: italic;text-align:center;">{translate key="author.submit.selectPrincipalContact"}</div>
+			<div class="label col-md-12 info-text center">{translate key="author.submit.selectPrincipalContact"}</div>
 		</div>
 	{/if}
 </div>

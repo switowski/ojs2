@@ -38,7 +38,7 @@ function confirmSubmissionCheck() {
 <div id="submissionToBeReviewed">
 <div class="panel panel-default">
   	<div class="panel-heading">
-    	<h3 style="margin:0">{translate key="reviewer.article.submissionToBeReviewed"}</h3>
+    	<h3 class="panel-header-without-margin">{translate key="reviewer.article.submissionToBeReviewed"}</h3>
   	</div>
   	<div class="panel-body">
 		<div class="col-md-12">
@@ -80,7 +80,7 @@ function confirmSubmissionCheck() {
 			<div class="col-md-12">
 					<div class="label col-md-2">{translate key="submission.metadata"}</div>
 					<div class="col-md-10">
-				       <a href="{url op="viewMetadata" path=$reviewId|to_array:$articleId}" class="action btn btn-default btn-xs" target="_new"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">subject</i> {translate key="submission.viewMetadata"}</a>
+				       <a href="{url op="viewMetadata" path=$reviewId|to_array:$articleId}" class="action btn btn-default btn-xs" target="_new"><i class="material-icons icon-inside-button">subject</i> {translate key="submission.viewMetadata"}</a>
 			       </div>
 			</div>
 	</div>
@@ -118,7 +118,7 @@ function confirmSubmissionCheck() {
 	{assign var=editAssignments value=$submission->getEditAssignments}
 	{* FIXME: Should be able to assign primary editorial contact *}
 	{if $editAssignments[0]}{assign var=firstEditAssignment value=$editAssignments[0]}{/if}
-	<div class="row col-md-1" style="font-size:30px;text-align: center;">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
+	<div class="row col-md-1 step-reviewer-page">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
 	<div class="col-md-11">
 		<div class="row"><span class="instruct">{translate key="reviewer.article.notifyEditorA"}{if $firstEditAssignment}, {$firstEditAssignment->getEditorFullName()|escape},{/if} {translate key="reviewer.article.notifyEditorB"}</span></div>
 		<div class="row">
@@ -136,7 +136,7 @@ function confirmSubmissionCheck() {
 				{translate key="reviewer.article.cannotDoReview"} {icon name="mail" disabled="disabled" url=$declineUrl}
 			{/if}
 		{else}
-			{if not $declined}<span style="font-style:italic">{translate key="submission.accepted"}</span>{else}<span style="font-style:italic">{translate key="submission.rejected"}</span>{/if}
+			{if not $declined}<span class="info-text">{translate key="submission.accepted"}</span>{else}<span class="info-text">{translate key="submission.rejected"}</span>{/if}
 		{/if}
 		</div>
 	</div>
@@ -144,12 +144,12 @@ function confirmSubmissionCheck() {
 
 {if $journal->getLocalizedSetting('reviewGuidelines') != ''}
 <div class="col-md-12 well">
-	<div class="row col-md-1" style="font-size:30px;text-align: center;">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
+	<div class="row col-md-1 step-reviewer-page">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
 	<div class="col-md-11"><span class="instruct">{translate key="reviewer.article.consultGuidelines"}</span></div>
 </div>
 {/if}
 <div class="col-md-12 well">
-	<div class="row col-md-1" style="font-size:30px;text-align: center;">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
+	<div class="row col-md-1 step-reviewer-page">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
 	<div class="col-md-11">
 		<div class="row"><span class="instruct">{translate key="reviewer.article.downloadSubmission"}</span></div>
 		<div class="row">
@@ -197,7 +197,7 @@ function confirmSubmissionCheck() {
 <table>
 {if $currentJournal->getSetting('requireReviewerCompetingInterests')}
 <div class="col-md-12 well">
-	<div class="row col-md-1" style="font-size:30px;text-align: center;">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
+	<div class="row col-md-1 step-reviewer-page">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
 	<div class="col-md-11">
 		<div class="row">
 			{url|assign:"competingInterestGuidelinesUrl" page="information" op="competingInterestGuidelines"}
@@ -217,7 +217,7 @@ function confirmSubmissionCheck() {
 
 {if $reviewAssignment->getReviewFormId()}
 <div class="col-md-12 well">
-	<div class="row col-md-1" style="font-size:30px;text-align: center;">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
+	<div class="row col-md-1 step-reviewer-page">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
 	<div class="col-md-11">
 		<div class="row"><span class="instruct">{translate key="reviewer.article.enterReviewForm"}</span></div>
 		<div class="row">
@@ -235,7 +235,7 @@ function confirmSubmissionCheck() {
 </div>
 {else}{* $reviewAssignment->getReviewFormId() *}
 <div class="col-md-12 well">
-	<div class="row col-md-1" style="font-size:30px;text-align: center;">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
+	<div class="row col-md-1 step-reviewer-page">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
 	<div class="col-md-11">
 		<div class="row"><span class="instruct">{translate key="reviewer.article.enterReviewA"}</span></div>
 		<div class="row">
@@ -253,7 +253,7 @@ function confirmSubmissionCheck() {
 </div>
 {/if}{* $reviewAssignment->getReviewFormId() *}
 <div class="col-md-12 well">
-	<div class="row col-md-1" style="font-size:30px;text-align: center;">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
+	<div class="row col-md-1 step-reviewer-page">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
 	<div class="col-md-11">
 		<div class="row"><span class="instruct">{translate key="reviewer.article.uploadFile"}</span></div>
 		<div class="row">
@@ -267,7 +267,7 @@ function confirmSubmissionCheck() {
 		
 					{if $currentJournal->getSetting('showEnsuringLink')}
 					<span class="instruct">
-						<a class="action btn btn-xs btn-default" href="javascript:openHelp('{get_help_id key="editorial.sectionEditorsRole.review.blindPeerReview" url="true"}')" style="margin-top:10px"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">warning</i> {translate key="reviewer.article.ensuringBlindReview"}</a>
+						<a class="action btn btn-xs btn-default margin-top-10" href="javascript:openHelp('{get_help_id key="editorial.sectionEditorsRole.review.blindPeerReview" url="true"}')"><i class="material-icons icon-inside-button">warning</i> {translate key="reviewer.article.ensuringBlindReview"}</a>
 					</span>
 					{/if}
 				</div>
@@ -287,7 +287,7 @@ function confirmSubmissionCheck() {
 							<a href="{url op="downloadFile" path=$reviewId|to_array:$articleId:$reviewerFile->getFileId():$reviewerFile->getRevision()}" class="file">{$reviewerFile->getFileName()|escape}</a>
 							{$reviewerFile->getDateModified()|date_format:$dateFormatShort}
 							{if ($submission->getRecommendation() === null || $submission->getRecommendation() === '') && (!$submission->getCancelled())}
-								<a class="action btn btn-xs btn-default" href="{url op="deleteReviewerVersion" path=$reviewId|to_array:$reviewerFile->getFileId():$reviewerFile->getRevision()}"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">delete</i> {translate key="common.delete"}</a>
+								<a class="action btn btn-xs btn-default" href="{url op="deleteReviewerVersion" path=$reviewId|to_array:$reviewerFile->getFileId():$reviewerFile->getRevision()}"><i class="material-icons icon-inside-button">delete</i> {translate key="common.delete"}</a>
 							{/if}
 						</div>
 					</div>
@@ -308,7 +308,7 @@ function confirmSubmissionCheck() {
 
 
 <div class="col-md-12 well">
-	<div class="row col-md-1" style="font-size:30px;text-align: center;">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
+	<div class="row col-md-1 step-reviewer-page">{$currentStep|escape}{assign var="currentStep" value=$currentStep+1}</div>
 	<div class="col-md-11">
 		<div class="row"><span class="instruct">{translate key="reviewer.article.selectRecommendation"}</span></div>
 		<div class="row">

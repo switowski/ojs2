@@ -83,7 +83,7 @@
 
 {call_hook name="Templates::Author::Submit::Step5::AdditionalItems"}
 
-<div class="row" style="text-align:center;margin-top:20px"><input type="submit" value="{translate key="author.submit.finishSubmission"}" class="btn btn-success btn-lg" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-default" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></div>
+<div class="row div-buttons-submission"><input type="submit" value="{translate key="author.submit.finishSubmission"}" class="btn btn-success btn-lg" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-default" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></div>
 
 </form>
 

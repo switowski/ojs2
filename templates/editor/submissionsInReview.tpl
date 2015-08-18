@@ -93,7 +93,7 @@
 		</tr>
 	{else}
 		<tr>
-			<td colspan="5" align="left" style="font-weight: bold;padding-top:10px;">{page_info iterator=$submissions}</td>
+			<td colspan="5" align="left" class="number-results-table">{page_info iterator=$submissions}</td>
 			<td colspan="3" align="right" class="footer-table-numbers">{page_links anchor="submissions" name="submissions" iterator=$submissions searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth dateSearchField=$dateSearchField section=$section sort=$sort sortDirection=$sortDirection}</td>
 		</tr>
 	{/if}
