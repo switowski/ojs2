@@ -41,7 +41,7 @@
 	</tr>
 {else}
 	<tr>
-		<td colspan="3" align="left" style="font-weight: bold;padding-top:10px;">{page_info iterator=$submissions}</td>
+		<td colspan="3" align="left" class="number-results-table">{page_info iterator=$submissions}</td>
 		<td colspan="3" align="right" class="footer-table-numbers">{page_links anchor="submissions" name="submissions" iterator=$submissions sort=$sort sortDirection=$sortDirection}</td>
 	</tr>
 {/if}

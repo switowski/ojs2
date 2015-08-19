@@ -33,11 +33,11 @@
 		<td align="right">
 			{assign var="status" value=$submission->getStatus()}
 			{if $status == STATUS_ARCHIVED}
-				<span style="margin:5px">{translate key="submissions.archived"}</span><a class="btn btn-danger btn-xs" onclick="return cernConfirm('{translate|escape:"jsparam" key="editor.submissionArchive.confirmDelete"}','window.location.href = \'{url op="deleteSubmission" path=$articleId}\'', true, event)">{translate key="common.delete"}</a>
+				<span class="text-before-button-in-table">{translate key="submissions.archived"}</span><a class="btn btn-danger btn-xs" onclick="return cernConfirm('{translate|escape:"jsparam" key="editor.submissionArchive.confirmDelete"}','window.location.href = \'{url op="deleteSubmission" path=$articleId}\'', true, event)">{translate key="common.delete"}</a>
 			{elseif $status == STATUS_PUBLISHED}
 				<span class="hoverize-text">{print_issue_id articleId="$articleId"}</span>
 			{elseif $status == STATUS_DECLINED}
-				<span style="margin:5px">{translate key="submissions.declined"}</span><a class="btn btn-danger btn-xs" onclick="return cernConfirm('{translate|escape:"jsparam" key="editor.submissionArchive.confirmDelete"}','window.location.href = \'{url op="deleteSubmission" path=$articleId}\'', true, event)">{translate key="common.delete"}</a>
+				<span class="text-before-button-in-table">{translate key="submissions.declined"}</span><a class="btn btn-danger btn-xs" onclick="return cernConfirm('{translate|escape:"jsparam" key="editor.submissionArchive.confirmDelete"}','window.location.href = \'{url op="deleteSubmission" path=$articleId}\'', true, event)">{translate key="common.delete"}</a>
 			{/if}
 		</td>
 	</tr>
@@ -48,7 +48,7 @@
 	</tr>
 {else}
 	<tr>
-		<td colspan="4" align="left" style="font-weight: bold;padding-top:10px;">{page_info iterator=$submissions}</td>
+		<td colspan="4" align="left" class="number-results-table">{page_info iterator=$submissions}</td>
 		<td colspan="2" align="right" class="footer-table-numbers">{page_links anchor="submissions" name="submissions" iterator=$submissions searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth dateSearchField=$dateSearchField section=$section sort=$sort sortDirection=$sortDirection}</td>
 	</tr>
 {/if}

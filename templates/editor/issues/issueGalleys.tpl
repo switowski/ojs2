@@ -33,7 +33,7 @@
 
 <div class="clearfix"></div>
 
-<ul class="nav nav-tabs nav-justified" style="margin-top:20px">
+<ul class="nav nav-tabs nav-justified margin-top-20">
 	<li role="presentation"><a href="{url op="issueToc" path=$issueId}">{translate key="issue.toc"}</a></li>
 	<li role="presentation"><a href="{url op="issueData" path=$issueId}">{translate key="editor.issues.issueData"}</a></li>
 	<li role="presentation" class="active"><a href="{url op="issueGalleys" path=$issueId}">{translate key="editor.issues.galleys"}</a></li>

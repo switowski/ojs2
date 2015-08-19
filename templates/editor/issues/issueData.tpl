@@ -33,7 +33,7 @@
 
 <div class="clearfix"></div>
 
-<ul class="nav nav-tabs nav-justified" style="margin-top:20px">
+<ul class="nav nav-tabs nav-justified margin-top-20">
 	<li role="presentation"><a href="{url op="issueToc" path=$issueId}">{translate key="issue.toc"}</a></li>
 	<li role="presentation" class="active"><a href="{url op="issueData" path=$issueId}">{translate key="editor.issues.issueData"}</a></li>
 	<li role="presentation"><a href="{url op="issueGalleys" path=$issueId}">{translate key="editor.issues.galleys"}</a></li>
@@ -55,7 +55,7 @@
 		<div class="col-md-10">
 				{url|assign:"issueUrl" op="createIssue" escape=false}
 				{form_language_chooser form="issue" url=$issueUrl}
-				<span class="instruct" style="font-style:italic">{translate key="form.formLanguage.description"}</span>
+				<span class="instruct info-text">{translate key="form.formLanguage.description"}</span>
 		</div>
 	</div>
 	<div class="col-md-12">
@@ -160,7 +160,7 @@
 	</div>
 </div>
 </div>
-<p style="text-align: center;margin-top: 20px;"><input type="submit" value="{translate key="common.save"}" class="btn btn-success btn-lg" /> <input type="button" value="{translate key="common.cancel"}" onclick="document.location.href='{url op="issueData" path=$issueId escape=false}'" class="btn btn-danger btn-lg" /></p>
+<p class="margin-top-20"><input type="submit" value="{translate key="common.save"}" class="btn btn-success btn-lg" /> <input type="button" value="{translate key="common.cancel"}" onclick="document.location.href='{url op="issueData" path=$issueId escape=false}'" class="btn btn-danger btn-lg" /></p>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 

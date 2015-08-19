@@ -36,7 +36,7 @@
 {else}{* if count($sectionOptions) == 2 *}
 <div id="section">
 
-<div class="page-header" style="margin-top: 0;"><h3>{translate key="author.submit.journalSection"}</h3></div>
+<div class="page-header page-header-without-margin-top"><h3>{translate key="author.submit.journalSection"}</h3></div>
 
 {url|assign:"url" page="about"}
 <p>{translate key="author.submit.journalSectionDescription" aboutUrl=$url}</p>
@@ -112,8 +112,8 @@ function checkSubmissionChecklist() {
 			<div id="checklist">
 				<div class="page-header"><h3>{translate key="author.submit.submissionChecklist"}</h3></div>
 				
-				<div id="div-all-checklist" class="row" style="margin-bottom:20px">
-					<div style="display:none"><input onclick="selectChecklist(this)" type="checkbox" id="checklist-all" value="" /></div>
+				<div id="div-all-checklist" class="row margin-bottom-20">
+					<div class="display-none"><input onclick="selectChecklist(this)" type="checkbox" id="checklist-all" value="" /></div>
 					<div>{translate key="author.submit.submissionChecklistDescription"}</div>
 				</div>
 				
@@ -173,9 +173,9 @@ function checkSubmissionChecklist() {
 
 <div class="clearfix"></div>
 
-<div class="row" style="text-align:center;margin-top:20px"><input type="submit" value="NEXT STEP" class="btn btn-success btn-lg" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-default" onclick="{if $articleId}confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}'){else}document.location.href='{url page="author" escape=false}'{/if}" /></div>
-
 <div class="row" ><span class="formRequired">{translate key="common.requiredField"}</span></div>
+
+<div class="row div-buttons-submission"><input type="submit" value="NEXT STEP" class="btn btn-success btn-lg" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-default" onclick="{if $articleId}confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}'){else}document.location.href='{url page="author" escape=false}'{/if}" /></div>
 
 </form>
 

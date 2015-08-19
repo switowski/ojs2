@@ -64,7 +64,7 @@
 			</td>
 			<td>{if $editAssignment->getDateNotified()}{$editAssignment->getDateNotified()|date_format:$dateFormatShort}{else}&mdash;{/if}</td>
 			{if $isEditor}
-				<td><a onclick="return confirm('Do you really want to remove it?')" href="{url page="editor" op="deleteEditAssignment" path=$editAssignment->getEditId()}" class="action btn btn-xs btn-default" style="min-width:70px"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">delete</i> {translate key="common.delete"}</a></td>
+				<td><a onclick="return confirm('Do you really want to remove it?')" href="{url page="editor" op="deleteEditAssignment" path=$editAssignment->getEditId()}" class="action btn btn-xs btn-default" style="min-width:70px"><i class="material-icons icon-inside-button">delete</i> {translate key="common.delete"}</a></td>
 			{/if}
 		</tr>
 	{foreachelse}

@@ -13,7 +13,7 @@
 
 <div class="panel panel-default">
   	<div class="panel-heading">
-    	<h3 style="margin:0">{translate key="article.submission"}</h3>
+    	<h3 class="panel-header-without-margin">{translate key="article.submission"}</h3>
   	</div>
   	<div class="panel-body">
   		<div class="col-md-12">
@@ -125,12 +125,12 @@
 	<div class="panel panel-default">
   		<div class="panel-heading col-md-12">
 			<div class="col-md-2"><h4>{translate key="user.role.reviewer"} {$reviewIndex+$start|chr}</h4></div>
-			<div class="col-md-8"><h4 style="font-style:italic">{$reviewAssignment->getReviewerFullName()|escape}</h4></div>
+			<div class="col-md-8"><h4 class="info-text">{$reviewAssignment->getReviewerFullName()|escape}</h4></div>
 			<div class="col-md-2">
 				{if not $reviewAssignment->getDateNotified()}
-					<a href="{url op="clearReview" path=$submission->getId()|to_array:$reviewAssignment->getId()}" class="btn btn-danger btn-xs" style="margin-top: 10px;">{translate key="editor.article.clearReview"}</a>
+					<a href="{url op="clearReview" path=$submission->getId()|to_array:$reviewAssignment->getId()}" class="btn btn-danger btn-xs margin-top-10">{translate key="editor.article.clearReview"}</a>
 				{elseif $reviewAssignment->getDeclined() or not $reviewAssignment->getDateCompleted()}
-					<a href="{url op="cancelReview" articleId=$submission->getId() reviewId=$reviewAssignment->getId()}" class="btn btn-danger btn-xs" style="margin-top: 10px;">{translate key="editor.article.cancelReview"}</a>
+					<a href="{url op="cancelReview" articleId=$submission->getId() reviewId=$reviewAssignment->getId()}" class="btn btn-danger btn-xs margin-top-10">{translate key="editor.article.cancelReview"}</a>
 				{/if}
 			</div>
 		</div>
@@ -212,11 +212,11 @@
 					<div class="col-md-10">
 						{if $reviewAssignment->getRecommendation() !== null && $reviewAssignment->getRecommendation() !== ''}
 							{assign var="recommendation" value=$reviewAssignment->getRecommendation()}
-							<span style="font-style: italic;font-weight: bold;">
+							<span class="review-recommendation">
 								{translate key=$reviewerRecommendationOptions.$recommendation}
 							</span>
 							&nbsp;&nbsp;
-							<span style="font-style: italic;">
+							<span class="info-text">
 								{$reviewAssignment->getDateCompleted()|date_format:$dateFormatShort}
 							</span>
 						{else}
@@ -251,9 +251,9 @@
 						<div class="col-md-10">
 							{if $reviewAssignment->getMostRecentPeerReviewComment()}
 								{assign var="comment" value=$reviewAssignment->getMostRecentPeerReviewComment()}
-								<a href="javascript:openComments('{url op="viewPeerReviewComments" path=$submission->getId()|to_array:$reviewAssignment->getId() anchor=$comment->getId()}');" class="btn btn-default btn-sm">REVIEW</a>&nbsp;&nbsp;<span style="font-style:italic;padding-top:2px">{$comment->getDatePosted()|date_format:$dateFormatShort}</span>
+								<a href="javascript:openComments('{url op="viewPeerReviewComments" path=$submission->getId()|to_array:$reviewAssignment->getId() anchor=$comment->getId()}');" class="btn btn-default btn-sm">REVIEW</a>&nbsp;&nbsp;<span class="date-review">{$comment->getDatePosted()|date_format:$dateFormatShort}</span>
 							{else}
-								<a href="javascript:openComments('{url op="viewPeerReviewComments" path=$submission->getId()|to_array:$reviewAssignment->getId()}');" class="btn btn-default btn-sm">REVIEW</a>&nbsp;&nbsp;<span style="font-style:italic;padding-top:2px">{translate key="submission.comments.noComments"}</span>
+								<a href="javascript:openComments('{url op="viewPeerReviewComments" path=$submission->getId()|to_array:$reviewAssignment->getId()}');" class="btn btn-default btn-sm">REVIEW</a>&nbsp;&nbsp;<span class="date-review">{translate key="submission.comments.noComments"}</span>
 							{/if}
 						</div>
 					</div>
@@ -302,7 +302,7 @@
 							<input type="submit" name="submit" value="{translate key="common.upload"}" class="button" />
 						</form>
 						{if $reviewAssignment->getDateConfirmed() && !$reviewAssignment->getDeclined()}
-							<a class="btn btn-success" style="margin-top:5px" href="{url op="enterReviewerRecommendation" articleId=$submission->getId() reviewId=$reviewAssignment->getId()}">{translate key="editor.article.recommendation"}</a>
+							<a class="btn btn-success recomendation-button" href="{url op="enterReviewerRecommendation" articleId=$submission->getId() reviewId=$reviewAssignment->getId()}">{translate key="editor.article.recommendation"}</a>
 						{/if}
 					</div>
 				</div>

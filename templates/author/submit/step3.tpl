@@ -139,7 +139,7 @@ function moveAuthor(dir, authorIndex) {
 		</div>
 	</div>
 	{/if}
-	<div class="col-md-12" style="margin-top:20px;margin-bottom:20px">
+	<div class="col-md-12" class="margin-bottom-20 margin-top-20">
 		<div class="row col-md-6">
 			<div class="col-xs-1"><input type="radio" name="primaryContact" value="{$authorIndex|escape}"{if $primaryContact == $authorIndex} checked="checked"{/if} /></div>
 			<div class="col-xs-11"><label for="primaryContact">{translate key="author.submit.selectPrincipalContact"}</label></div>
@@ -344,7 +344,7 @@ function moveAuthor(dir, authorIndex) {
 </div>
 {/if}
 
-<div class="row" style="text-align:center;margin-top:20px"><input type="submit" value="NEXT STEP" class="btn btn-success btn-lg" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-default" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></div>
+<div class="row div-buttons-submission"><input type="submit" value="NEXT STEP" class="btn btn-success btn-lg" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-default" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></div>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 

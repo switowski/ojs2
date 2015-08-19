@@ -157,26 +157,26 @@
 	<input type="submit" name="createRemote" value="{translate key="common.create"}" class="button" />
 </form>
 
-<div id="layoutComments">
+<div id="layoutComments" class="margin-bottom-10">
 {translate key="submission.layout.layoutComments"}
 {if $submission->getMostRecentLayoutComment()}
 	{assign var="comment" value=$submission->getMostRecentLayoutComment()}
-	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getId() anchor=$comment->getId()}');" class="icon">{icon name="comment"}</a> {$comment->getDatePosted()|date_format:$dateFormatShort}
+	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getId() anchor=$comment->getId()}');" class="icon">class="btn btn-default btn-xs">{icon name="comment"} {$comment->getDatePosted()|date_format:$dateFormatShort}</a>
 {else}
-	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getId()}');" class="icon">{icon name="comment"}</a> {translate key="common.noComments"}
+	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getId()}');" class="btn btn-default btn-xs">{icon name="comment"} {translate key="common.noComments"}</a>
 {/if}
+</div>
 
 {if $currentJournal->getLocalizedSetting('layoutInstructions')}
 &nbsp;&nbsp;
-<a href="javascript:openHelp('{url op="instructions" path="layout"}')" class="action">{translate key="submission.layout.instructions"}</a>
+<a href="javascript:openHelp('{url op="instructions" path="layout"}')" class="action btn btn-default btn-xs"><i class="material-icons icon-inside-button">info_outline</i>  {translate key="submission.layout.instructions"}</a>
 {/if}
 {if $currentJournal->getSetting('provideRefLinkInstructions')}
-&nbsp;&nbsp;
-<a href="javascript:openHelp('{url op="instructions" path="referenceLinking"}')" class="action">{translate key="submission.layout.referenceLinking"}</a>
+<a href="javascript:openHelp('{url op="instructions" path="referenceLinking"}')" class="action btn btn-default btn-xs"><i class="material-icons icon-inside-button">info_outline</i> {translate key="submission.layout.referenceLinking"}</a>
 {/if}
 {foreach name=templates from=$templates key=templateId item=template}
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="{url op="downloadLayoutTemplate" path=$submission->getId()|to_array:$templateId}" class="action">{$template.title|escape}</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="{url op="downloadLayoutTemplate" path=$submission->getId()|to_array:$templateId}" class="action btn btn-default btn-xs"><i class="material-icons icon-inside-button">get_app</i> {$template.title|escape}</a>
 {/foreach}
-</div>
+
 </div>
 

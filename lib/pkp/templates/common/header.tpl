@@ -137,7 +137,7 @@
 			<span class="icon-bar"></span>
 		</button>
     </div>
-    <div id="navbar" class="navbar-collapse collapse col-md-4" aria-expanded="false" style="margin-top:8px">
+    <div id="navbar" class="navbar-collapse collapse col-md-4 general-menu-nav" aria-expanded="false">
 		<ul class="nav navbar-nav">
 			<li><a href="{url journal="index"}"><span class="menu-option">{translate key="navigation.home"}</span></a></li>
 			{if $currentJournal}
@@ -172,8 +172,8 @@
     {if $isUserLoggedIn}
 		<div id="user-nav-on"  class="user-nav user-nav-on">
 			<a href="#" class="dropdown-toggle user-option" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-				<div style="width:100%;height:30px">
-					<span class="hello-text" style="">You are logged in as...</span>
+				<div class="logged-div">
+					<span class="hello-text">You are logged in as...</span>
 					<span class="menu-option user-name"><strong>{$emailUser}</strong></span>
 				</div>
 			</a>
@@ -199,7 +199,7 @@
 		</div>
 	</form>
 </nav>
-<a href="{url page="index"}" style="text-decoration: none">
+<a href="{url page="index"}" class="a-without-decoration">
 	<div id="header">
 		<div id="headerTitle" class="jumbotron">
 			<h1>

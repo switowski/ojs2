@@ -49,8 +49,8 @@ function confirmForgottenUpload() {
 	<td>{$file->getOriginalFileName()|escape}</td>
 	<td>{$file->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
 	<td align="right">
-		<a href="{url op="submitSuppFile" path=$file->getSuppFileId() articleId=$articleId}" class="btn btn-default btn-xs"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">mode_edit</i> {translate key="common.edit"}</a>
-		<a href="{url op="deleteSubmitSuppFile" path=$file->getSuppFileId() articleId=$articleId}" onclick="return confirm('{translate|escape:"jsparam" key="author.submit.confirmDeleteSuppFile"}')" class="btn btn-danger btn-xs"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">delete</i> {translate key="common.delete"}</a>
+		<a href="{url op="submitSuppFile" path=$file->getSuppFileId() articleId=$articleId}" class="btn btn-default btn-xs"><i class="material-icons icon-inside-button">mode_edit</i> {translate key="common.edit"}</a>
+		<a href="{url op="deleteSubmitSuppFile" path=$file->getSuppFileId() articleId=$articleId}" onclick="return confirm('{translate|escape:"jsparam" key="author.submit.confirmDeleteSuppFile"}')" class="btn btn-danger btn-xs"><i class="material-icons icon-inside-button">delete</i> {translate key="common.delete"}</a>
 	</td>
 </tr>
 {foreachelse}
@@ -71,7 +71,7 @@ function confirmForgottenUpload() {
 	</div>
 </div>
 
-<div class="row" style="text-align:center;margin-top:20px"><input type="submit" onclick="return confirmForgottenUpload()" value="NEXT STEP" class="btn btn-success btn-lg" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-default" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></div>
+<div class="row div-buttons-submission"><input type="submit" onclick="return confirmForgottenUpload()" value="NEXT STEP" class="btn btn-success btn-lg" /> <input type="button" value="{translate key="common.cancel"}" class="btn btn-default" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></div>
 
 </form>
 

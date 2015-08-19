@@ -30,7 +30,7 @@
 
 <div class="separator"></div>
 <div id="identification">
-<div class="page-header" style="margin-top:0px"><h3>{translate key="editor.issues.identification"}</h3></div>
+<div class="page-header page-header-without-margin-top"><h3>{translate key="editor.issues.identification"}</h3></div>
 
 <div class="row">
 {if count($formLocales) > 1}
@@ -39,7 +39,7 @@
 		<div class="col-md-10">
 				{url|assign:"issueUrl" op="createIssue" escape=false}
 				{form_language_chooser form="issue" url=$issueUrl}
-				<span class="instruct" style="font-style:italic">{translate key="form.formLanguage.description"}</span>
+				<span class="instruct info-text">{translate key="form.formLanguage.description"}</span>
 		</div>
 	</div>
 {/if}
@@ -138,7 +138,7 @@
 	</div>
 </div>
 </div>
-<p style="text-align: center;margin-top: 20px;"><input type="submit" value="{translate key="common.save"}" class="btn btn-success btn-lg" /> <input type="button" value="{translate key="common.cancel"}" onclick="document.location.href='{url op="index" escape=false}'" class="btn btn-danger btn-lg" /></p>
+<p class="center margin-top-20"><input type="submit" value="{translate key="common.save"}" class="btn btn-success btn-lg" /> <input type="button" value="{translate key="common.cancel"}" onclick="document.location.href='{url op="index" escape=false}'" class="btn btn-danger btn-lg" /></p>
 
 </form>
 

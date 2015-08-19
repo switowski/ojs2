@@ -79,7 +79,7 @@
 			</td>
 		{else}
 			<td><a href="{url op="submit" path=$progress articleId=$articleId}">{if $submission->getLocalizedTitle()}{$submission->getLocalizedTitle()|strip_tags|truncate:60:"..."}{else}{translate key="common.untitled"}{/if}</a></td>
-			<td align="right"><span style="margin:5px">{translate key="submissions.incomplete"}</span><a class="btn btn-danger btn-xs" onclick="return cernConfirm('{translate|escape:"jsparam" key="author.submissions.confirmDelete"}','window.location.href = \'{url op="deleteSubmission" path=$articleId}\'', true, event)">{translate key="common.delete"}</a></td>
+			<td align="right"><span class="text-near-button">{translate key="submissions.incomplete"}</span><a class="btn btn-danger btn-xs" onclick="return cernConfirm('{translate|escape:"jsparam" key="author.submissions.confirmDelete"}','window.location.href = \'{url op="deleteSubmission" path=$articleId}\'', true, event)">{translate key="common.delete"}</a></td>
 		{/if}
 
 	</tr>
@@ -91,7 +91,7 @@
 	</tr>
 {else}
 	<tr>
-		<td colspan="4" align="left" style="font-weight: bold;padding-top:10px;">{page_info iterator=$submissions}</td>
+		<td colspan="4" align="left" class="number-results-table">{page_info iterator=$submissions}</td>
 		<td colspan="2" align="right" class="footer-table-numbers">{page_links anchor="submissions" name="submissions" iterator=$submissions sort=$sort sortDirection=$sortDirection}</td>
 	</tr>
 {/if}

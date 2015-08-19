@@ -39,7 +39,7 @@ function sortSearch(heading, direction) {
 		<input type="hidden" name="sort" value="id"/>
 		<input type="hidden" name="sortDirection" value="ASC"/>
 		</div>
-		<div class="col-md-1 remove-on-mobile" style="text-align: center;"><i class="material-icons">forward</i></div>
+		<div class="col-md-1 remove-on-mobile" class="center"><i class="material-icons">forward</i></div>
 		<div class="col-md-2">
 			<select name="searchMatch" size="1" class="selectMenu">
 				<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
@@ -47,38 +47,38 @@ function sortSearch(heading, direction) {
 				<option value="startsWith"{if $searchMatch == 'startsWith'} selected="selected"{/if}>{translate key="form.startsWith"}</option>
 			</select>
 		</div>
-		<div class="col-md-1 remove-on-mobile" style="text-align: center;"><i class="material-icons">forward</i></div>
+		<div class="col-md-1 remove-on-mobile" class="center"><i class="material-icons">forward</i></div>
 		<div class="col-md-6" >
 			<input type="text" size="15" name="search" class="textField" value="{$search|escape}" />
 		</div>
 	</div>
-	<div class="row col-md-12" style="margin-top: -10px;margin-bottom: -10px;"><hr></div>
+	<div class="row col-md-12" class="margin-minus-10-top-bottom"><hr></div>
 	<div class="col-md-12">
 		<div class="col-md-3">
 			<select name="dateSearchField" size="1" class="selectMenu">
 				{html_options_translate options=$dateFieldOptions selected=$dateSearchField}
 			</select>
 		</div>
-		<div class="col-md-2" style="text-align: center;padding-top:5px">{translate key="common.between"}</div>
+		<div class="col-md-2" class="padding-top-5 center">{translate key="common.between"}</div>
 		<div class="col-md-3">
 			<div class="change-input-date">
 				{html_select_date prefix="dateFrom" time=$dateFrom all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="-5" end_year="+1"}
 			</div>
-			<input type="text" value="" style="display:none"/>
+			<input type="text" value="" class="display-none"/>
 		</div>
-		<div class="col-md-1" style="text-align: center;padding-top:5px">{translate key="common.and"}</div>
+		<div class="col-md-1" class="padding-top-5 center">{translate key="common.and"}</div>
 		<div class="col-md-3">
 			<div class="change-input-date">	
 				{html_select_date prefix="dateTo" time=$dateTo all_extra="class=\"selectMenu\"" year_empty="" month_empty="" day_empty="" start_year="-5" end_year="+1"}
 			</div>
-			<input type="text" value="" style="display:none"/>
+			<input type="text" value="" class="display-none"/>
 		</div>
 		<input type="hidden" name="dateToHour" value="23" />
 		<input type="hidden" name="dateToMinute" value="59" />
 		<input type="hidden" name="dateToSecond" value="59" />
 	</div>
 	<div class="col-md-3 col-md-offset-5" >
-		<input type="submit" value="{translate key="common.search"}" class="btn btn-success btn-lg btn-block" style="margin-top:10px" />
+		<input type="submit" value="{translate key="common.search"}" class="btn btn-success btn-lg btn-block margin-top-10" />
 	</div>
 </form>
 </div>
@@ -128,7 +128,7 @@ function sortSearch(heading, direction) {
 	</tr>
 {else}
 	<tr>
-		<td colspan="5" align="left" style="font-weight: bold;padding-top:10px;">{page_info iterator=$submissions}</td>
+		<td colspan="5" align="left" class="number-results-table">{page_info iterator=$submissions}</td>
 		<td colspan="3" align="right" class="footer-table-numbers">{page_links anchor="submissions" name="submissions" iterator=$submissions searchInitial=$searchInitial searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth dateSearchField=$dateSearchField sort=$sort sortDirection=$sortDirection}</td>
 	</tr>
 {/if}

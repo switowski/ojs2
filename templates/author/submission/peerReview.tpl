@@ -23,7 +23,7 @@
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h4 style="margin:0">{translate key="submission.round" round=$round}</h4>
+		<h4 class="panel-header-without-margin">{translate key="submission.round" round=$round}</h4>
 	</div>
 	<div class="panel-body">
 		<div class="col-md-12">

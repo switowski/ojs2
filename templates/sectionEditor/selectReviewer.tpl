@@ -38,7 +38,7 @@ function sortSearch(heading, direction) {
 {foreach from=$reviewerDatabaseLinks item="link"}{if !empty($link.title) && !empty($link.url)}<a class="btn btn-default btn-xs" href="{$link.url|escape}" target="_new" class="action">{$link.title|escape}</a>{/if}{/foreach}</p>
 </div>
 
-<div class="row col-md-12" style="margin-top: -10px;margin-bottom: -10px;"><hr></div>
+<div class="row col-md-12 margin-minus-10-top-bottom"><hr></div>
 
 <form id="submit" method="post" action="{url op="selectReviewer" path=$articleId}">
 	<input type="hidden" name="sort" value="name"/>
@@ -63,7 +63,7 @@ function sortSearch(heading, direction) {
 	</div>
 </form>
 
-<div class="row col-md-12" style="margin-top: -10px;margin-bottom: -10px;"><hr></div>
+<div class="row col-md-12 margin-minus-10-top-bottom"><hr></div>
 
 <div class="col-md-12">
 <p>{foreach from=$alphaList item=letter}<a class="btn btn-default btn-xs {if $letter == $searchInitial}active{/if}" href="{url op="selectReviewer" path=$articleId searchInitial=$letter}">{$letter|escape}</a> {/foreach}<a class="btn btn-default btn-xs {if $searchInitial==''}active{/if}" href="{url op="selectReviewer" path=$articleId}">{translate key="common.all"}</a></p>
@@ -100,16 +100,16 @@ function sortSearch(heading, direction) {
 		{if $reviewer->review_id}
 			{if $reviewer->declined}
 				<a class="btn btn-warning btn-xs" href="{url op="reassignReviewer" path=$articleId|to_array:$reviewer->getUserId()}">
-					<i class="material-icons" style="font-size: 20px;padding-top:2px">trending_down</i>
-					<span style="position: relative;float: right;padding: 5px;">{translate key="editor.reassign"}</span>
+					<i class="material-icons icon-inside-button">trending_down</i>
+					{translate key="editor.reassign"}
 				</a>
 			{else}
-				<span style="font-style: italic;text-align: right;">{translate key="common.alreadyAssigned"}</span>
+				<span class="assigned-select-reviewer">{translate key="common.alreadyAssigned"}</span>
 			{/if}
 		{else}
 		<a class="btn btn-success btn-xs" href="{url op="selectReviewer" path=$articleId|to_array:$reviewer->getId()}">
-			<i class="material-icons" style="font-size: 20px;padding-top:2px">trending_down</i>
-			<span style="position: relative;float: right;padding: 5px;">{translate key="common.assign"}</span>
+			<i class="material-icons con-inside-button">trending_down</i>
+			{translate key="common.assign"}
 		</a>
 		{/if}
 	</td>
@@ -145,7 +145,7 @@ function sortSearch(heading, direction) {
 </tr>
 {else}
 	<tr>
-		<td colspan="2" align="left" style="font-weight: bold;padding-top:10px;">{page_info iterator=$reviewers}</td>
+		<td colspan="2" align="left" class="number-results-table">{page_info iterator=$reviewers}</td>
 		<td colspan="{$numCols-2}" align="right" class="footer-table-numbers">{page_links anchor="reviewers" name="reviewers" iterator=$reviewers searchInitial=$searchInitial searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth sort=$sort sortDirection=$sortDirection}</td>
 	</tr>
 {/if}

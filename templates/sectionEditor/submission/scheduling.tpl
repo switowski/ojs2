@@ -65,7 +65,7 @@
 						<div class="change-input-date">
 							{html_select_date prefix="datePublished" time=$publishedArticle->getDatePublished()|default:"---" all_extra="class=\"selectMenu\"" start_year=$minYear end_year=$maxYear year_empty="-" month_empty="-" day_empty="-"}
 						</div>
-						<input type="text" value="" style="display:none"/>
+						<input type="text" value="" class="display-none"/>
 					</div>
 					<div class="col-md-6">
 						<input type="submit" value="{translate key="common.confirm"}" class="button btn btn-default defaultButton" />&nbsp;

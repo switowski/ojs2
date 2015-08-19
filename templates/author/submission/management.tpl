@@ -11,7 +11,7 @@
 <div id="submission">
 <div class="panel panel-default">
   	<div class="panel-heading">
-    	<h3 style="margin:0">{translate key="article.submission"}</h3>
+    	<h3 class="panel-header-without-margin">{translate key="article.submission"}</h3>
   	</div>
   	<div class="panel-body">
 		<div class="col-md-12">
@@ -42,7 +42,7 @@
 				{/foreach}
 			</div>
 			{if $submission->getStatus() != STATUS_PUBLISHED && $submission->getStatus() != STATUS_ARCHIVED}
-				<div class="col-md-5"><a href="{url op="addSuppFile" path=$submission->getId()}" class="btn btn-xs btn-default"><i class="material-icons" style="float:left;font-size:16px;padding-right:5px;">add</i> {translate key="submission.addSuppFile"}</a></div>
+				<div class="col-md-5"><a href="{url op="addSuppFile" path=$submission->getId()}" class="btn btn-xs btn-default"><i class="material-icons icon-inside-button">add</i> {translate key="submission.addSuppFile"}</a></div>
 			{/if}
 		</div>
 		<div class="col-md-12">

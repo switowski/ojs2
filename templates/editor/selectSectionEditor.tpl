@@ -36,7 +36,7 @@
 	</div>
 </form>
 
-<div class="row col-md-12" style="margin-top: -10px;margin-bottom: -10px;"><hr></div>
+<div class="row col-md-12 margin-minus-10-top-bottom"><hr></div>
 <div class="col-md-12">
 <p>{foreach from=$alphaList item=letter}<a class="btn btn-default btn-xs {if $letter == $searchInitial}active{/if}" href="{url op="assignEditor" path=$rolePath articleId=$articleId searchInitial=$letter}">{$letter|escape}</a> {/foreach}<a class="btn btn-default btn-xs {if $searchInitial==''}active{/if}" href="{url op="assignEditor" articleId=$articleId}">{translate key="common.all"}</a></p>
 </div>
@@ -58,8 +58,8 @@
 <tr valign="top">
 	<td>
 		<a class="btn btn-success btn-xs" href="{url op="assignEditor" articleId=$articleId editorId=$editorId}">
-			<i class="material-icons" style="font-size: 20px;padding-top:2px">trending_down</i>
-			<span style="position: relative;float: right;padding: 5px;">{translate key="common.assign"}</span>
+			<i class="material-icons icon-inside-button">trending_down</i>
+			{translate key="common.assign"}
 		</a>
 	</td>
 	<td><a class="action" href="{url op="userProfile" path=$editorId}">{$editor->getFullName()|escape}</a></td>
@@ -93,7 +93,7 @@
 </tr>
 {else}
 	<tr>
-		<td colspan="2" align="left" style="font-weight: bold;padding-top:10px;">{page_info iterator=$editors}</td>
+		<td colspan="2" align="left" class="number-results-table">{page_info iterator=$editors}</td>
 		<td colspan="3" align="right" class="footer-table-numbers">{page_links anchor="editors" name="editors" iterator=$editors searchInitial=$searchInitial searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth articleId=$articleId}</td>
 	</tr>
 {/if}

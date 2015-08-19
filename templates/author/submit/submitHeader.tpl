@@ -17,7 +17,7 @@
 	var alternativeTitle = '';
 </script>
 
-<div class="row bs-wizard" style="border-bottom:0;">               
+<div class="row bs-wizard">               
 	<div class="col-xs-offset-1 col-xs-2 bs-wizard-step {if $submitStep > 1}complete{elseif $submitStep == 1}active{elseif $submissionProgress < 1}disabled{/if}">
       	<div class="text-center bs-wizard-stepnum">Step 1</div>
       	<div class="progress"><div class="progress-bar"></div></div>
