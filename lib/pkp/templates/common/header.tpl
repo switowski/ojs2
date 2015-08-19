@@ -193,9 +193,13 @@
     
     <form method="post" id="searchForm" action="{url page="search"}">
 		<div class="search-nav">
-			<input id="simpleQuery" name="simpleQuery" type="text" class="form-control search-input" placeholder="{translate key="common.search"}">
-			<input type="hidden" id="searchField" name="searchField" value="query">
-			<button type="submit" class="btn btn-default btn-sm"><i class="material-icons w3-xlarge">search</i></button>
+			<div class="input-group">
+				<input id="simpleQuery" name="simpleQuery" type="text" class="form-control search-input" placeholder="{translate key="common.search"}">
+				<input type="hidden" id="searchField" name="searchField" value="query">
+				<span class="input-group-btn">
+					<button type="submit" class="btn btn-default btn-sm"><i class="material-icons w3-xlarge">search</i></button>
+				</span>
+			</div>
 		</div>
 	</form>
 </nav>

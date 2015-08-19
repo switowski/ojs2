@@ -20,80 +20,88 @@
 		{rdelim});
 	</script>
 	<form method="post" id="searchForm" action="{url op="search"}">
-		<table class="data">
-			<tr valign="top">
-				<td class="label"><label for="query">{translate key="search.searchAllCategories"}</label></td>
-				<td class="value">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="input-group">
 					{capture assign="queryFilter"}{call_hook name="Templates::Search::SearchResults::FilterInput" filterName="query" filterValue=$query}{/capture}
 					{if empty($queryFilter)}
 						<input type="text" id="query" name="query" size="40" maxlength="255" value="{$query|escape}" class="textField" />
 					{else}
 						{$queryFilter}
 					{/if}
-					&nbsp;
-					<input type="submit" value="{translate key="common.search"}" class="button defaultButton" />
-				</td>
-			</tr>
-			{if $siteSearch}
-				<tr valign="top">
-					<td class="label"><label for="searchJournal">{translate key="search.withinJournal"}</label></td>
-					<td class="value"><select name="searchJournal" id="searchJournal" class="selectMenu">{html_options options=$journalOptions selected=$searchJournal}</select></td>
-				</tr>
-			{/if}
-			{if $hasActiveFilters}
-				<tr valign="top">
-					<td colspan="2" class="label"><h4>{translate key="search.activeFilters"}</h4></td>
-				</tr>
-				{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="authors" filterValue=$authors key="search.author"}
-				{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="title" filterValue=$title key="article.title"}
-				{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="abstract" filterValue=$abstract key="search.abstract"}
-				{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="galleyFullText" filterValue=$galleyFullText key="search.fullText"}
-				{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="suppFiles" filterValue=$suppFiles key="article.suppFiles"}
-				{include file="search/searchFilter.tpl" displayIf="activeFilter" filterType="date" filterName="dateFrom" filterValue=$dateFrom startYear=$startYear endYear=$endYear key="search.dateFrom"}
-				{include file="search/searchFilter.tpl" displayIf="activeFilter" filterType="date" filterName="dateTo" filterValue=$dateTo startYear=$startYear endYear=$endYear key="search.dateTo"}
-				{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="discipline" filterValue=$discipline key="search.discipline"}
-				{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="subject" filterValue=$subject key="search.subject"}
-				{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="type" filterValue=$type key="search.typeMethodApproach"}
-				{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="coverage" filterValue=$coverage key="search.coverage"}
-				{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="indexTerms" filterValue=$indexTerms key="search.indexTermsLong"}
-			{/if}
-		</table>
-		<br/>
-		{if $hasEmptyFilters}
-			{capture assign="emptyFilters"}
-				<table class="data">
-					{if empty($authors) || empty($title) || empty($abstract) || empty($galleyFullText) || empty($suppFiles)}
-						<tr valign="top">
-							<td colspan="2" class="label"><h4>{translate key="search.searchCategories"}</h4></td>
-						</tr>
-						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="authors" filterValue=$authors key="search.author"}
-						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="title" filterValue=$title key="article.title"}
-						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="abstract" filterValue=$abstract key="search.abstract"}
-						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="galleyFullText" filterValue=$galleyFullText key="search.fullText"}
-						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="suppFiles" filterValue=$suppFiles key="article.suppFiles"}
-					{/if}
-					{if $dateFrom == '--' || $dateTo == '--'}
-						<tr valign="top">
-							<td colspan="2" class="formSubLabel"><h4>{translate key="search.date"}</h4></td>
-						</tr>
-						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterType="date" filterName="dateFrom" filterValue=$dateFrom startYear=$startYear endYear=$endYear key="search.dateFrom"}
-						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterType="date" filterName="dateTo" filterValue=$dateTo startYear=$startYear endYear=$endYear key="search.dateTo"}
-					{/if}
-					{if empty($discipline) || empty($subject) || empty($type) || empty($coverage)}
-						<tr valign="top">
-							<td colspan="2" class="label"><h4>{translate key="search.indexTerms"}</h4></td>
-						</tr>
-						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="discipline" filterValue=$discipline key="search.discipline"}
-						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="subject" filterValue=$subject key="search.subject"}
-						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="type" filterValue=$type key="search.typeMethodApproach"}
-						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="coverage" filterValue=$coverage key="search.coverage"}
-						{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="indexTerms" filterValue=$indexTerms key="search.indexTermsLong"}
-					{/if}
-				</table>
-				<p><input type="submit" value="{translate key="common.search"}" class="button defaultButton" /></p>
-			{/capture}
-			{include file="controllers/extrasOnDemand.tpl" id="emptyFilters" moreDetailsText="search.advancedSearchMore" lessDetailsText="search.advancedSearchLess" extraContent=$emptyFilters}
+					<span class="input-group-btn">
+						<input type="submit" value="search" class="btn btn-default material-icons search-button-search-window " />
+					</span>
+				</div>
+			</div>
+		</div>
+		{if $siteSearch}
+		<div class="row">
+			<div class="col-md-12"><select name="searchJournal" id="searchJournal" class="selectMenu">{html_options options=$journalOptions selected=$searchJournal}</select></div>
+		</div>
 		{/if}
+		{if $hasActiveFilters}
+			<div class="row">
+				<div class="col-md-12"><h4>{translate key="search.activeFilters"}</h4></div>
+			</div>
+			{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="authors" filterValue=$authors key="search.author"}
+			{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="title" filterValue=$title key="article.title"}
+			{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="abstract" filterValue=$abstract key="search.abstract"}
+			{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="galleyFullText" filterValue=$galleyFullText key="search.fullText"}
+			{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="suppFiles" filterValue=$suppFiles key="article.suppFiles"}
+			{include file="search/searchFilter.tpl" displayIf="activeFilter" filterType="date" filterName="dateFrom" filterValue=$dateFrom startYear=$startYear endYear=$endYear key="search.dateFrom"}
+			{include file="search/searchFilter.tpl" displayIf="activeFilter" filterType="date" filterName="dateTo" filterValue=$dateTo startYear=$startYear endYear=$endYear key="search.dateTo"}
+			{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="discipline" filterValue=$discipline key="search.discipline"}
+			{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="subject" filterValue=$subject key="search.subject"}
+			{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="type" filterValue=$type key="search.typeMethodApproach"}
+			{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="coverage" filterValue=$coverage key="search.coverage"}
+			{include file="search/searchFilter.tpl" displayIf="activeFilter" filterName="indexTerms" filterValue=$indexTerms key="search.indexTermsLong"}
+		{/if}
+		
+		<div class="row"><div class="col-md-12"><hr/></div></div>
+		
+		<a class="btn btn-default" onclick="toogleFilters()"><i id="icon-advance-search" class="material-icons icon-advanced-search">expand_more</i> Advanced search</a>
+		
+		<div id="filtersAdvanceSearch">
+		{if $hasEmptyFilters}
+			{if empty($authors) || empty($title) || empty($abstract) || empty($galleyFullText) || empty($suppFiles)}
+				<div class="row">
+					<div class="col-md-12">
+						<div class="page-header"><h4>{translate key="search.searchCategories"}</h4></div>
+					</div>
+				</div>
+				{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="authors" filterValue=$authors key="search.author"}
+				{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="title" filterValue=$title key="article.title"}
+				{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="abstract" filterValue=$abstract key="search.abstract"}
+				{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="galleyFullText" filterValue=$galleyFullText key="search.fullText"}
+				{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="suppFiles" filterValue=$suppFiles key="article.suppFiles"}
+			{/if}
+			{if $dateFrom == '--' || $dateTo == '--'}
+				<div class="row">
+					<div class="col-md-12">
+						<div class="page-header"><h4>{translate key="search.date"}</h4></div>
+					</div>
+				</div>
+				{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterType="date" filterName="dateFrom" filterValue=$dateFrom startYear=$startYear endYear=$endYear key="search.dateFrom"}
+				{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterType="date" filterName="dateTo" filterValue=$dateTo startYear=$startYear endYear=$endYear key="search.dateTo"}
+			{/if}
+			{if empty($discipline) || empty($subject) || empty($type) || empty($coverage)}
+				<div class="row">
+					<div class="col-md-12">
+						<div class="page-header"><h4>{translate key="search.indexTerms"}</h4></div>
+					</div>
+				</div>
+				{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="discipline" filterValue=$discipline key="search.discipline"}
+				{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="subject" filterValue=$subject key="search.subject"}
+				{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="type" filterValue=$type key="search.typeMethodApproach"}
+				{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="coverage" filterValue=$coverage key="search.coverage"}
+				{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="indexTerms" filterValue=$indexTerms key="search.indexTermsLong"}
+			{/if}
+		{/if}
+		</div>
+		<script>
+			var showFilters = false; //Hide them always if javascript enable
+		</script>
 	</form>
 </div>
 <br />
