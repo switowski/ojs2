@@ -108,7 +108,7 @@ function sortSearch(heading, direction) {
 			{/if}
 		{else}
 		<a class="btn btn-success btn-xs" href="{url op="selectReviewer" path=$articleId|to_array:$reviewer->getId()}">
-			<i class="material-icons con-inside-button">trending_down</i>
+			<i class="material-icons icon-inside-button">trending_down</i>
 			{translate key="common.assign"}
 		</a>
 		{/if}
