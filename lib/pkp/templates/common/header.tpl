@@ -169,7 +169,6 @@
 							{/foreach}
 						</ul>
 					</li>
-					<!--<li> <a href="{url page="about"}/contact"><span class="menu-option">Contact</span></a></li>-->
 				{/if}
 			</ul>
 	    </div>
