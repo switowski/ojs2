@@ -509,6 +509,14 @@ ul.tagit input[type="text"] {
 		display: inline;
 		width:25%;
 		min-width: 240px;
+		margin-right: 5%;
+	    
+	}
+	
+	@media (min-width:1037px) and (max-width:1091px) {
+		.search-nav {
+			margin-right: 2%;
+		}
 	}
 	
 	.search-input {
@@ -794,6 +802,26 @@ ul.tagit input[type="text"] {
 	
 	.radio-buttons-file-copyediting label {
 		padding-top:0;
+	}
+	
+	.search-button-search-window {
+		font-size: 21px;
+	    padding-top: 1px;
+	    padding-bottom: 1px;
+	    padding-left: 25px;
+	    padding-right: 25px;
+	}
+	
+	.delete-button-search-window {
+    	font-size: 20px;
+		padding-left: 13px;
+	    padding-right: 13px;
+	}
+	
+	.icon-advanced-search {
+	    float: right;
+	    font-size: 20px;
+	    padding-left: 5px;
 	}
 	
 	.margin-bottom-10 {

@@ -142,7 +142,7 @@
 			<li><a href="{url journal="index"}"><span class="menu-option">{translate key="navigation.home"}</span></a></li>
 			{if $currentJournal}
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">{translate key="navigation.about"}</span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">{translate key="navigation.about"} Journal</span></a>
 					<ul class="dropdown-menu">
 						<li><a href="{url page="about"}"><h5>About this page</h5></a></li>
 						<li role="separator" class="divider"></li>
@@ -157,14 +157,18 @@
 			{/if}
 			{if $currentJournal}
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">Content</span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">Journal content</span></a>
 					<ul class="dropdown-menu">
 						<li><a href="{url page="issue" op="current"}"><h5>{translate key="navigation.current"}</h5></a></li>
 						<li><a href="{url page="issue" op="archive"}"><h5>{translate key="navigation.archives"}</h5></a></li>
-						<li><a href="{url page="forth_titles"}"><h5>Forthcoming titles</h5></a></li>
+						{foreach from=$navMenuItems item=navItem key=navItemKey}
+							{if $navItem.url != '' && $navItem.name != ''}
+								<li id="navItem-{$navItemKey|escape}"><a href="{if $navItem.isAbsolute}{$navItem.url|escape}{else}{$baseUrl}{$navItem.url|escape}{/if}"><h5>{if $navItem.isLiteral}{$navItem.name|escape}{else}{translate key=$navItem.name}{/if}</h5></a></li>
+							{/if}
+						{/foreach}
 					</ul>
 				</li>
-				<li> <a href="{url page="about"}/contact"><span class="menu-option">Contact</span></a></li>
+				<!--<li> <a href="{url page="about"}/contact"><span class="menu-option">Contact</span></a></li>-->
 			{/if}
 		</ul>
     </div>
@@ -193,9 +197,13 @@
     
     <form method="post" id="searchForm" action="{url page="search"}">
 		<div class="search-nav">
-			<input id="simpleQuery" name="simpleQuery" type="text" class="form-control search-input" placeholder="{translate key="common.search"}">
-			<input type="hidden" id="searchField" name="searchField" value="query">
-			<button type="submit" class="btn btn-default btn-sm"><i class="material-icons w3-xlarge">search</i></button>
+			<div class="input-group">
+				<input id="simpleQuery" name="simpleQuery" type="text" class="form-control search-input" placeholder="{translate key="common.search"}">
+				<input type="hidden" id="searchField" name="searchField" value="query">
+				<span class="input-group-btn">
+					<button type="submit" class="btn btn-default btn-sm"><i class="material-icons w3-xlarge">search</i></button>
+				</span>
+			</div>
 		</div>
 	</form>
 </nav>
