@@ -509,7 +509,14 @@ ul.tagit input[type="text"] {
 		display: inline;
 		width:25%;
 		min-width: 240px;
-	    margin-right: 5%;
+		margin-right: 5%;
+	    
+	}
+	
+	@media (min-width:1037px) and (max-width:1091px) {
+		.search-nav {
+			margin-right: 2%;
+		}
 	}
 	
 	.search-input {
