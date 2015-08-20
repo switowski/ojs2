@@ -129,7 +129,7 @@
 <body id="pkp-{$pageTitle|replace:'.':'-'}">
 <div id="container">
 <nav id="navigation-bar" class="navbar navbar-default navbar-fixed-top">
-    <div class="col-md-1">
+    <div class="col-md-12 col-xs-2">
 		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 			<span class="sr-only">Toggle navigation</span>
 			<span class="icon-bar"></span>
@@ -137,75 +137,82 @@
 			<span class="icon-bar"></span>
 		</button>
     </div>
-    <div id="navbar" class="navbar-collapse collapse col-md-4 general-menu-nav" aria-expanded="false">
-		<ul class="nav navbar-nav">
-			<li><a href="{url journal="index"}"><span class="menu-option">{translate key="navigation.home"}</span></a></li>
-			{if $currentJournal}
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">{translate key="navigation.about"} Journal</span></a>
-					<ul class="dropdown-menu">
-						<li><a href="{url page="about"}"><h5>About this page</h5></a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="{url page="pages"}/view/for_editors"><h5>Information for editors</h5></a></li>              
-						<li><a href="{url page="pages"}/view/for_authors"><h5>Information for authors</h5></a></li>
-						<li><a href="{url page="pages"}/view/for_readers"><h5>Information for readers</h5></a></li>
-						<li><a href="{url page="pages"}/view/for_librarians"><h5>Information for librarians</h5></a></li>
-					</ul>
-				</li>
-			{else}
-				<li><a href="{url page="about"}"><span class="menu-option">{translate key="navigation.about"}</span></a></li>
-			{/if}
-			{if $currentJournal}
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">Journal content</span></a>
-					<ul class="dropdown-menu">
-						<li><a href="{url page="issue" op="current"}"><h5>{translate key="navigation.current"}</h5></a></li>
-						<li><a href="{url page="issue" op="archive"}"><h5>{translate key="navigation.archives"}</h5></a></li>
-						{foreach from=$navMenuItems item=navItem key=navItemKey}
-							{if $navItem.url != '' && $navItem.name != ''}
-								<li id="navItem-{$navItemKey|escape}"><a href="{if $navItem.isAbsolute}{$navItem.url|escape}{else}{$baseUrl}{$navItem.url|escape}{/if}"><h5>{if $navItem.isLiteral}{$navItem.name|escape}{else}{translate key=$navItem.name}{/if}</h5></a></li>
-							{/if}
-						{/foreach}
-					</ul>
-				</li>
-				<!--<li> <a href="{url page="about"}/contact"><span class="menu-option">Contact</span></a></li>-->
-			{/if}
-		</ul>
+    <div class="col-md-6 col-xs-10">
+	    <div id="navbar" class="navbar-collapse collapse general-menu-nav" aria-expanded="false">
+			<ul class="nav navbar-nav">
+				<li><a href="{url journal="index"}"><span class="menu-option">{translate key="navigation.home"}</span></a></li>
+				{if $currentJournal}
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">{translate key="navigation.about"} Journal</span></a>
+						<ul class="dropdown-menu">
+							<li><a href="{url page="about"}"><h5>About this page</h5></a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="{url page="pages"}/view/for_editors"><h5>Information for editors</h5></a></li>              
+							<li><a href="{url page="pages"}/view/for_authors"><h5>Information for authors</h5></a></li>
+							<li><a href="{url page="pages"}/view/for_readers"><h5>Information for readers</h5></a></li>
+							<li><a href="{url page="pages"}/view/for_librarians"><h5>Information for librarians</h5></a></li>
+						</ul>
+					</li>
+				{else}
+					<li><a href="{url page="about"}"><span class="menu-option">{translate key="navigation.about"}</span></a></li>
+				{/if}
+				{if $currentJournal}
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">Journal content</span></a>
+						<ul class="dropdown-menu">
+							<li><a href="{url page="issue" op="current"}"><h5>{translate key="navigation.current"}</h5></a></li>
+							<li><a href="{url page="issue" op="archive"}"><h5>{translate key="navigation.archives"}</h5></a></li>
+							{foreach from=$navMenuItems item=navItem key=navItemKey}
+								{if $navItem.url != '' && $navItem.name != ''}
+									<li id="navItem-{$navItemKey|escape}"><a href="{if $navItem.isAbsolute}{$navItem.url|escape}{else}{$baseUrl}{$navItem.url|escape}{/if}"><h5>{if $navItem.isLiteral}{$navItem.name|escape}{else}{translate key=$navItem.name}{/if}</h5></a></li>
+								{/if}
+							{/foreach}
+						</ul>
+					</li>
+					<!--<li> <a href="{url page="about"}/contact"><span class="menu-option">Contact</span></a></li>-->
+				{/if}
+			</ul>
+	    </div>
     </div>
     
-    {if $isUserLoggedIn}
-		<div id="user-nav-on"  class="user-nav user-nav-on">
-			<a href="#" class="dropdown-toggle user-option" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-				<div class="logged-div">
-					<span class="hello-text">You are logged in as...</span>
-					<span class="menu-option user-name"><strong>{$emailUser}</strong></span>
+    <div class="col-md-3 col-xs-10">
+	    <form method="post" id="searchForm" action="{url page="search"}">
+			<div class="search-nav">
+				<div class="input-group">
+					<input id="simpleQuery" name="simpleQuery" type="text" class="form-control search-input" placeholder="{translate key="common.search"}">
+					<input type="hidden" id="searchField" name="searchField" value="query">
+					<span class="input-group-btn">
+						<button type="submit" class="btn btn-default btn-sm"><i class="material-icons w3-xlarge">search</i></button>
+					</span>
 				</div>
-			</a>
-			<ul class="dropdown-menu dropdown-menu-right">
-				<li><a href="{url page="user"}"><h5>{translate key="navigation.userHome"}</h5></a></li>
-				{if $currentJournal}
-					<li><a href="{url page="notification"}"><h5>{translate key="notification.notifications"}</h5><span class="badge notification-badge">{if $unreadNotifications}{$unreadNotifications}{else}0{/if}</span></a></li>
-				{/if}
-				<li><a href="{url page="login" op="signOut"}"><h5>{translate key="user.logOut"}</h5></a></li>
-			</ul>
-		</div>
-	{else}
-		<div id="user-nav-off" class="user-nav user-nav-off" class="navbar-collapse collapse col-md-4" aria-expanded="false">
-			<a class="btn btn-default btn-xs" href="{url page="login"}"><span class="menu-option">{translate key="navigation.login"}</span></a>
-		</div>
-	{/if}
-    
-    <form method="post" id="searchForm" action="{url page="search"}">
-		<div class="search-nav">
-			<div class="input-group">
-				<input id="simpleQuery" name="simpleQuery" type="text" class="form-control search-input" placeholder="{translate key="common.search"}">
-				<input type="hidden" id="searchField" name="searchField" value="query">
-				<span class="input-group-btn">
-					<button type="submit" class="btn btn-default btn-sm"><i class="material-icons w3-xlarge">search</i></button>
-				</span>
 			</div>
-		</div>
-	</form>
+		</form>
+	</div>
+    
+    <div class="col-md-3 col-xs-12">
+	    {if $isUserLoggedIn}
+			<div id="user-nav-on"  class="user-nav user-nav-on">
+				<a href="#" class="dropdown-toggle user-option" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+					<div class="logged-div">
+						<span class="hello-text">You are logged in as...</span>
+						<span class="menu-option user-name"><strong>{$emailUser}</strong></span>
+					</div>
+				</a>
+				<ul class="dropdown-menu dropdown-menu-right">
+					<li><a href="{url page="user"}"><h5>{translate key="navigation.userHome"}</h5></a></li>
+					{if $currentJournal}
+						<li><a href="{url page="notification"}"><h5>{translate key="notification.notifications"}</h5><span class="badge notification-badge">{if $unreadNotifications}{$unreadNotifications}{else}0{/if}</span></a></li>
+					{/if}
+					<li><a href="{url page="login" op="signOut"}"><h5>{translate key="user.logOut"}</h5></a></li>
+				</ul>
+			</div>
+		{else}
+			<div id="user-nav-off" class="user-nav user-nav-off" class="navbar-collapse collapse col-md-4" aria-expanded="false">
+				<a class="btn btn-default btn-xs" href="{url page="login"}"><span class="menu-option">{translate key="navigation.login"}</span></a>
+			</div>
+		{/if}
+	</div>
+    
 </nav>
 <a href="{url page="index"}" class="a-without-decoration">
 	<div id="header">

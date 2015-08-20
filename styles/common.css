@@ -506,18 +506,9 @@ ul.tagit input[type="text"] {
 		float: right;
 		margin-top:8px;
 		height:34px;
-		display: inline;
-		width:25%;
-		min-width: 240px;
-		margin-right: 5%;
-	    
+		display: inline;	    
 	}
 	
-	@media (min-width:1037px) and (max-width:1091px) {
-		.search-nav {
-			margin-right: 2%;
-		}
-	}
 	
 	.search-input {
 		display: inline;
@@ -532,11 +523,6 @@ ul.tagit input[type="text"] {
 	  line-height: 1.1;
 	  color: inherit;
 	  font-size: 18px;
-	}
-	
-	#navbar {
-		width:auto;	
-		max-width: 70%;
 	}
 	
 	#navbar a {
