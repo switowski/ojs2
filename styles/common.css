@@ -54,8 +54,10 @@ a:hover {
 	margin-top: 50px;
 }
 
-#footer {
-	background-color: #ABA;
+@media (max-width:990px) {
+	#header {
+		margin-top: 95px;
+	}
 }
 
 #main {
@@ -535,7 +537,6 @@ ul.tagit input[type="text"] {
 		display: inline;
 		margin-top:8px;
 		float:right;
-		margin-right: 5%;
 	}
 	
 	.user-nav-off a {
@@ -824,7 +825,6 @@ ul.tagit input[type="text"] {
 	
 	.cern-logo {
 		height: 90px;
-		margin-top: -30px;
 	}
 	
 	.text-footer {
@@ -833,7 +833,14 @@ ul.tagit input[type="text"] {
 	}
 	
 	.second-col-footer {
-		text-align:right;
+		text-align:center;	
+	}
+	
+	@media (min-width:990px) {
+		.second-col-footer {
+			margin-top: -30px;
+			text-align:right;
+		}
 	}
 	
 	.margin-bottom-10 {
