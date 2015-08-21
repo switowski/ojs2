@@ -846,6 +846,15 @@ ul.tagit input[type="text"] {
 		}
 	}
 	
+	.icon-article-tools {
+		float:left;
+		margin-left:5%;
+	}
+	
+	#sidebarRTRelatedItems {
+		margin-top:10px;
+	}
+	
 	.margin-bottom-10 {
 		margin-bottom:10px;
 	}

@@ -238,21 +238,6 @@
 
 <div id="body">
 
-{if $leftSidebarCode || $rightSidebarCode}
-	<div id="sidebar">
-		{if $leftSidebarCode}
-			<div id="leftSidebar">
-				{$leftSidebarCode}
-			</div>
-		{/if}
-		{if $rightSidebarCode}
-			<div id="rightSidebar">
-				{$rightSidebarCode}
-			</div>
-		{/if}
-	</div>
-{/if}
-
 <div id="main">
 {include file="common/navbar.tpl"}
 
