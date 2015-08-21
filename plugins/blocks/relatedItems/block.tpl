@@ -20,9 +20,6 @@
 	<span class="blockTitle">{translate key="plugins.block.relatedItems.title"}</span>
 		<table width="100%">
 			<tr>
-				<td valign="top" style="width:26px;">
-					<img src="{$baseUrl}/plugins/blocks/relatedItems/icons/lookupTerms.png" class="articleToolIcon" alt=""/>
-				</td>
 				<td valign="top">
 					<div id="relatedItems">
 						<ul class="plain">
