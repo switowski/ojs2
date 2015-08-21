@@ -832,13 +832,16 @@ ul.tagit input[type="text"] {
 	    margin: 0 auto;
 	}
 	
+	.first-col-footer {
+		line-height: 30px;
+	}
+	
 	.second-col-footer {
 		text-align:center;	
 	}
 	
 	@media (min-width:990px) {
 		.second-col-footer {
-			margin-top: -30px;
 			text-align:right;
 		}
 	}
