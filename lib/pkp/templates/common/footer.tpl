@@ -17,8 +17,13 @@
 		{/if}
 		{call_hook name="Templates::Common::Footer::PageFooter"}
  		<div>
-			<a href="{url journal="index"}">CERN E-Publishing</a>&nbsp;&nbsp;|&nbsp;
-			<a href="{url page="about"}/contact">Contact</a>
+			<a href="{url journal="index"}">CERN E-Publishing</a>
+			{if $currentJournal}&nbsp;|&nbsp;&nbsp;<a href="{url page="about"}/contact">Contact</a>{/if}
+		</div>
+		<div>
+			{translate key="article.language"}: 
+			<a href="{url|escape:"javascript" page="user" op="setLocale" path="en_US" source=$smarty.server.REQUEST_URI escape=false}">EN</a>&nbsp;&nbsp;|&nbsp;
+			<a href="{url|escape:"javascript" page="user" op="setLocale" path="fr_CA" source=$smarty.server.REQUEST_URI escape=false}">FR</a>
 		</div>
 	</div>
 	<div class="col-md-3 second-col-footer">
