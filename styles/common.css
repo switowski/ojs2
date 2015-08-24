@@ -889,6 +889,10 @@ ul.tagit input[type="text"] {
 		}
 	}
 	
+	.align-right {
+		text-align:right;
+	}
+	
 	.margin-bottom-10 {
 		margin-bottom:10px;
 	}
