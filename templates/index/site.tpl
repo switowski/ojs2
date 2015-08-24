@@ -8,6 +8,10 @@
  * Site index.
  *
  *}
+<script>
+	var alternativeTitle = '';
+</script>
+ 
 {strip}
 {if $siteTitle}
 	{assign var="pageTitleTranslated" value=$siteTitle}

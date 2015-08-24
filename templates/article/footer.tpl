@@ -111,7 +111,7 @@
 				{get_debug_info}
 				{if $enableDebugStats}{include file=$pqpTemplate}{/if}
 				<div>
-					<a href="{url journal="index"}">CERN E-Publishing</a>
+					<a href="{url journal="index"}">CERN Publishing</a>
 					{if $currentJournal}&nbsp;|&nbsp;&nbsp;<a href="{url page="about"}/contact">Contact</a>{/if}
 				</div>
 				<div>
