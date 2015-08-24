@@ -816,6 +816,12 @@ ul.tagit input[type="text"] {
 	    padding-left: 5px;
 	}
 	
+	.icons-search-page {
+	    float: left;
+	    font-size: 20px;
+	    padding-left: 5px;
+	}
+	
 	.footer {
 		position: absolute;
 	    left: 0;
@@ -857,6 +863,30 @@ ul.tagit input[type="text"] {
 	
 	.article-tools {
 		margin-top: 19px;
+	}
+	
+	@media (min-width:990px) {
+		.on-Mobile {
+			display:none;
+		}
+		.on-PC {
+			display:block;
+		}
+	}
+	
+	@media (max-width:990px) {
+		.on-Mobile {
+			display:block;
+		}
+		.on-PC {
+			display:none;
+		}
+	}
+	
+	@media (max-width:990px) {
+		.margin-top-on-mobile {
+			margin-top: 10px;
+		}
 	}
 	
 	.margin-bottom-10 {

@@ -12,6 +12,10 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<script>
+	var alternativeTitle = '';
+</script>
+
 <div id="search">
 	<script type="text/javascript">
 		$(function() {ldelim}
@@ -60,14 +64,50 @@
 		
 		<div class="row"><div class="col-md-12"><hr/></div></div>
 		
-		<a class="btn btn-default" onclick="toogleFilters()"><i id="icon-advance-search" class="material-icons icon-advanced-search">expand_more</i> Advanced search</a>
+		<div class="row">
+			<div class="col-md-3 on-PC">
+				<a class="btn btn-default btn-block" onclick="toogleFilters()"><i class="material-icons icon-advanced-search">expand_more</i> Advanced search</a>
+			</div>
+			<div class="col-md-3">
+				<a class="btn btn-default btn-block" href="{url page="search"}/authors"><i class="material-icons icons-search-page">group</i> Index of authors</a>
+			</div>
+			<div class="col-md-3 margin-top-on-mobile">
+				<a class="btn btn-default btn-block" href="{url page="search"}/titles"><i class="material-icons icons-search-page">format_size</i> Index of titles</a>
+			</div>
+			<div class="col-md-3 margin-top-on-mobile">
+				<div id="searchTips" class="modal fade">
+				  <div class="modal-dialog">
+				  	<div class="modal-content">
+					  <div class="modal-header">
+			        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					    <h3 class="modal-title">Search tips: </h3>
+					  </div>
+				      <div class="modal-body">
+						{capture assign="syntaxInstructions"}{call_hook name="Templates::Search::SearchResults::SyntaxInstructions"}{/capture}
+						{if empty($syntaxInstructions)}
+							{translate key="search.syntaxInstructions"}
+						{else}
+							{* Must be properly escaped in the controller as we potentially get HTML here! *}
+							{$syntaxInstructions}
+						{/if}
+					  </div>
+				    </div>
+				  </div>
+				</div>
+				<a class="btn btn-default btn-block" data-toggle="modal" data-target="#searchTips"><i class="material-icons icons-search-page">help_outline</i> Search tips</a>
+			</div>
+			<div class="col-md-3 on-Mobile margin-top-on-mobile">
+				<a class="btn btn-default btn-block" onclick="toogleFilters()"><i class="material-icons icon-advanced-search">expand_more</i> Advanced search</a>
+			</div>
+		</div>
 		
-		<div id="filtersAdvanceSearch">
+		<div id="filtersAdvanceSearch" class="panel panel-default">
+		<div class="panel-body">
 		{if $hasEmptyFilters}
 			{if empty($authors) || empty($title) || empty($abstract) || empty($galleyFullText) || empty($suppFiles)}
 				<div class="row">
 					<div class="col-md-12">
-						<div class="page-header"><h4>{translate key="search.searchCategories"}</h4></div>
+						<div class="page-header page-header-without-margin-top"><h4>{translate key="search.searchCategories"}</h4></div>
 					</div>
 				</div>
 				{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="authors" filterValue=$authors key="search.author"}
@@ -98,6 +138,7 @@
 				{include file="search/searchFilter.tpl" displayIf="emptyFilter" filterName="indexTerms" filterValue=$indexTerms key="search.indexTermsLong"}
 			{/if}
 		{/if}
+		</div>
 		</div>
 		<script>
 			var showFilters = false; //Hide them always if javascript enable
@@ -194,13 +235,6 @@
 		{/if}
 	</table>
 
-	{capture assign="syntaxInstructions"}{call_hook name="Templates::Search::SearchResults::SyntaxInstructions"}{/capture}
-		{if empty($syntaxInstructions)}
-			{translate key="search.syntaxInstructions"}
-		{else}
-			{* Must be properly escaped in the controller as we potentially get HTML here! *}
-			{$syntaxInstructions}
-		{/if}
 </div>
 
 {include file="common/footer.tpl"}
