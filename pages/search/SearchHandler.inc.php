@@ -115,11 +115,9 @@ class SearchHandler extends Handler {
 		$templateMgr->assign(compact('startYear', 'endYear'));
 
 		// Assign journal options.
-		if ($searchFilters['siteSearch']) {
-			$journalDao =& DAORegistry::getDAO('JournalDAO');
-			$journals =& $journalDao->getJournalTitles(true);
-			$templateMgr->assign('journalOptions', array('' => AppLocale::Translate('search.allJournals')) + $journals);
-		}
+		$journalDao =& DAORegistry::getDAO('JournalDAO');
+		$journals =& $journalDao->getJournalTitles(true);
+		$templateMgr->assign('journalOptions', array('' => AppLocale::Translate('search.allJournals')) + $journals);
 	}
 
 	/**
