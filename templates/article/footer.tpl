@@ -8,10 +8,10 @@
  * Article View -- Footer component.
  *}
  {call_hook|assign:"rightSidebarCode" name="Templates::Common::RightSidebar"}
-	</div> <!-- col-md-9 -->
-	<div class="col-md-3">
-		<div class="well">
-			<h4>Article tools</h4>
+	</div> <!-- col-md-8 -->
+	<div class="col-md-4">
+		<div class="well article-tools ">
+			<h4 class="page-header-without-margin-top">Article tools</h4>
 			{$rightSidebarCode}
 		</div>
 	</div>
