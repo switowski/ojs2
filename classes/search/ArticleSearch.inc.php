@@ -266,24 +266,21 @@ class ArticleSearch {
 		$searchFilters['toDate'] = (is_null($toDate) ? null : date('Y-m-d H:i:s', $toDate));
 
 		// Instantiate the journal.
-		$journal =& $request->getJournal();
-		$siteSearch = !((boolean)$journal);
-		if ($siteSearch) {
-			$journalDao =& DAORegistry::getDAO('JournalDAO'); /* @var $journalDao JournalDAO */
-			if (!empty($searchFilters['searchJournal'])) {
-				$journal =& $journalDao->getById($searchFilters['searchJournal']);
-			} elseif (array_key_exists('journalTitle', $request->getUserVars())) {
-				$journals =& $journalDao->getJournals(
+		$searchFilters['siteSearch'] = true;
+		$journal =& $request->getUserVar('searchJournal');
+		$journalDao =& DAORegistry::getDAO('JournalDAO'); /* @var $journalDao JournalDAO */
+		if (!empty($searchFilters['searchJournal'])) {
+			$journal =& $journalDao->getById($searchFilters['searchJournal']);
+		} elseif (array_key_exists('journalTitle', $request->getUserVars())) {
+			$journals =& $journalDao->getJournals(
 					false, null, JOURNAL_FIELD_TITLE,
 					JOURNAL_FIELD_TITLE, 'is', $request->getUserVar('journalTitle')
-				);
-				if ($journals->getCount() == 1) {
-					$journal =& $journals->next();
-				}
+			);
+			if ($journals->getCount() == 1) {
+				$journal =& $journals->next();
 			}
 		}
 		$searchFilters['searchJournal'] =& $journal;
-		$searchFilters['siteSearch'] = $siteSearch;
 
 		return $searchFilters;
 	}

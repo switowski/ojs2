@@ -39,11 +39,9 @@
 				</div>
 			</div>
 		</div>
-		{if $siteSearch}
 		<div class="row margin-top-10">
 			<div class="col-md-12"><select name="searchJournal" id="searchJournal" class="selectMenu">{html_options options=$journalOptions selected=$searchJournal}</select></div>
 		</div>
-		{/if}
 		{if $hasActiveFilters}
 			<div class="row">
 				<div class="col-md-12"><h4>{translate key="search.activeFilters"}</h4></div>
