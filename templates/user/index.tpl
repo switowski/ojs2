@@ -71,6 +71,9 @@
 					{if $reviewerSubmissionsCount[0]}
 						<a href="{url journal=$journalPath page="reviewer"}" class="list-group-item">{translate key="common.queue.short.active"} <span class="badge">{$reviewerSubmissionsCount[0]}</span></a>
 					{else}<span class="disabled list-group-item">{translate key="common.queue.short.active"} <span class="badge">{$reviewerSubmissionsCount[0]}</span></span>{/if}
+					{if $reviewerSubmissionsCount[1]}
+						<a href="{url journal=$journalPath page="reviewer" path="completed"}" class="list-group-item">{translate key="common.queue.short.completed"} <span class="badge">{$reviewerSubmissionsCount[1]}</span></a>
+					{else}<span class="disabled list-group-item">{translate key="common.queue.short.completed"} <span class="badge">{$reviewerSubmissionsCount[1]}</span></span>{/if}
 				</div>
 			</div>
 		{/if}
@@ -83,13 +86,14 @@
 				<div class="list-group">
 					{if $editorSubmissionsCount[0]}
 							<a href="{url journal=$journalPath page="editor" op="submissions" path="submissionsUnassigned"}" class="list-group-item">{translate key="common.queue.short.submissionsUnassigned"}<span class="badge">{$editorSubmissionsCount[0]}</span></a>
-						{else}<span class="disabled list-group-item">{translate key="common.queue.short.submissionsUnassigned"} <span class="badge">0</span></span>{/if}
+					{else}<span class="disabled list-group-item">{translate key="common.queue.short.submissionsUnassigned"} <span class="badge">0</span></span>{/if}
 					{if $editorSubmissionsCount[1]}
 							<a href="{url journal=$journalPath page="editor" op="submissions" path="submissionsInReview"}" class="list-group-item">{translate key="common.queue.short.submissionsInReview"}<span class="badge">{$editorSubmissionsCount[1]}</span></a>
-						{else}<span class="disabled list-group-item">{translate key="common.queue.short.submissionsInReview"} <span class="badge">0</span></span>{/if}
+					{else}<span class="disabled list-group-item">{translate key="common.queue.short.submissionsInReview"} <span class="badge">0</span></span>{/if}
 					{if $editorSubmissionsCount[2]}
 							<a href="{url journal=$journalPath page="editor" op="submissions" path="submissionsInEditing"}" class="list-group-item">{translate key="common.queue.short.submissionsInEditing"}<span class="badge">{$editorSubmissionsCount[2]}</span></a>
-						{else}<span class="disabled list-group-item">{translate key="common.queue.short.submissionsInEditing"} <span class="badge">0</span></span>{/if}
+					{else}<span class="disabled list-group-item">{translate key="common.queue.short.submissionsInEditing"} <span class="badge">0</span></span>{/if}
+					<a href="{url journal=$journalPath page="editor" op="submissions" path="submissionsArchives"}" class="list-group-item">{translate key="common.queue.short.submissionsArchives"}</a>
 				</div>
 				<div class="list-group">
 					<a href="{url journal=$journalPath page="editor" op="createIssue"}" class="btn btn-default btn-block">{translate key="editor.issues.createIssue"}</a> 
@@ -110,6 +114,7 @@
 					{if $sectionEditorSubmissionsCount[1]}
 						<a href="{url journal=$journalPath page="sectionEditor" op="index" path="submissionsInEditing"}" class="list-group-item">{translate key="common.queue.short.submissionsInEditing"} <span class="badge">{$sectionEditorSubmissionsCount[1]}</span></a>
 					{else}<span class="disabled list-group-item">{translate key="common.queue.short.submissionsInEditing"} <span class="badge">0</span></span>{/if}
+					<a href="{url journal=$journalPath page="sectionEditor" op="index" path="submissionsArchives"}" class="list-group-item">{translate key="common.queue.short.submissionsArchives"}</a>
 				</div>
 			</div>
 		{/if}
@@ -123,6 +128,9 @@
 					{if $copyeditorSubmissionsCount[0]}
 						<a href="{url journal=$journalPath page="copyeditor"}" class="list-group-item">{translate key="common.queue.short.submissionsInEditing"} <span class="badge">{$copyeditorSubmissionsCount[0]}</span></a>
 					{else}<span class="disabled list-group-item">{translate key="common.queue.short.submissionsInEditing"} <span class="badge">0</span></span>{/if}
+					{if $copyeditorSubmissionsCount[0]}
+						<a href="{url journal=$journalPath page="copyeditor" path="completed"}" class="list-group-item">{translate key="common.queue.short.submissionsArchives"} <span class="badge">{$copyeditorSubmissionsCount[1]}</span></a>
+					{else}<span class="disabled list-group-item">{translate key="common.queue.short.submissionsArchives"} <span class="badge">0</span></span>{/if}
 				</div>
 			</div>
 		{/if}
@@ -136,6 +144,9 @@
 					{if $layoutEditorSubmissionsCount[0]}
 						<a href="{url journal=$journalPath page="layoutEditor" op="submissions"}" class="list-group-item">{translate key="common.queue.short.submissionsInEditing"} <span class="badge">{$layoutEditorSubmissionsCount[0]}</span></a>
 					{else}<span class="disabled list-group-item">{translate key="common.queue.short.submissionsInEditing"} <span class="badge">0</span></span>{/if}
+					{if $layoutEditorSubmissionsCount[1]}
+						<a href="{url journal=$journalPath page="layoutEditor" op="submissions" path="completed"}" class="list-group-item">{translate key="common.queue.short.submissionsArchives"} <span class="badge">{$layoutEditorSubmissionsCount[1]}</span></a>
+					{else}<span class="disabled list-group-item">{translate key="common.queue.short.submissionsArchives"} <span class="badge">0</span></span>{/if}
 				</div>
 			</div>
 		{/if}
@@ -149,6 +160,9 @@
 					{if $proofreaderSubmissionsCount[0]}
 						<a href="{url journal=$journalPath page="proofreader"}" class="list-group-item">{translate key="common.queue.short.submissionsInEditing"} <span class="badge">{$proofreaderSubmissionsCount[0]}</span></a>
 					{else}<span class="disabled list-group-item">{translate key="common.queue.short.submissionsInEditing"} <span class="badge">0</span></span>{/if}
+					{if $proofreaderSubmissionsCount[1]}
+						<a href="{url journal=$journalPath page="proofreader" path="completed"}" class="list-group-item">{translate key="common.queue.short.submissionsArchives"} <span class="badge">{$proofreaderSubmissionsCount[1]}</span></a>
+					{else}<span class="disabled list-group-item">{translate key="common.queue.short.submissionsArchives"} <span class="badge">0</span></span>{/if}
 				</div>
 			</div>
 		{/if}
