@@ -66,7 +66,7 @@
 			<div class="col-md-3 on-PC">
 				<a class="btn btn-default btn-block" onclick="toogleFilters()"><i class="material-icons icon-advanced-search">expand_more</i> Advanced search</a>
 			</div>
-			{if not $siteSearch}
+			{if $currentJournal}
 			<div class="col-md-3">
 				<a class="btn btn-default btn-block" href="{url page="search"}/authors"><i class="material-icons icons-search-page">group</i> Index of authors</a>
 			</div>
