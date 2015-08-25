@@ -93,9 +93,9 @@
 				<li><a href="{url journal="index"}"><span class="menu-option">{translate key="navigation.home"}</span></a></li>
 				{if $currentJournal}
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">{translate key="navigation.about"} Journal</span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu-option">{translate key="navigation.about"}</span></a>
 						<ul class="dropdown-menu">
-							<li><a href="{url page="about"}"><h5>About this page</h5></a></li>
+							<li><a href="{url page="about"}"><h5>About this publication</h5></a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="{url page="pages"}/view/for_editors"><h5>Information for editors</h5></a></li>              
 							<li><a href="{url page="pages"}/view/for_authors"><h5>Information for authors</h5></a></li>

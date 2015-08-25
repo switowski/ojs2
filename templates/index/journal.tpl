@@ -8,6 +8,10 @@
  * Journal index page.
  *
  *}
+<script>
+	var alternativeTitle = '';
+</script>
+ 
 {strip}
 {assign var="pageTitleTranslated" value=$siteTitle}
 {include file="common/header.tpl"}

@@ -269,16 +269,11 @@ class ArticleSearch {
 		$searchFilters['siteSearch'] = true;
 		$journal =& $request->getUserVar('searchJournal');
 		$journalDao =& DAORegistry::getDAO('JournalDAO'); /* @var $journalDao JournalDAO */
+		
 		if (!empty($searchFilters['searchJournal'])) {
 			$journal =& $journalDao->getById($searchFilters['searchJournal']);
-		} elseif (array_key_exists('journalTitle', $request->getUserVars())) {
-			$journals =& $journalDao->getJournals(
-					false, null, JOURNAL_FIELD_TITLE,
-					JOURNAL_FIELD_TITLE, 'is', $request->getUserVar('journalTitle')
-			);
-			if ($journals->getCount() == 1) {
-				$journal =& $journals->next();
-			}
+		} else {
+			$journal =& $request->getJournal();
 		}
 		$searchFilters['searchJournal'] =& $journal;
 

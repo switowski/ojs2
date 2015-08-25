@@ -495,7 +495,7 @@ ul.tagit input[type="text"] {
 	}
 	
 	label {
-		padding-top: 10px;
+		padding-top: 0px;
 	}
 	
 	.navbar-toggle {
@@ -655,13 +655,7 @@ ul.tagit input[type="text"] {
 	}
 	
 	#checklist label {
-	    padding-top: 0;
 	    font-weight: normal;
-	}
-	
-	#authors label, #titleAndAbstract label, #indexing label,
-	#search label {
-		padding-top:0;
 	}
 	
 	.copyeditor-instructions {
@@ -790,10 +784,6 @@ ul.tagit input[type="text"] {
 	.div-buttons-submission {
 		text-align:center;
 		margin-top:20px
-	}
-	
-	.radio-buttons-file-copyediting label {
-		padding-top:0;
 	}
 	
 	.search-button-search-window {
