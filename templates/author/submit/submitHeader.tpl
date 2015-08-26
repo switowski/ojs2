@@ -18,35 +18,35 @@
 </script>
 
 <div class="row bs-wizard">               
-	<div class="col-xs-offset-1 col-xs-2 bs-wizard-step {if $submitStep > 1}complete{elseif $submitStep == 1}active{elseif $submissionProgress < 1}disabled{/if}">
+	<div class="col-md-offset-1 col-md-2 bs-wizard-step {if $submitStep > 1}complete{elseif $submitStep == 1}active{elseif $submissionProgress < 1}disabled{/if}">
       	<div class="text-center bs-wizard-stepnum">Step 1</div>
       	<div class="progress"><div class="progress-bar"></div></div>
       	<a href="{url op="submit" path="1" articleId=$articleId}" class="bs-wizard-dot"></a>
       	<div class="bs-wizard-info text-center">{translate key="author.submit.start"}</div>
     </div>
     
-    <div class="col-xs-2 bs-wizard-step {if $submitStep > 2}complete{elseif $submitStep == 2}active{elseif $submissionProgress < 2}disabled{/if}">
+    <div class="col-md-2 bs-wizard-step {if $submitStep > 2}complete{elseif $submitStep == 2}active{elseif $submissionProgress < 2}disabled{/if}">
       	<div class="text-center bs-wizard-stepnum">Step 2</div>
       	<div class="progress"><div class="progress-bar"></div></div>
       	<a href="{url op="submit" path="2" articleId=$articleId}" class="bs-wizard-dot"></a>
       	<div class="bs-wizard-info text-center">{translate key="author.submit.upload"}</div>
     </div>
     
-    <div class="col-xs-2 bs-wizard-step {if $submitStep > 3}complete{elseif $submitStep == 3}active{elseif $submissionProgress < 3}disabled{/if}">
+    <div class="col-md-2 bs-wizard-step {if $submitStep > 3}complete{elseif $submitStep == 3}active{elseif $submissionProgress < 3}disabled{/if}">
       	<div class="text-center bs-wizard-stepnum">Step 3</div>
       	<div class="progress"><div class="progress-bar"></div></div>
       	<a href="{url op="submit" path="3" articleId=$articleId}" class="bs-wizard-dot"></a>
       	<div class="bs-wizard-info text-center">{translate key="author.submit.metadata"}</div>
     </div>
     
-    <div class="col-xs-2 bs-wizard-step {if $submitStep > 4}complete{elseif $submitStep == 4}active{elseif $submissionProgress < 4}disabled{/if}">
+    <div class="col-md-2 bs-wizard-step {if $submitStep > 4}complete{elseif $submitStep == 4}active{elseif $submissionProgress < 4}disabled{/if}">
       	<div class="text-center bs-wizard-stepnum">Step 4</div>
       	<div class="progress"><div class="progress-bar"></div></div>
       	<a href="{url op="submit" path="4" articleId=$articleId}" class="bs-wizard-dot"></a>
       	<div class="bs-wizard-info text-center">{translate key="author.submit.supplementaryFiles"}</div>
     </div>
     
-    <div class="col-xs-2 bs-wizard-step {if $submitStep > 5}complete{elseif $submitStep == 5}active{elseif $submissionProgress < 5}disabled{/if}">
+    <div class="col-md-2 bs-wizard-step {if $submitStep > 5}complete{elseif $submitStep == 5}active{elseif $submissionProgress < 5}disabled{/if}">
       	<div class="text-center bs-wizard-stepnum">Step 5</div>
       	<div class="progress"><div class="progress-bar"></div></div>
       	<a href="{url op="submit" path="5" articleId=$articleId}" class="bs-wizard-dot"></a>
