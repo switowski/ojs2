@@ -207,7 +207,7 @@
 			</div>
 		{else}
 			<div id="user-nav-off" class="user-nav user-nav-off" aria-expanded="false">
-				<a class="btn btn-default btn-xs" href="{url page="login"}"><span class="menu-option">{translate key="navigation.login"}</span></a>
+				<a class="btn btn-default btn-xs" href="https://e-publishing.cern.ch/index.php/CYR/login/implicitAuthLogin"><span class="menu-option">{translate key="navigation.login"}</span></a>
 			</div>
 		{/if}
 	</div>
