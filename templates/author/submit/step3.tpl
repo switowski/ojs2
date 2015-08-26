@@ -207,7 +207,7 @@ function moveAuthor(dir, authorIndex) {
 </div>
 {/foreach}
 
-<p><input type="submit" class="button" name="addAuthor" value="{translate key="author.submit.addAuthor"}" /></p>
+<div class="margin-top-10"><input type="submit" class="button" name="addAuthor" value="{translate key="author.submit.addAuthor"}" /></div>
 </div>
 <div class="separator"></div>
 

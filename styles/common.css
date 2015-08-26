@@ -605,6 +605,12 @@ ul.tagit input[type="text"] {
 	.bs-wizard > .bs-wizard-step:last-child  > .progress {width: 50%;}
 	.bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
 	
+	@media (max-width:990px) {
+		.bs-wizard > .bs-wizard-step:not(:first-child) {
+			margin-top: 20px!important;
+		}
+	}
+	
 	
 	.table > tbody > tr > td,
 	.table>tbody>tr>th, 
@@ -679,6 +685,13 @@ ul.tagit input[type="text"] {
 	
 	.input-file-text {
 		width:70% !important;
+	}
+	
+	@media (max-width: 545px) {
+		.input-file-text {
+			width:100%;
+		    margin-top: 33px;
+		}
 	}
 	
 	.numbers-footer {
@@ -885,6 +898,32 @@ ul.tagit input[type="text"] {
 	
 	.footerBottom {
 		bottom:0px;
+	}
+	
+	.ojsFooterLink {
+	    text-align: center;
+	    margin-bottom: -30px;
+	    margin-top: 20px;
+	}
+	
+	@media(max-width:990px) {
+		.ojsFooterLink {
+			margin-bottom: -15px;
+		}
+	}
+	
+	.ojsFooterLink a {
+		font-size: 12px;
+	    color: #C1C1C1;
+	    text-decoration:none;
+	}
+	
+	.ojsFooterLink a:hover {
+		color: #B1B1B1;
+	}
+	
+	.pkp_form_error_list a {
+		color:red;
 	}
 	
 	.margin-bottom-10 {
