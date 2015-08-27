@@ -956,6 +956,10 @@ ul.tagit input[type="text"] {
 		float:right;
 	}
 	
+	.display-initial {
+		display: initial;
+	}
+	
 	.margin-bottom-10 {
 		margin-bottom:10px;
 	}
