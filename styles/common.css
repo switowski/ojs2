@@ -947,6 +947,10 @@ ul.tagit input[type="text"] {
 	    font-size: 17px;
 	}
 	
+	.checkbox-float-right {
+		float:right;
+	}
+	
 	.margin-bottom-10 {
 		margin-bottom:10px;
 	}
