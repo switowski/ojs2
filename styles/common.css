@@ -931,6 +931,22 @@ ul.tagit input[type="text"] {
     	margin: 4px 5px 0px 10px !important;
 	}
 	
+	.back-icon-file-browser {
+		font-size: 20px !important;
+	}
+	
+	.folder-icon {
+	    color: goldenrod;
+	    margin-right: 5px;
+	    margin-top: -2px;
+	}
+	
+	.file-icon {
+	    color: thistle;
+	    margin-right: 5px;
+	    font-size: 17px;
+	}
+	
 	.margin-bottom-10 {
 		margin-bottom:10px;
 	}
