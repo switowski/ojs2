@@ -117,7 +117,7 @@
 				<div>
 					{translate key="article.language"}: 
 					<a href="{url|escape:"javascript" page="user" op="setLocale" path="en_US" source=$smarty.server.REQUEST_URI escape=false}">EN</a>&nbsp;&nbsp;|&nbsp;
-					<a href="{url|escape:"javascript" page="user" op="setLocale" path="fr_CA" source=$smarty.server.REQUEST_URI escape=false}">FR</a>
+					<a href="{url|escape:"javascript" page="user" op="setLocale" path="fr_FR" source=$smarty.server.REQUEST_URI escape=false}">FR</a>
 				</div>
 			</div>
 			<div class="col-md-3 second-col-footer">
