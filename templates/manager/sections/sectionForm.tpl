@@ -98,27 +98,23 @@ function checkEditorAssignments() {
 	<td rowspan="4" class="label">{fieldLabel suppressId="true" key="submission.indexing"}</td>
 	<td class="value">
 		{translate key="manager.section.submissionsToThisSection"}<br/>
-		<input type="checkbox" name="metaReviewed" id="metaReviewed" value="1" {if $metaReviewed}checked="checked"{/if} />
-		{fieldLabel name="metaReviewed" key="manager.sections.submissionReview"}
-	</td>
-</tr>
-<tr valign="top">
-	<td class="value">
-		<input type="checkbox" name="abstractsNotRequired" id="abstractsNotRequired" value="1" {if $abstractsNotRequired}checked="checked"{/if} />
-		{fieldLabel name="abstractsNotRequired" key="manager.sections.abstractsNotRequired"}
-	</td>
-</tr>
-<tr valign="top">
-	<td class="value">
-		<input type="checkbox" name="metaIndexed" id="metaIndexed" value="1" {if $metaIndexed}checked="checked"{/if} />
-		{fieldLabel name="metaIndexed" key="manager.sections.submissionIndexing"}
-	</td>
-</tr>
-<tr valign="top">
-	<td class="value">
-		{fieldLabel name="identifyType" key="manager.sections.identifyType"} <input type="text" name="identifyType[{$formLocale|escape}]" id="identifyType" value="{$identifyType[$formLocale]|escape}" size="20" maxlength="60" class="textField" />
-		<br />
-		<span class="instruct">{translate key="manager.sections.identifyTypeExamples"}</span>
+		<div class="row">
+			<div class="col-xs-1"><input class="checkbox-float-right" type="checkbox" name="metaReviewed" id="metaReviewed" value="1" {if $metaReviewed}checked="checked"{/if} /></div>
+			<div class="col-xs-11">{fieldLabel name="metaReviewed" key="manager.sections.submissionReview"}</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-1"><input class="checkbox-float-right" type="checkbox" name="abstractsNotRequired" id="abstractsNotRequired" value="1" {if $abstractsNotRequired}checked="checked"{/if} /></div>
+			<div class="col-xs-11">{fieldLabel name="abstractsNotRequired" key="manager.sections.abstractsNotRequired"}</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-1"><input class="checkbox-float-right" type="checkbox" name="metaIndexed" id="metaIndexed" value="1" {if $metaIndexed}checked="checked"{/if} /></div>
+			<div class="col-xs-11">{fieldLabel name="metaIndexed" key="manager.sections.submissionIndexing"}</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">{fieldLabel name="identifyType" key="manager.sections.identifyType"}</div>
+			<div class="col-md-6"><input type="text" name="identifyType[{$formLocale|escape}]" id="identifyType" value="{$identifyType[$formLocale]|escape}" size="20" maxlength="60" class="textField" /></div>
+			<div class="col-md-6 col-md-offset-6"><span class="instruct">{translate key="manager.sections.identifyTypeExamples"}</span></div>
+		</div>
 	</td>
 </tr>
 <tr valign="top">
@@ -173,24 +169,21 @@ function checkEditorAssignments() {
 <p><span class="instruct">{translate key="manager.section.sectionEditorInstructions"}</span></p>
 <h4>{translate key="manager.sections.unassigned"}</h4>
 
-<table width="100%" class="listing" id="unassignedSectionEditors">
-	<tr>
-		<td colspan="3" class="headseparator">&nbsp;</td>
-	</tr>
+<table width="100%" class="table table-striped" id="unassignedSectionEditors">
+<thead>
 	<tr valign="top" class="heading">
 		<td width="20%">{translate key="user.username"}</td>
 		<td width="60%">{translate key="user.name"}</td>
 		<td width="20%" align="right">{translate key="common.action"}</td>
 	</tr>
-	<tr>
-		<td colspan="3" class="headseparator">&nbsp;</td>
-	</tr>
+</thead>
+<tbody>
 	{foreach from=$unassignedEditors item=editor}
 		<tr valign="top">
 			<td>{$editor->getUsername()|escape}</td>
 			<td>{$editor->getFullName()|escape}</td>
 			<td align="right">
-				<a class="action" href="javascript:addSectionEditor({$editor->getId()})">{translate key="common.add"}</a>
+				<a class="btn btn-default btn-xs" href="javascript:addSectionEditor({$editor->getId()})"><i class="material-icons icon-inside-button">add</i> {translate key="common.add"}</a>
 			</td>
 		</tr>
 	{foreachelse}
@@ -198,18 +191,14 @@ function checkEditorAssignments() {
 			<td colspan="3" class="nodata">{translate key="common.none"}</td>
 		</tr>
 	{/foreach}
-	<tr>
-		<td colspan="3" class="endseparator">&nbsp;</td>
-	</tr>
+</tbody>
 </table>
 </div>
 <div id="sectionsAssigned">
 <h4>{translate key="manager.sections.assigned"}</h4>
 
-<table width="100%" class="listing" id="assignedSectionEditors">
-	<tr>
-		<td colspan="5" class="headseparator">&nbsp;</td>
-	</tr>
+<table width="100%" class="table table-striped" id="assignedSectionEditors">
+<thead>
 	<tr valign="top" class="heading">
 		<td width="20%">{translate key="user.username"}</td>
 		<td width="40%">{translate key="user.name"}</td>
@@ -217,9 +206,8 @@ function checkEditorAssignments() {
 		<td width="10%" align="center">{translate key="submission.editing"}</td>
 		<td width="20%" align="right">{translate key="common.action"}</td>
 	</tr>
-	<tr>
-		<td colspan="5" class="headseparator">&nbsp;</td>
-	</tr>
+</thead>
+<tbody>
 	{foreach from=$assignedEditors item=editorEntry}
 		{assign var=editor value=$editorEntry.user}
 		<input type="hidden" name="assignedEditorIds[]" value="{$editor->getId()|escape}" />
@@ -229,7 +217,7 @@ function checkEditorAssignments() {
 			<td align="center"><input type="checkbox" {if $editorEntry.canReview}checked="checked"{/if} name="canReview{$editor->getId()}" /></td>
 			<td align="center"><input type="checkbox" {if $editorEntry.canEdit}checked="checked"{/if} name="canEdit{$editor->getId()}" /></td>
 			<td align="right">
-				<a class="action" href="javascript:removeSectionEditor({$editor->getId()})">{translate key="common.remove"}</a>
+				<a class="btn btn-danger btn-xs" href="javascript:removeSectionEditor({$editor->getId()})"><i class="material-icons icon-inside-button">delete</i> {translate key="common.remove"}</a>
 			</td>
 		</tr>
 	{foreachelse}
@@ -237,9 +225,7 @@ function checkEditorAssignments() {
 			<td colspan="5" class="nodata">{translate key="common.none"}</td>
 		</tr>
 	{/foreach}
-	<tr>
-		<td colspan="5" class="endseparator">&nbsp;</td>
-	</tr>
+</tbody>
 </table>
 </div>
 <p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="sections" escape=false}'" /></p>
