@@ -914,16 +914,50 @@ ul.tagit input[type="text"] {
 	
 	.ojsFooterLink a {
 		font-size: 12px;
-	    color: #C1C1C1;
+	    color: #A1A1A1;
 	    text-decoration:none;
 	}
 	
 	.ojsFooterLink a:hover {
-		color: #B1B1B1;
+		color: #818181;
 	}
 	
 	.pkp_form_error_list a {
 		color:red;
+	}
+	
+	.input-checkbox-float-left {
+		float: left;
+    	margin: 4px 5px 0px 10px !important;
+	}
+	
+	.back-icon-file-browser {
+		font-size: 20px !important;
+	}
+	
+	.plain {
+		 list-style-type: none;
+		 padding-left:0px;
+	}
+	
+	.folder-icon {
+	    color: goldenrod;
+	    margin-right: 5px;
+	    margin-top: -2px;
+	}
+	
+	.file-icon {
+	    color: thistle;
+	    margin-right: 5px;
+	    font-size: 17px;
+	}
+	
+	.checkbox-float-right {
+		float:right;
+	}
+	
+	.display-initial {
+		display: initial;
 	}
 	
 	.margin-bottom-10 {

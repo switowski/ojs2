@@ -21,11 +21,6 @@
 				<p>{translate key="notification.notificationsPublicDescription" emailUrl=$emailUrl}</p>
 			{/if}
 		</td>
-		<td><ul class="plain">
-			<li><a href="{url op="getNotificationFeedUrl" path="rss"}" class="icon"><img src="{$baseUrl|escape}/lib/pkp/templates/images/rss10_logo.gif" alt="RSS 1.0"/></a></li>
-			<li><a href="{url op="getNotificationFeedUrl" path="rss2"}" class="icon"><img src="{$baseUrl}/lib/pkp/templates/images/rss20_logo.gif" alt="RSS 2.0"/></a></li>
-			<li><a href="{url op="getNotificationFeedUrl" path="atom"}" class="icon"><img src="{$baseUrl}/lib/pkp/templates/images/atom10_logo.gif" alt="Atom 1.0"/></a></li>
-		</ul></td>
 	</tr>
 </table>
 
@@ -45,15 +40,21 @@
 		</tr>
 	</table>
 {else}
-	<table class="notifications">
+	<table class="notifications" width="100%">
 		<tr>
-			<td align="left">{page_info iterator=$notifications}</td>
-			<td align="right">{page_links anchor="notifications" name="notifications" iterator=$notifications}</td>
+			<td align="left" class="number-results-table">{page_info iterator=$notifications}</td>
+			<td align="right" class="footer-table-numbers">{page_links anchor="notifications" name="notifications" iterator=$notifications}</td>
 		</tr>
 	</table>
 {/if}
 
 </div>
+
+<ul class="plain">
+	<li><a href="{url op="getNotificationFeedUrl" path="rss"}" class="icon"><img src="{$baseUrl|escape}/lib/pkp/templates/images/rss10_logo.gif" alt="RSS 1.0"/></a></li>
+	<li><a href="{url op="getNotificationFeedUrl" path="rss2"}" class="icon"><img src="{$baseUrl}/lib/pkp/templates/images/rss20_logo.gif" alt="RSS 2.0"/></a></li>
+	<li><a href="{url op="getNotificationFeedUrl" path="atom"}" class="icon"><img src="{$baseUrl}/lib/pkp/templates/images/atom10_logo.gif" alt="Atom 1.0"/></a></li>
+</ul>
 
 {include file="common/footer.tpl"}
 

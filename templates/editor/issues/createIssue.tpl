@@ -57,7 +57,24 @@
 	</div>
 	<div class="col-md-12">
 		<div class="label col-md-2">{fieldLabel suppressId="true" name="labelFormat" key="editor.issues.issueIdentification"}</div>
-		<div class="col-md-10"><input type="checkbox" name="showVolume" id="showVolume" value="1"{if $showVolume} checked="checked"{/if} /><label for="showVolume"> {translate key="issue.volume"}</label><br /><input type="checkbox" name="showNumber" id="showNumber" value="1"{if $showNumber} checked="checked"{/if} /><label for="showNumber"> {translate key="issue.number"}</label><br /><input type="checkbox" name="showYear" id="showYear" value="1"{if $showYear} checked="checked"{/if} /><label for="showYear"> {translate key="issue.year"}</label><br /><input type="checkbox" name="showTitle" id="showTitle" value="1"{if $showTitle} checked="checked"{/if} /><label for="showTitle"> {translate key="issue.title"}</label></div>
+		<div class="col-md-10">
+			<div class="row">
+			<div class="col-xs-1"><input class="checkbox-float-right" type="checkbox" name="showVolume" id="showVolume" value="1"{if $showVolume} checked="checked"{/if} /></div>
+			<div class="col-xs-11"><label for="showVolume"> {translate key="issue.volume"}</label></div>
+			</div>
+			<div class="row">
+			<div class="col-xs-1"><input class="checkbox-float-right" type="checkbox" name="showNumber" id="showNumber" value="1"{if $showNumber} checked="checked"{/if} /></div>
+			<div class="col-xs-11"><label for="showNumber"> {translate key="issue.number"}</label></div>
+			</div>
+			<div class="row">
+			<div class="col-xs-1"><input class="checkbox-float-right" type="checkbox" name="showYear" id="showYear" value="1"{if $showYear} checked="checked"{/if} /></div>
+			<div class="col-xs-11"><label for="showYear"> {translate key="issue.year"}</label></div>
+			</div>
+			<div class="row">
+			<div class="col-xs-1"><input class="checkbox-float-right" type="checkbox" name="showTitle" id="showTitle" value="1"{if $showTitle} checked="checked"{/if} /></div>
+			<div class="col-xs-11"><label for="showTitle"> {translate key="issue.title"}</label></div>
+			</div>
+		</div>
 	</div>
 	{if $enablePublicIssueId}
 	<div class="col-md-12">
