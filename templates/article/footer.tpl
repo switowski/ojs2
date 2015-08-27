@@ -124,7 +124,7 @@
 				<a href="http://cern.ch" class="btn"><img class="cern-logo" src="/public/cern-logo-blue.png" alt="CERN Logo"/></a>
 			</div>
 		</div>
-		<div class="row ojsFooterLink"><div class="col-md-12"><a href="http://pkp.sfu.ca/ojs/">This page is using Open Journal System</a></div></div>
+		<div class="row ojsFooterLink"><div class="col-md-12"><a href="http://pkp.sfu.ca/ojs/">CERN Publishing website is powered by Open Journal Systems</a></div></div>
 	</div>
 </div>
 </div><!-- content -->
