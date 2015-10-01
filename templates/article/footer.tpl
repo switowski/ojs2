@@ -17,8 +17,12 @@
 	</div>
 </div> <!-- row -->
 
-<dic class="clearfix"></div>
+<div class="clearfix"></div>
 
+</div><!-- content -->
+</div><!-- main -->
+</div><!-- body -->
+</div> <!-- container -->
 <div class="footer jumbotron">
 	<div class="text-footer">
 		<div class="row">
@@ -50,7 +54,7 @@
 					{/if}
 				<!-- end AddThis -->
 				{/if}
-				
+
 				{if $currentJournal}
 					{if $currentJournal->getSetting('includeCopyrightStatement')}
 						{translate key="submission.copyrightStatement" copyrightYear=$article->getCopyrightYear()|escape copyrightHolder=$article->getLocalizedCopyrightHolder()|escape}
@@ -59,13 +63,12 @@
 						{$ccLicenseBadge}
 					{/if}
 				{/if}
-				
+
 				{call_hook name="Templates::Article::Footer::PageFooter"}
 				{if $pageFooter}
 				{$pageFooter}
 				{/if}
-				
-				
+
 				{if $defineTermsContextId}
 				<script type="text/javascript">
 				{literal}
@@ -86,28 +89,28 @@
 							else openRTWindowWithToolbar(url + '?defineTerm=' + term);
 						}
 					}
-				
+
 					if(document.captureEvents) {
 						document.captureEvents(Event.DBLCLICK);
 					}
-				
-					// Make sure to only open the reading tools when double clicking within the galley	
+
+					// Make sure to only open the reading tools when double clicking within the galley
 					if (document.getElementById('inlinePdfResizer')) {
-						context = document.getElementById('inlinePdfResizer');	
+						context = document.getElementById('inlinePdfResizer');
 					}
 					else if (document.getElementById('content')) {
-						context = document.getElementById('content');	
+						context = document.getElementById('content');
 					}
 					else {
 						context = document;
 					}
-				
+
 					context.ondblclick = new Function("openSearchTermWindow('{/literal}{url page="rt" op="context" path=$articleId|to_array:$galleyId:$defineTermsContextId escape=false}{literal}')");
 				// -->
 				{/literal}
 				</script>
 				{/if}
-				
+
 				{get_debug_info}
 				{if $enableDebugStats}{include file=$pqpTemplate}{/if}
 				<div>
@@ -115,7 +118,7 @@
 					{if $currentJournal}&nbsp;|&nbsp;&nbsp;<a href="{url page="about"}/contact">Contact</a>{/if}
 				</div>
 				<div>
-					{translate key="article.language"}: 
+					{translate key="article.language"}:
 					<a href="{url|escape:"javascript" page="user" op="setLocale" path="en_US" source=$smarty.server.REQUEST_URI escape=false}">EN</a>&nbsp;&nbsp;|&nbsp;
 					<a href="{url|escape:"javascript" page="user" op="setLocale" path="fr_FR" source=$smarty.server.REQUEST_URI escape=false}">FR</a>
 				</div>
@@ -127,9 +130,5 @@
 		<div class="row ojsFooterLink"><div class="col-md-12"><a href="http://pkp.sfu.ca/ojs/">CERN Publishing website is powered by Open Journal Systems</a></div></div>
 	</div>
 </div>
-</div><!-- content -->
-</div><!-- main -->
-</div><!-- body -->
-</div> <!-- container -->
 </body>
 </html>

@@ -21,7 +21,7 @@
 			{if $currentJournal}&nbsp;|&nbsp;&nbsp;<a href="{url page="about"}/contact">Contact</a>{/if}
 		</div>
 		<div>
-			{translate key="article.language"}: 
+			{translate key="article.language"}:
 			<a href="{url|escape:"javascript" page="user" op="setLocale" path="en_US" source=$smarty.server.REQUEST_URI escape=false}">EN</a>&nbsp;&nbsp;|&nbsp;
 			<a href="{url|escape:"javascript" page="user" op="setLocale" path="fr_FR" source=$smarty.server.REQUEST_URI escape=false}">FR</a>
 		</div>
@@ -33,13 +33,10 @@
 <div class="row ojsFooterLink"><div class="col-md-12"><a href="http://pkp.sfu.ca/ojs/">CERN Publishing website is powered by Open Journal Systems</a></div></div>
 </div><!-- text footer -->
 </div><!-- footer -->
-</div><!-- content -->
-</div><!-- main -->
-</div><!-- body -->
+
 
 {get_debug_info}
 {if $enableDebugStats}{include file=$pqpTemplate}{/if}
 
-</div><!-- container -->
 </body>
 </html>

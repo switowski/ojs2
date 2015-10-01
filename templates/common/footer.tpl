@@ -8,7 +8,12 @@
  * Common site footer.
  *
  *}
-<dic class="clearfix"></div>
+<div class="clearfix"></div>
+</div>
+</div><!-- content -->
+</div><!-- main -->
+</div><!-- body -->
+</div><!-- container -->
 <div class="footer jumbotron">
 	<div class="text-footer">
 		<div class="row">
