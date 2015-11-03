@@ -143,7 +143,7 @@ class ReviewReminder extends ScheduledTask {
 
 			// After the first reminder we want to keep sending notifications
 			// in a predefined interval (so reviewers won't forget to review the submission)
-			$notificationInterval = 60 * 60 * 24 * 7 // We want to send reminders once per week
+			$notificationInterval = 60 * 60 * 24 * 7; // We want to send reminders once per week
 			$remindedDate = strtotime($reviewAssignment->getDateReminded());
 			if (time() - $remindedDate > $notificationInterval ) {
 				$shouldRemind = true;
